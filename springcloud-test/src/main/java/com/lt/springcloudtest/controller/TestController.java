@@ -1,16 +1,13 @@
 
 package com.lt.springcloudtest.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.google.gson.GsonBuilder;
-import com.lt.springcloudtest.bean.TestBean;
-import com.lt.springcloudtest.enums.TimeEnums;
 import com.lt.springcloudtest.service.TestService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -20,17 +17,14 @@ import java.util.Map;
  */
 @RestController
 public class TestController {
+    private static Logger logger = LoggerFactory.getLogger(TestController.class);
     @Autowired
     private TestService testService;
 
     @RequestMapping("testJson")
-    public Map testJson(){
-        TestBean testBean = new TestBean("123", 22, "33",new Date());
-        String jsonString = JSON.toJSONString(testBean);
-        String jsonGson = new GsonBuilder().setDateFormat(TimeEnums.YYYYMMDDHHMMSS).create().toJson(testBean);
+    public Map testJson() {
+        this.testService.testJson("123");
 
-        System.out.println(jsonGson);
-        System.out.println(jsonString);
         return null;
     }
 }

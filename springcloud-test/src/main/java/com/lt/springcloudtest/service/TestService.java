@@ -6,4 +6,9 @@ package com.lt.springcloudtest.service;
  * @date 2021/1/4 15:29
  */
 public interface TestService {
+    /**
+     * test
+     * @param s
+     */
+    void testJson(String s);
 }

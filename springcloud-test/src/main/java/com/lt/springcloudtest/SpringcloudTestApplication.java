@@ -3,7 +3,7 @@ package com.lt.springcloudtest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages  = {"com.lt.springcloudtest"})
 public class SpringcloudTestApplication {
 
     public static void main(String[] args) {
