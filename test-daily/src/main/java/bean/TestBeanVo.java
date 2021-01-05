@@ -10,7 +10,7 @@ import java.util.Date;
  * @description TestBean
  * @date 2021/1/4 14:52
  */
-public class TestBean implements Serializable {
+public class TestBeanVo implements Serializable {
     private static final long serialVersionUID = -4116925219370846429L;
     private String name;
     private Integer age;
@@ -18,10 +18,10 @@ public class TestBean implements Serializable {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    public TestBean() {
+    public TestBeanVo() {
     }
 
-    public TestBean(String name, Integer age, String otherName, Date createTime) {
+    public TestBeanVo(String name, Integer age, String otherName, Date createTime) {
         this.name = name;
         this.age = age;
         this.otherName = otherName;
@@ -58,5 +58,15 @@ public class TestBean implements Serializable {
 
     public void setOtherName(String otherName) {
         this.otherName = otherName;
+    }
+
+    @Override
+    public String toString() {
+        return "TestBeanVo{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", otherName='" + otherName + '\'' +
+                ", createTime=" + createTime +
+                '}';
     }
 }

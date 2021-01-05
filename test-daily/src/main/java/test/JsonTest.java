@@ -1,6 +1,6 @@
 package test;
 
-import bean.TestBean;
+import bean.TestBeanVo;
 import com.alibaba.fastjson.JSON;
 import com.google.gson.GsonBuilder;
 import enums.TimeEnums;
@@ -14,9 +14,9 @@ import java.util.Date;
  */
 public class JsonTest {
     public static void main(String[] args) {
-        TestBean testBean = new TestBean("123", 22, "33",new Date());
-        String jsonString = JSON.toJSONString(testBean);
-        String jsonGson = new GsonBuilder().setDateFormat(TimeEnums.YYYYMMDDHHMMSS).create().toJson(testBean);
+        TestBeanVo testBeanVo = new TestBeanVo("123", 22, "33",new Date());
+        String jsonString = JSON.toJSONString(testBeanVo);
+        String jsonGson = new GsonBuilder().setDateFormat(TimeEnums.YYYYMMDDHHMMSS).create().toJson(testBeanVo);
 
         System.out.println(jsonGson);
         System.out.println(jsonString);
