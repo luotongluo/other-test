@@ -48,7 +48,19 @@ public class JsonTest {
 //        System.out.println("format" + format);
 //        System.out.println(sdf.format(date));
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(sdf.format(dateBeg));
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        System.out.println(sdf.format(dateBeg));
+
+        long time = new Date().getTime();
+        long currentTimeMillis = System.currentTimeMillis();
+        System.out.println("time:" + time + "\tcurrtime" + currentTimeMillis);
+
+        boolean play = true;
+
+        if (play){
+            System.out.println("play together on bed room");
+        }else {
+            System.out.println("哼唧，不玩");
+        }
     }
 }
