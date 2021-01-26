@@ -1,0 +1,7 @@
+com\lt\generator\generator\config\NewbatisGenerator.class
+com\lt\generator\generator\GeneratorApplication.class
+com\lt\generator\generator\config\Generator.class
+com\lt\generator\generator\config\MysqlPaginationPlugin.class
+com\lt\generator\generator\entity\TestTable.class
+com\lt\generator\generator\dao\TestTableMapper.class
+com\lt\generator\generator\config\MybatisCommentGenerator.class
