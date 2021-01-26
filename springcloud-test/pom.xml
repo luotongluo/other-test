@@ -76,6 +76,13 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.11</version>
         </dependency>
+        <!--excl-export-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.0.0</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
