@@ -15,8 +15,8 @@
         <commentGenerator>
             <property name="suppressDate" value="true"/>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="false"/>
-            <!-- 是否生成注释代时间戳-->
+            <property name="suppressAllComments" value="true"/>
+
             <property name="suppressDate" value="true"/>
         </commentGenerator>
         <!-- 通过type指定自定义的注释 -->

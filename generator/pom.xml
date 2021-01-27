@@ -50,7 +50,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.18</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -73,14 +72,14 @@
                     <overwrite>true</overwrite>
                 </configuration>
 
-                <executions>
+                <!--<executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions>-->
                 <dependencies>
                     <!-- 数据库连接选择8.0以上的，因为用的mysql8.0-->
                     <dependency>

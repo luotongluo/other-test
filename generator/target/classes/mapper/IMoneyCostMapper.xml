@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.generator.generator.dao.IMoneyCostMapper">
+
+    <resultMap id="BaseResultMap" type="com.lt.generator.generator.entity.IMoneyCost">
+        <!--@Table i_money_cost-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="costMon" column="cost_mon" jdbcType="NUMERIC"/>
+        <result property="backTime" column="back_time" jdbcType="OTHER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="yn" column="yn" jdbcType="INTEGER"/>
+        <result property="persionId" column="persion_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, type, cost_mon, back_time, create_time, yn, persion_id
+        from daily-test.i_money_cost
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, type, cost_mon, back_time, create_time, yn, persion_id
+        from daily-test.i_money_cost
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, type, cost_mon, back_time, create_time, yn, persion_id
+        from daily-test.i_money_cost
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="costMon != null">
+                and cost_mon = #{costMon}
+            </if>
+            <if test="backTime != null">
+                and back_time = #{backTime}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="yn != null">
+                and yn = #{yn}
+            </if>
+            <if test="persionId != null">
+                and persion_id = #{persionId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into daily-test.i_money_cost(type, cost_mon, back_time, create_time, yn, persion_id)
+        values (#{type}, #{costMon}, #{backTime}, #{createTime}, #{yn}, #{persionId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update daily-test.i_money_cost
+        <set>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="costMon != null">
+                cost_mon = #{costMon},
+            </if>
+            <if test="backTime != null">
+                back_time = #{backTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="yn != null">
+                yn = #{yn},
+            </if>
+            <if test="persionId != null">
+                persion_id = #{persionId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from daily-test.i_money_cost where id = #{id}
+    </delete>
+
+</mapper>
