@@ -1,6 +1,7 @@
 package excl;
 
 import com.lt.springcloudtest.bean.TestBean;
+import com.lt.springcloudtest.utils.TimeUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -10,14 +11,10 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.swing.text.DateFormatter;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,12 +49,12 @@ public class ExportExcl {
         sheet.setDefaultColumnWidth(20);
         sheet.autoSizeColumn(0);
         sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 15));
-        HSSFCellStyle  cellStylehook= workbook.createCellStyle();
+        HSSFCellStyle cellStylehook = workbook.createCellStyle();
         cellStylehook.setAlignment(HorizontalAlignment.CENTER);
         cellStylehook.setVerticalAlignment(VerticalAlignment.CENTER);
         HSSFFont font = workbook.createFont();
         font.setBold(true);
-        font.setFontHeightInPoints((short)16);
+        font.setFontHeightInPoints((short) 16);
         cellStylehook.setFont(font);
 
         HSSFRow row = sheet.createRow(0);
@@ -71,7 +68,7 @@ public class ExportExcl {
         HSSFRow row1 = sheet.createRow(1);
         HSSFCell cell1 = row1.createCell(0);
         cell1.getCellStyle().setAlignment(HorizontalAlignment.RIGHT);
-        cell1.setCellValue("制表日期：" + new Date().toString());
+        cell1.setCellValue("制表日期：" + TimeUtils.getDate(System.currentTimeMillis(),TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
 
         HSSFRow row2 = sheet.createRow(2);
         HSSFCell cell2 = row2.createCell(2);
@@ -96,15 +93,11 @@ public class ExportExcl {
         for (int a = 0; a < testBeanList.size(); a++) {
             HSSFRow row4 = sheet.createRow(4 + a);
             row4.createCell(0).setCellValue(4 + a);
-//            row4.get().setAlignment(HorizontalAlignment.CENTER);
             TestBean bean = testBeanList.get(a);
             row4.createCell(0).setCellValue(bean.getName());
             row4.createCell(1).setCellValue(bean.getAge());
             row4.createCell(2).setCellValue(a + 1);
 
-//            HSSFCell cell4 = row4.createCell(1);
-//            cell4.getCellStyle().setAlignment(HorizontalAlignment.FILL);
-//            cell4.setCellValue(bean.getName());
         }
 
 

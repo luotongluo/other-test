@@ -3,8 +3,8 @@ package com.lt.springcloudtest.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.google.gson.GsonBuilder;
 import com.lt.springcloudtest.bean.TestBean;
-import com.lt.springcloudtest.enums.TimeEnums;
 import com.lt.springcloudtest.service.TestService;
+import com.lt.springcloudtest.utils.TimeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class TestServiceImpl implements TestService {
         logger.info("init ……");
         TestBean testBean = new TestBean("123", 22, "33", new Date());
         String jsonString = JSON.toJSONString(testBean);
-        String jsonGson = new GsonBuilder().setDateFormat(TimeEnums.YYYYMMDDHHMMSS).create().toJson(testBean);
+        String jsonGson = new GsonBuilder().setDateFormat(TimeUtils.FORMAT_DEFAULT_TIMESTAMP).create().toJson(testBean);
         StringUtils.isNotBlank(jsonGson);
         System.out.println(jsonGson);
         System.out.println(jsonString);
