@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+    <contextName>logback</contextName>
+
+    <springProperty scope="context" name="LOG_LEVEL" source="log.level"/>
+
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}[%line] - %msg%n" />
+    <property name="log.file.prefix" value="app"/>
+    <property name="max.file.size" value="200MB" />
+    <property name="max.history" value="15" />
+
+    <property name="project.name" value="app"/>
+    <property name="log.path" value="${LOGS_DIR}"/>
+
+    <!--<property name="debug.level.profiles" value="${DEBUG_LOG_LEVEL_PROFILES}"/>
+    <property name="info.level.profiles" value="${INFO_LOG_LEVEL_PROFILES}"/>
+    <property name="warn.level.profiles" value="${WARN_LOG_LEVEL_PROFILES}"/>
+    <property name="error.level.profiles" value="${ERROR_LOG_LEVEL_PROFILES}"/>-->
+
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39})[%line] %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <encoder>
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${log.file.prefix}-debug.log</file>
+        <!--<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+        <encoder >
+            <pattern>${log.pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${log.file.prefix}-debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${max.file.size}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${max.history}</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>debug</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${log.file.prefix}-info.log</file>
+        <encoder >
+            <pattern>${log.pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${log.file.prefix}-info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${max.file.size}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${max.history}</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>info</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${log.file.prefix}-warn.log</file>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${log.file.prefix}-warn-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${max.file.size}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${max.history}</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>warn</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${log.file.prefix}-error.log</file>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${log.file.prefix}-error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${max.file.size}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>${max.history}</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <if condition='"debug".equals(property("LOG_LEVEL"))'>
+        <then>
+            <root level="debug">
+                <appender-ref ref="CONSOLE"/>
+                <appender-ref ref="DEBUG_FILE"/>
+                <appender-ref ref="INFO_FILE"/>
+                <appender-ref ref="WARN_FILE"/>
+                <appender-ref ref="ERROR_FILE"/>
+            </root>
+            <logger name="java.sql.Connection" level="debug" />
+            <logger name="java.sql.Statement" level="debug" />
+            <logger name="java.sql.PreparedStatement" level="debug" />
+            <logger name="org.mybatis" level="info" />
+            <logger name="org.springframework" level="info" />
+            <logger name="org.eclipse.jetty" level="info" />
+            <logger name="org.apache.zookeeper" level="info" />
+            <logger name="org.apache.dubbo" level="info" />
+            <logger name="io.netty" level="info" />
+            <logger name="com.suwell" level="info" />
+        </then>
+    </if>
+
+    <if condition='"info".equals(property("LOG_LEVEL"))'>
+        <then>
+            <root level="info">
+                <appender-ref ref="CONSOLE" />
+                <appender-ref ref="DEBUG_FILE" />
+                <appender-ref ref="INFO_FILE" />
+                <appender-ref ref="ERROR_FILE" />
+                <appender-ref ref="WARN_FILE" />
+            </root>
+        </then>
+    </if>
+
+    <if condition='"warn".equals(property("LOG_LEVEL"))'>
+        <then>
+            <root level="warn">
+                <appender-ref ref="CONSOLE" />
+                <appender-ref ref="DEBUG_FILE" />
+                <appender-ref ref="INFO_FILE" />
+                <appender-ref ref="ERROR_FILE" />
+                <appender-ref ref="WARN_FILE" />
+            </root>
+        </then>
+    </if>
+
+    <if condition='"error".equals(property("LOG_LEVEL"))'>
+        <then>
+            <root level="error">
+                <appender-ref ref="CONSOLE" />
+                <appender-ref ref="DEBUG_FILE" />
+                <appender-ref ref="INFO_FILE" />
+                <appender-ref ref="ERROR_FILE" />
+                <appender-ref ref="WARN_FILE" />
+            </root>
+        </then>
+    </if>
+</configuration>

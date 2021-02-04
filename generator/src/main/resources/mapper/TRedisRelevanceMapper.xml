@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.generator.generator.dao.TRedisRelevanceMapper">
+
+    <resultMap id="BaseResultMap" type="com.lt.generator.generator.entity.TRedisRelevance">
+        <!--@Table t_redis_relevance-->
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="nsrsbh" column="NSRSBH" jdbcType="VARCHAR"/>
+        <result property="fjh" column="FJH" jdbcType="VARCHAR"/>
+        <result property="jqbh" column="JQBH" jdbcType="VARCHAR"/>
+        <result property="fpqqlsh" column="FPQQLSH" jdbcType="VARCHAR"/>
+        <result property="xxlx" column="XXLX" jdbcType="INTEGER"/>
+        <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="UPDATE_TIME" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
+        from smallbusi.t_redis_relevance
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
+        from smallbusi.t_redis_relevance
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
+        from smallbusi.t_redis_relevance
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="nsrsbh != null and nsrsbh != ''">
+                and NSRSBH = #{nsrsbh}
+            </if>
+            <if test="fjh != null and fjh != ''">
+                and FJH = #{fjh}
+            </if>
+            <if test="jqbh != null and jqbh != ''">
+                and JQBH = #{jqbh}
+            </if>
+            <if test="fpqqlsh != null and fpqqlsh != ''">
+                and FPQQLSH = #{fpqqlsh}
+            </if>
+            <if test="xxlx != null">
+                and XXLX = #{xxlx}
+            </if>
+            <if test="status != null and status != ''">
+                and STATUS = #{status}
+            </if>
+            <if test="createTime != null">
+                and CREATE_TIME = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and UPDATE_TIME = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into smallbusi.t_redis_relevance(NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME)
+        values (#{nsrsbh}, #{fjh}, #{jqbh}, #{fpqqlsh}, #{xxlx}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update smallbusi.t_redis_relevance
+        <set>
+            <if test="nsrsbh != null and nsrsbh != ''">
+                NSRSBH = #{nsrsbh},
+            </if>
+            <if test="fjh != null and fjh != ''">
+                FJH = #{fjh},
+            </if>
+            <if test="jqbh != null and jqbh != ''">
+                JQBH = #{jqbh},
+            </if>
+            <if test="fpqqlsh != null and fpqqlsh != ''">
+                FPQQLSH = #{fpqqlsh},
+            </if>
+            <if test="xxlx != null">
+                XXLX = #{xxlx},
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from smallbusi.t_redis_relevance where ID = #{id}
+    </delete>
+
+</mapper>
