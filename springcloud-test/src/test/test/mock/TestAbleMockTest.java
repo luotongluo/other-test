@@ -16,19 +16,23 @@ public class TestAbleMockTest {
     private TestAbleMock testAbleMock = new TestAbleMock();
 
     @MockMethod(targetClass = String.class)
-    private String trim(){
+    private String trim() {
         return "123123 ";
     }
+
     @MockMethod(targetClass = String.class, targetMethod = "substring")
     private String substr(int i) {
         return "javastack.cn_";
     }
+
     @MockMethod(targetClass = String.class)
     private boolean startsWith(String website) {
         return false;
     }
+
     /**
      * Mock 成员方法
+     *
      * @param text
      * @return
      */
@@ -36,8 +40,10 @@ public class TestAbleMockTest {
     private String innerMethod(String text) {
         return "mock_" + text;
     }
+
     /**
      * Mock 静态方法
+     *
      * @return
      */
     @MockMethod(targetClass = TestableMock.class)
