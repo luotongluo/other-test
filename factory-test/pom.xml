@@ -32,6 +32,12 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.75</version>
 		</dependency>
+		<!--增加lombok插件支持  还需要在compile中允许注解的支持设置-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+		</dependency>
 	</dependencies>
 
 	<build>
