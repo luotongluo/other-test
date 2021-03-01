@@ -31,6 +31,7 @@ public class ExportExcl {
             long start = System.currentTimeMillis();
             byte[] bytes = getexclBytes();
             String name = "test1.xls";
+//            getdownByte(name);
             FileOutputStream fileOutputStream = new FileOutputStream(name);
             fileOutputStream.write(bytes);
             long endtime = System.currentTimeMillis();

@@ -1,1 +1,5 @@
+com\exam\examtest\sort\SelectSort.class
+com\exam\examtest\sort\InsertSort.class
+com\exam\examtest\config\CommonConfig.class
 com\exam\examtest\ExamTestApplication.class
+com\exam\examtest\sort\BubbleSort.class

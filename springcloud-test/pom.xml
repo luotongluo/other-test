@@ -95,7 +95,6 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>4.0.0</version>
-            <scope>test</scope>
         </dependency>
         <!--TestableMock-->
         <dependency>
@@ -115,6 +114,12 @@
             <groupId>com.lt</groupId>
             <artifactId>QRCode</artifactId>
             <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.0.0</version>
+            <scope>compile</scope>
         </dependency>
 
 
