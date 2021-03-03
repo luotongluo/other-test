@@ -1,4 +1,4 @@
-/log/
+
 
 HELP.md
 springcloud-test/target/
@@ -35,3 +35,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+/log/
