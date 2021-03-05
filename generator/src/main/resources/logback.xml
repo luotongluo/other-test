@@ -5,7 +5,7 @@
     <!--参考地址：
     https://www.cnblogs.com/gavincoder/p/10091757.html
     -->
-    <property name="LOG_NAME" value="daily-test" />
+    <property name="LOG_NAME" value="generator" />
     <property name="LOG_HOME" value="./log/${LOG_NAME}" />
 
     <!--控制台日志， 控制台输出 -->
