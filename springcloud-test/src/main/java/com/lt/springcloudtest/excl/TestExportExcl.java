@@ -1,14 +1,23 @@
-package excl;
+package com.lt.springcloudtest.excl;
+
 
 import com.lt.springcloudtest.bean.TestBean;
 import com.lt.springcloudtest.utils.TimeUtils;
+import org.apache.poi.hssf.record.ExtendedFormatRecord;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Color;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 
@@ -16,22 +25,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author tong.luo
- * @description ExportExcl
- * 参考文章
- * https://www.cnblogs.com/minixiong/p/11149281.html
- * https://www.cnblogs.com/handsome1013/p/8621487.html
- * @date 2021/1/26 16:29
+ * @description TestExportExcl
+ * @date 2021/2/22 15:23
  */
-public class ExportExcl {
+public class TestExportExcl {
     public static void main(String[] args) {
         try {
             long start = System.currentTimeMillis();
-            byte[] bytes = getexclBytes();
-            String name = "test1.xls";
-//            getdownByte(name);
+//            byte[] bytes = getexclBytes();
+            String name = "test1-奥术大师大多所.xls";
+            byte[] bytes = getdownByte(name);
             FileOutputStream fileOutputStream = new FileOutputStream(name);
             fileOutputStream.write(bytes);
             long endtime = System.currentTimeMillis();
@@ -40,6 +47,43 @@ public class ExportExcl {
             e.printStackTrace();
         }
 
+    }
+
+    private static byte[] getdownByte(String name) throws Exception{
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet(name);
+
+        //初始化单元格格式对象
+        HSSFCellStyle cellStyle = workbook.createCellStyle();
+        //设置对齐方式
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+        //设置垂直对齐方式
+        cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        cellStyle.setFillBackgroundColor(IndexedColors.PINK.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        //开启自动换行
+        cellStyle.setWrapText(true);
+
+        HSSFRow row = sheet.createRow(0);
+        //设置行高
+        row.setHeight((short) 400);
+        row.createCell(0).setCellValue("第一列");
+        row.createCell(1).setCellValue("第2列");
+        row.createCell(2).setCellValue("第3列");
+        row.createCell(3).setCellValue("第4列");
+        row.createCell(4).setCellValue("第5列");
+
+        for (int i = 0; i < 4; i++) {
+            HSSFRow row1 = sheet.createRow(i + 1);
+            row1.createCell(0).setCellValue(i + "--123--" + UUID.randomUUID());
+            row1.createCell(1).setCellValue(i + "--123--" + UUID.randomUUID());
+            row1.createCell(2).setCellValue(i + "--123--" + UUID.randomUUID());
+            row1.createCell(3).setCellValue(i + "--123--" + UUID.randomUUID());
+            row1.createCell(4).setCellValue(i + "--123--" + TimeUtils.getDate(System.currentTimeMillis(),TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
+        }
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        workbook.write(os);
+        return os.toByteArray();
     }
 
     private static byte[] getexclBytes() throws Exception {
@@ -69,7 +113,7 @@ public class ExportExcl {
         HSSFRow row1 = sheet.createRow(1);
         HSSFCell cell1 = row1.createCell(0);
         cell1.getCellStyle().setAlignment(HorizontalAlignment.RIGHT);
-        cell1.setCellValue("制表日期：" + TimeUtils.getDate(System.currentTimeMillis(),TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
+//        cell1.setCellValue("制表日期：" + TimeUtils.getDate(System.currentTimeMillis(),TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
 
         HSSFRow row2 = sheet.createRow(2);
         HSSFCell cell2 = row2.createCell(2);
