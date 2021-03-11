@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -20,9 +22,13 @@ public class MailSenderToolServiceImplTest {
 
     @Test
     public void tet1(){
-        String to = "1299391162@qq.com;1282875540@qq.com";
-        String subject = "test";
-        String content = "content";
-        this.mailSenderService.sendSimpleMail(to,subject,content);
+//        String to = "1299391162@qq.com";
+        String to = "luo12828@foxmail.com";
+        for (int i = 0; i < 10; i++) {
+            String subject = UUID.randomUUID().toString() + "_" + i;
+            String content = "com.lt.dailytest.service.impl.MailSenderToolServiceImplTest.tet1 content"+ i;
+            this.mailSenderService.sendSimpleMail(to,subject,content);
+
+        }
     }
 }

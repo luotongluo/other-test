@@ -33,4 +33,6 @@ public interface MailSenderService {
      */
     public void sendAttachmentsMail(String to, String subject, String content, String filePath);
 
+    public void configMail();
+
 }
