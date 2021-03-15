@@ -26,7 +26,7 @@ public class ReadWriteLockTest {
         ReadWriteLockTest readWriteLockTest = new ReadWriteLockTest();
         int loop = 5000;
         for (int i = 0; i < loop; i++) {
-            if (i % 2 == 0) {
+            if (i % 3 == 0) {
                 readWriteLockTest.handleWrite(i);
             }
             Object o = readWriteLockTest.handleRead();
