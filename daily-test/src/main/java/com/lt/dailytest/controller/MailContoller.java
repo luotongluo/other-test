@@ -34,7 +34,7 @@ public class MailContoller {
     @Autowired
     private MailSenderToolService mailSenderToolService;
 
-    @GetMapping("/")
+    @GetMapping(value = {"","/"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("mail/sendMail");
         modelAndView.addObject("from", mailSenderToolService.getMailSendFrom());
