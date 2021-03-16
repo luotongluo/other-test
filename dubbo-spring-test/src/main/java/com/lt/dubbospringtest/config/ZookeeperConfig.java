@@ -28,23 +28,23 @@ public class ZookeeperConfig {
     private String timeout;
 
     @Bean("zkClient")
-    public ZooKeeper zkClient(){
+    public ZooKeeper zkClient() {
         ZooKeeper zooKeeper = null;
         try {
             CountDownLatch countDownLatch = new CountDownLatch(1);
 
-           zooKeeper = new ZooKeeper(zkAddress, Integer.valueOf(timeout), new Watcher() {
+            zooKeeper = new ZooKeeper(zkAddress, Integer.valueOf(timeout), new Watcher() {
                 @Override
                 public void process(WatchedEvent event) {
-                    if(Event.KeeperState.SyncConnected == event.getState()){
+                    if (Event.KeeperState.SyncConnected == event.getState()) {
                         //如果收到了服务端的响应事件，连接成功
                         countDownLatch.countDown();
                     }
                 }
             });
             countDownLatch.await();
-            LOGGER.info("[初始化zookeeper init ……] = {}",zooKeeper.getState());
-        }catch (Exception e){
+            LOGGER.info("[初始化zookeeper init ……] = {}", zooKeeper.getState());
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return zooKeeper;

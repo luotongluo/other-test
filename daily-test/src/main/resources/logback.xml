@@ -18,21 +18,6 @@
 
     <!--文件日志， 按照每天生成日志文件 -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
-        <!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;-->
-        <!--            <FileNamePattern>${LOG_HOME}/${LOG_NAME}_%d{yyyy-MM-dd}.log</FileNamePattern>-->
-
-        <!--            &lt;!&ndash;日志文件保留天数&ndash;&gt;-->
-        <!--            <MaxHistory>5</MaxHistory>-->
-        <!--        </rollingPolicy>-->
-        <!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-        <!--            &lt;!&ndash;格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符&ndash;&gt;-->
-        <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>-->
-        <!--        </encoder>-->
-        <!--        &lt;!&ndash;日志文件最大的大小&ndash;&gt;-->
-        <!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
-        <!--            <MaxFileSize>10MB</MaxFileSize>-->
-        <!--        </triggeringPolicy>-->
         <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->

@@ -15,13 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestServiceTest {
     @Autowired
     private TestService testService;
+
     @Test
-    public void test(){
+    public void test() {
         this.testService.test();
     }
 
     @Test
-    public void testDubboRef(){
+    public void testDubboRef() {
         this.testService.testDubboRef();
     }
 }

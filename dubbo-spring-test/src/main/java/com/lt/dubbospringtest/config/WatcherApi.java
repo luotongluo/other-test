@@ -15,8 +15,8 @@ public class WatcherApi implements Watcher {
 
     @Override
     public void process(WatchedEvent event) {
-        LOGGER.info("【Watcher监听事件】={}",event.getState());
-        LOGGER.info("【监听路径为】={}",event.getPath());
-        LOGGER.info("【监听的类型为】={}",event.getType()); //  三种监听类型： 创建，删除，更新
+        LOGGER.info("【Watcher监听事件】={}", event.getState());
+        LOGGER.info("【监听路径为】={}", event.getPath());
+        LOGGER.info("【监听的类型为】={}", event.getType()); //  三种监听类型： 创建，删除，更新
     }
 }

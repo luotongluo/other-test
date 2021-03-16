@@ -86,10 +86,10 @@ public class WorkMasterTest {
             work.submit(i);
         }
         work.execute();
-        int re =0;
+        int re = 0;
         Map<String, Object> resultMap = work.getResultMap();
         //不需要等待所有的worker都执行完
-        while (resultMap.size() > 0 || !work.isComplete()){
+        while (resultMap.size() > 0 || !work.isComplete()) {
             Set<Map.Entry<String, Object>> entries = resultMap.entrySet();
             String key = null;
             //开始计算最终结果
@@ -98,13 +98,13 @@ public class WorkMasterTest {
                 break;
             }
             Integer i = null;
-            if(null != key){
+            if (null != key) {
                 i = (Integer) resultMap.get(key);
             }
-            if(null != i){
-                re +=i;
+            if (null != i) {
+                re += i;
             }
-            if(null != key){
+            if (null != key) {
                 //移除已经被计算过的项
                 resultMap.remove(key);
             }

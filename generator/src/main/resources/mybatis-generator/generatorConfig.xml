@@ -8,9 +8,9 @@
     <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
     <context id="default" targetRuntime="MyBatis3">
         <!--自动生成序列化-->
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!--自动生成tostring-->
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <!--optional,指在创建class时，对注释进行控制-->
         <commentGenerator>
             <property name="suppressDate" value="true"/>
@@ -29,7 +29,8 @@
 
         <!--jdbc的数据库连接 wg_insert 为数据库名字-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/daily-test?useUnicode=true&amp;characeterEncoding=utf-8&amp;serverTimezone=UTC" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/daily-test?useUnicode=true&amp;characeterEncoding=utf-8&amp;serverTimezone=UTC"
+                        userId="root"
                         password="root">
         </jdbcConnection>
         <!--非必须，类型处理器，在数据库类型和java类型之间的转换控制-->

@@ -8,6 +8,7 @@ package com.lt.springcloudtest.service;
 public interface TestService {
     /**
      * test
+     *
      * @param s
      */
     void testJson(String s);

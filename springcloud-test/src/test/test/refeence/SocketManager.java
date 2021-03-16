@@ -21,11 +21,11 @@ public class SocketManager {
         return map.get(socket);
     }
 
-    public void removeUser(Socket socket){
+    public void removeUser(Socket socket) {
         map.remove(socket);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return map.isEmpty();
     }
 }

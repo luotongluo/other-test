@@ -14,7 +14,8 @@ public class EqusTest {
         System.out.println(equals1);
         System.out.println(getHashCode(equals));
     }
-    public static Integer getHashCode(String val){
+
+    public static Integer getHashCode(String val) {
         int h;
         return (h = val.hashCode()) ^ (h >>> 16);
     }

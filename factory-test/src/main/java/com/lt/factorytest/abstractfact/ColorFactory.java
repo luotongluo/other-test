@@ -7,9 +7,10 @@ import com.lt.factorytest.factorypattrn.Shape;
  * @description ColorFactory
  * @date 2021/2/7 15:40
  */
-public class ColorFactory extends AbstractFactory{
+public class ColorFactory extends AbstractFactory {
     /**
      * getShape
+     *
      * @param shape
      * @return
      */
@@ -20,12 +21,13 @@ public class ColorFactory extends AbstractFactory{
 
     /**
      * getColor
+     *
      * @param color
      * @return
      */
     @Override
     public Color getColor(String color) {
-        switch (color){
+        switch (color) {
             case BLUE:
                 return new Blue();
             case GREEN:

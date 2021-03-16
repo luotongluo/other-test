@@ -12,7 +12,8 @@ public class PacketHtmlHeaderCreator extends PacketDecorator {
 
     /**
      * 用于处理内容逻辑
-     *  将指定数据封装成html
+     * 将指定数据封装成html
+     *
      * @return
      */
     @Override

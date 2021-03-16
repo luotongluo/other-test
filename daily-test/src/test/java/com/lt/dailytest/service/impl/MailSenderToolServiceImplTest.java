@@ -21,13 +21,13 @@ public class MailSenderToolServiceImplTest {
     private MailSenderService mailSenderService;
 
     @Test
-    public void tet1(){
+    public void tet1() {
 //        String to = "1299391162@qq.com";
         String to = "luo12828@foxmail.com";
         for (int i = 0; i < 10; i++) {
             String subject = UUID.randomUUID().toString() + "_" + i;
-            String content = "com.lt.dailytest.service.impl.MailSenderToolServiceImplTest.tet1 content"+ i;
-            this.mailSenderService.sendSimpleMail(to,subject,content);
+            String content = "com.lt.dailytest.service.impl.MailSenderToolServiceImplTest.tet1 content" + i;
+            this.mailSenderService.sendSimpleMail(to, subject, content);
 
         }
     }

@@ -8,6 +8,7 @@ package com.lt.dubbospringtest.service;
 public interface TestService {
     /**
      * 测试方法
+     *
      * @return
      */
     public String test();

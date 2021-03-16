@@ -22,7 +22,7 @@ public class BinaryCodeController {
     public Map saveBinary() {
         this.binaryCodeService.saveBinary();
         Map baseMapOfSuccess = BaseMap.getBaseMapOfSuccess();
-        baseMapOfSuccess.put(BaseMap.data,true);
+        baseMapOfSuccess.put(BaseMap.data, true);
         return baseMapOfSuccess;
     }
 
@@ -30,7 +30,7 @@ public class BinaryCodeController {
     public Map queryBinary() {
         String binary = this.binaryCodeService.getBinary();
         Map baseMapOfSuccess = BaseMap.getBaseMapOfSuccess();
-        baseMapOfSuccess.put(BaseMap.data,binary);
+        baseMapOfSuccess.put(BaseMap.data, binary);
         return baseMapOfSuccess;
     }
 }

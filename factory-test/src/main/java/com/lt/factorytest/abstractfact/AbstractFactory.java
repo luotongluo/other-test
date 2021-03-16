@@ -17,12 +17,15 @@ public abstract class AbstractFactory {
 
     /**
      * getShape
+     *
      * @param shape
      * @return
      */
     public abstract Shape getShape(String shape);
+
     /**
-     *getColor
+     * getColor
+     *
      * @param color
      * @return
      */

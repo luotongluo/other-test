@@ -7,11 +7,11 @@ import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 public class ExamTestApplication {
-	@Autowired
-	private Environment environment;
+    @Autowired
+    private Environment environment;
 
-	public static void main(String[] args) {
-		SpringApplication.run(ExamTestApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ExamTestApplication.class, args);
+    }
 
 }

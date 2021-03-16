@@ -21,6 +21,6 @@ public class NumberTest {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-       byte[] b = new byte[8*1024*925];
+        byte[] b = new byte[8 * 1024 * 925];
     }
 }

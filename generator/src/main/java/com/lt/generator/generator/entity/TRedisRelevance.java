@@ -12,40 +12,40 @@ import java.io.Serializable;
 public class TRedisRelevance implements Serializable {
     private static final long serialVersionUID = 617796974795201144L;
     /**
-    * 主键
-    */
+     * 主键
+     */
     private Long id;
     /**
-    * 纳税人识别号
-    */
+     * 纳税人识别号
+     */
     private String nsrsbh;
     /**
-    * 分机号
-    */
+     * 分机号
+     */
     private String fjh;
     /**
-    * 机器编号
-    */
+     * 机器编号
+     */
     private String jqbh;
     /**
-    * 发票请求唯一流水号
-    */
+     * 发票请求唯一流水号
+     */
     private String fpqqlsh;
     /**
-    * Redis中存储信息的类型（1非机动车发票;4机动车发票;2红字发票申请单;3红字通知单下载请求）
-    */
+     * Redis中存储信息的类型（1非机动车发票;4机动车发票;2红字发票申请单;3红字通知单下载请求）
+     */
     private Integer xxlx;
     /**
-    * 处理状态, 0=待处理，1=处理中,2=赋码成功,3=不再处理
-    */
+     * 处理状态, 0=待处理，1=处理中,2=赋码成功,3=不再处理
+     */
     private String status;
     /**
-    * 创建时间
-    */
+     * 创建时间
+     */
     private Date createTime;
     /**
-    * 最后更新时间
-    */
+     * 最后更新时间
+     */
     private Date updateTime;
 
 

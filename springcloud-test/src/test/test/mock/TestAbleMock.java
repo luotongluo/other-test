@@ -7,10 +7,10 @@ package mock;
  */
 public class TestAbleMock {
     public String commonMethod() {
-        return "http://www".trim() + "."+"jjavastack.cn_".substring(1) + "www.baidu.com".startsWith("com");
+        return "http://www".trim() + "." + "jjavastack.cn_".substring(1) + "www.baidu.com".startsWith("com");
     }
 
-    public String memMehod(String ss){
+    public String memMehod(String ss) {
         return innerMethod() + staticMethod() + ss;
     }
 

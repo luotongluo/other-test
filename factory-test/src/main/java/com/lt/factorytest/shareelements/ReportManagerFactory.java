@@ -26,7 +26,7 @@ public class ReportManagerFactory {
     }
 
     IReportManager getEmployeeReportMange(String tenantid) {
-        IReportManager iReportManager = employeeHashMap.get(tenantid );
+        IReportManager iReportManager = employeeHashMap.get(tenantid);
         if (null == iReportManager) {
             iReportManager = new EmployeeRepoerManager(tenantid);
             managerHashMap.put(tenantid, iReportManager);

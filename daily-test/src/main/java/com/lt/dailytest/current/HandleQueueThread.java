@@ -68,7 +68,7 @@ public class HandleQueueThread implements Runnable {
 
     public void initLinkedBlockingQueue() {
 //        if (queue == null) {
-            queue = new LinkedBlockingDeque<>();
+        queue = new LinkedBlockingDeque<>();
 //        }
         for (int i = 0; i < 300; i++) {
             queue.add(i);

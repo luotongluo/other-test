@@ -29,10 +29,10 @@ public class BinaryCodeUtils {
      * @param path
      * @return
      */
-    public static boolean encode(String data, String path) throws Exception{
+    public static boolean encode(String data, String path) throws Exception {
         //计算二维码图片的高宽比
         // API文档规定计算图片宽高的方式 ，v是本次测试的版本号
-        int v =6;
+        int v = 6;
         int width = 67 + 12 * (v - 1);
         int height = 67 + 12 * (v - 1);
 
@@ -50,7 +50,7 @@ public class BinaryCodeUtils {
         x.setQrcodeVersion(v);//版本号  1-40
 
         String qrData = "https://www.onlybigroc.cn";//内容信息
-        if(StringUtils.isNotEmpty(data)){
+        if (StringUtils.isNotEmpty(data)) {
             qrData = data;
         }
 

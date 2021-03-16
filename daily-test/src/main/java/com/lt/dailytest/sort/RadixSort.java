@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class RadixSort {
     public static void main(String[] args) {
         int[] sortdata = {73, 22, 93, 43, 55, 14, 28, 65, 39, 81};
-        sort(sortdata,2);
+        sort(sortdata, 2);
         System.out.println(Arrays.toString(sortdata));
     }
 

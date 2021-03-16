@@ -8,6 +8,7 @@ package com.lt.dailytest.current;
 public class PlusWorker extends Woker {
     /**
      * 求立方和
+     *
      * @param obj
      * @return
      */

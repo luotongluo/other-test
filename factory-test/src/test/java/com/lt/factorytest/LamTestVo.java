@@ -21,12 +21,12 @@ import java.io.Serializable;
 public class LamTestVo implements Serializable {
     private static final long serialVersionUID = -2285645856392195673L;
 
-//    @Getter
+    //    @Getter
 //    @Setter
     private int agel;
 
-//    @Getter
+    //    @Getter
 //    @Setter
-    private String name ;
+    private String name;
 
 }

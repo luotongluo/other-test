@@ -51,16 +51,16 @@ public class SpaceSort {
         }
         //分配临时空间
         int[] temp = new int[max + 1];
-        for (i= 0;i < length; i++) {
+        for (i = 0; i < length; i++) {
             //用索引下表来标识数字大小
             temp[a[i]] = a[i];
         }
-        int m =0;
+        int m = 0;
         int max1 = max + 1;
         //线性复杂度
         for (i = 0; i < max1; i++) {
-            if (temp[i] > 0){
-                a[m ++ ] = temp[i];
+            if (temp[i] > 0) {
+                a[m++] = temp[i];
             }
         }
 

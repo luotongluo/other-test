@@ -149,7 +149,7 @@ public class NIOUtiles {
     public static void sliceTest() {
         ByteBuffer allocate = ByteBuffer.allocate(15);
         for (int i = 0; i < 10; i++) {
-            allocate.put((byte)i);
+            allocate.put((byte) i);
         }
         allocate.position(2);
         allocate.limit(6);
@@ -157,31 +157,31 @@ public class NIOUtiles {
         for (int i = 0; i < slice.capacity(); i++) {
             byte b = slice.get(i);
             b *= 10;
-            slice.put(i,b);
+            slice.put(i, b);
         }
         //重置父缓冲区，并查看父缓冲区中的数据
         allocate.position(0);
         allocate.limit(allocate.capacity());
-        while (allocate.hasRemaining()){
-            System.out.print(allocate.get()+ "   ");
+        while (allocate.hasRemaining()) {
+            System.out.print(allocate.get() + "   ");
         }
     }
 
-    public  static  void testReadOnly(){
+    public static void testReadOnly() {
         ByteBuffer allocate = ByteBuffer.allocate(15);
         for (int i = 0; i < 10; i++) {
-            allocate.put((byte)i);
+            allocate.put((byte) i);
         }
         //创建只读缓冲区
         ByteBuffer byteBuffer = allocate.asReadOnlyBuffer();
         byteBuffer.flip();
-        while (byteBuffer.hasRemaining()){
+        while (byteBuffer.hasRemaining()) {
             System.out.print(byteBuffer.get() + " ");
         }
         System.out.println();
-        allocate.put(2,(byte) 20);
+        allocate.put(2, (byte) 20);
         byteBuffer.flip();
-        while (byteBuffer.hasRemaining()){
+        while (byteBuffer.hasRemaining()) {
             System.out.print(byteBuffer.get() + " ");
         }
     }

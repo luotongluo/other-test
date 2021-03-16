@@ -337,7 +337,7 @@ public class TimeUtils {
 //        int week = getMonth(new Date());
 //        System.out.println(week);
 
-        String nowTime = getDate(System.currentTimeMillis(),TimeUtils.FORMAT_DEFAULT_TIMESTAMP);
+        String nowTime = getDate(System.currentTimeMillis(), TimeUtils.FORMAT_DEFAULT_TIMESTAMP);
         System.out.println(nowTime);
     }
 

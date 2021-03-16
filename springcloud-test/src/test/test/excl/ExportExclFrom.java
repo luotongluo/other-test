@@ -58,7 +58,7 @@ public class ExportExclFrom {
         outputStream.write(bytes);
     }
 
-    public static byte[] exportExcl(ExclUtils exclUtils) throws Exception{
+    public static byte[] exportExcl(ExclUtils exclUtils) throws Exception {
 
         if (null == exclUtils) {
             exclUtils = new ExclUtils();
