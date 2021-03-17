@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+ <a class="btn btn-xs btn-default" href="www.baidu.com">aaaaaa123123a</a>
+ <hr width="300" align="left">
+ <a class="btn btn-xs btn-default" th:href="@{table/tableindex}">表格</a>
+
+
+ <hr width="300" align="left">
+
+ <div th:text="${hello}"></div> <!--th:text，显示时会把html对应的标签显示出来-->
+
+ <hr width="300" align="left">
+
+ <div th:utext="${hello2}"></div> <!--th:text，显示时不会把html对应的标签显示出来-->
+
+ <hr width="300" align="left">
+
+ <h4 th:text="${user}" th:each="user:${users}"></h4><!--th:eachg对传入的数组进行遍历-->
+
+ <hr width="300" align="left">
+
+ <h4>
+     <span th:each="student:${students}">[[${student}]]  </span> <!--[]转义特殊字符-->
+ </h4>
+</body>
+</html>

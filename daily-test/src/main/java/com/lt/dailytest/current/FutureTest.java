@@ -1,7 +1,5 @@
 package com.lt.dailytest.current;
 
-import org.springframework.boot.autoconfigure.integration.IntegrationProperties;
-
 /**
  * @author tong.luo
  * @description Future

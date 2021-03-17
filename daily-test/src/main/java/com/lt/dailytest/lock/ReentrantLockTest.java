@@ -1,6 +1,5 @@
 package com.lt.dailytest.lock;
 
-import java.io.FileReader;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
