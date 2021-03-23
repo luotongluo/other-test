@@ -15,7 +15,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class HandleQueueThread implements Runnable {
     protected String name;
     Random random = new Random();
-    Queue queue;
+    Queue<Object> queue;
 
     public HandleQueueThread() {
     }
@@ -47,13 +47,12 @@ public class HandleQueueThread implements Runnable {
         }
     }
 
-    private Object handleQueue(int nextInt) {
+    private void handleQueue(int nextInt) {
         if (queue == null) {
             throw new BusinessException("未初始化集合，请选择合适的集合进行初始化");
         }
         queue.add(nextInt);
         queue.poll();
-        return null;
     }
 
     public void initConcurrentLinkedQueue() {

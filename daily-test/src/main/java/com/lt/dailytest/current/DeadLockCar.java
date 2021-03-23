@@ -45,7 +45,7 @@ public class DeadLockCar extends Thread {
                 System.out.println("north is pass !");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("car to north is killes");
+                System.out.println("car to north is killer");
             } finally {
                 if (east.isHeldByCurrentThread()) {
                     east.unlock();
@@ -68,7 +68,7 @@ public class DeadLockCar extends Thread {
                 System.out.println("east is pass !");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("car to east is killes");
+                System.out.println("car to east is kill es");
             } finally {
                 if (south.isHeldByCurrentThread()) {
                     south.unlock();
@@ -91,7 +91,7 @@ public class DeadLockCar extends Thread {
                 System.out.println("south is pass !");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("car to south is killes");
+                System.out.println("car to south is kill es");
             } finally {
                 if (west.isHeldByCurrentThread()) {
                     west.unlock();
@@ -114,7 +114,7 @@ public class DeadLockCar extends Thread {
                 System.out.println("west is pass !");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("car to west is killes");
+                System.out.println("car to west is kill es");
             } finally {
                 if (west.isHeldByCurrentThread()) {
                     west.unlock();
@@ -128,14 +128,14 @@ public class DeadLockCar extends Thread {
 
     }
 
-    public static void main(String[] args) throws Exception {
-        DeadLockCar sourthCar = new DeadLockCar(south);
+    public static void main(String[] args){
+        DeadLockCar southernCar = new DeadLockCar(south);
         DeadLockCar northCar = new DeadLockCar(north);
         DeadLockCar eastCar = new DeadLockCar(east);
         DeadLockCar westCar = new DeadLockCar(west);
         northCar.start();
         westCar.start();
-        sourthCar.start();
+        southernCar.start();
         eastCar.start();
 //        northCar.interrupt();
         long start = System.currentTimeMillis();

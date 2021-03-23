@@ -12,10 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("table")
 @RestController
 public class TableController {
-    @RequestMapping("tableindex")
+    @RequestMapping("tableIndex")
     public ModelAndView getTableIndex(){
         String pathname = "table/index";
-        ModelAndView modelAndView = new ModelAndView(pathname);
-        return modelAndView;
+//        ModelAndView modelAndView = new ModelAndView(pathname);
+        return new ModelAndView(pathname);
     }
 }
