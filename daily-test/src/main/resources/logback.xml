@@ -27,6 +27,11 @@
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
             <totalSizeCap>20MB</totalSizeCap>
         </rollingPolicy>
+<!--        <Policies>-->
+<!--            <SizeBasedTriggeringPolicy size="5MB"/>-->
+<!--            <TimeBasedTriggeringPolicy interval="1" modulate="false"/>-->
+<!--        </Policies>-->
+<!--        <DefaultRolloverStrategy max="2"/>-->
         <!--日志输出编码格式化-->
         <encoder>
             <charset>UTF-8</charset>
