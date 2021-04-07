@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-        int a[] = {1, 4, 2, 5, 6, 3, 9, 8};
+        int a[] = {1, 4, 2, 5, 6, 3, 9, 8,1,2,3,22,12,3,2,1,2,3,2,23};
         bubbleSort(a);
         System.out.println(JSON.toJSONString(a));
     }
