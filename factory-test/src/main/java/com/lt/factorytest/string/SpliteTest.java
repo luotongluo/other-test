@@ -27,7 +27,7 @@ public class SpliteTest {
         //第一个参数为要分隔的字符， 第二个是分割的字符的参数
         StringTokenizer stringTokenizer = new StringTokenizer(orgstr, strspl);
         for (int i = 0; i < 10000; i++) {
-            while (stringTokenizer.hasMoreTokens()){
+            while (stringTokenizer.hasMoreTokens()) {
                 stringTokenizer.nextToken();
             }
             stringTokenizer = new StringTokenizer(orgstr, strspl);

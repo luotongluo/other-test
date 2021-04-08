@@ -15,7 +15,7 @@ import java.util.List;
  * @date 2021/1/26 11:37
  */
 public class Generator {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         File configFile = new File("generator/src/main/resources/mybatis-generator/generatorConfig.xml");

@@ -14,7 +14,7 @@ public class TestDTO implements Serializable {
     private static final long serialVersionUID = -1316472349220259195L;
     private Integer id;
     private String name;
-    @JSONField(name = "time",format = "yyyy-MM-dd")
+    @JSONField(name = "time", format = "yyyy-MM-dd")
     private Date time;
 
     public Date getTime() {

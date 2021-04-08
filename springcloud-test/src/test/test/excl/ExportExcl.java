@@ -69,7 +69,7 @@ public class ExportExcl {
         HSSFRow row1 = sheet.createRow(1);
         HSSFCell cell1 = row1.createCell(0);
         cell1.getCellStyle().setAlignment(HorizontalAlignment.RIGHT);
-        cell1.setCellValue("制表日期：" + TimeUtils.getDate(System.currentTimeMillis(),TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
+        cell1.setCellValue("制表日期：" + TimeUtils.getDate(System.currentTimeMillis(), TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
 
         HSSFRow row2 = sheet.createRow(2);
         HSSFCell cell2 = row2.createCell(2);

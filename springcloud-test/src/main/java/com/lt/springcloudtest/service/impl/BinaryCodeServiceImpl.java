@@ -36,7 +36,7 @@ public class BinaryCodeServiceImpl implements BinaryCodeService {
         Map baseMapOfSuccess = BaseMap.getBaseMapOfSuccess();
         baseMapOfSuccess.put(BaseMap.data, data);
         String msg = JSON.toJSONString(baseMapOfSuccess);
-        System.out.println("json-->msg:"+msg);
+        System.out.println("json-->msg:" + msg);
         boolean encode = false;
         try {
             encode = BinaryCodeUtils.encode(msg, path);

@@ -12,6 +12,7 @@ public class EmployeeRepoerManager implements IReportManager {
     public EmployeeRepoerManager(String tanantId) {
         this.tanantId = tanantId;
     }
+
     @Override
     public String createReport() {
         return "this is a EmployeeRepoerManager financial report";

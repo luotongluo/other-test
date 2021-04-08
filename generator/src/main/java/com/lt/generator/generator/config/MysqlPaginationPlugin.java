@@ -14,14 +14,17 @@ import java.util.List;
  */
 @Configuration
 public class MysqlPaginationPlugin extends PluginAdapter {
-    public MysqlPaginationPlugin() {}
+    public MysqlPaginationPlugin() {
+    }
+
     @Override
     public boolean validate(List<String> list) {
         return false;
     }
+
     /**
      * 生成mapper.xml,文件内容会被清空再写入
-     * */
+     */
     @Override
     public boolean sqlMapGenerated(GeneratedXmlFile sqlMap, IntrospectedTable introspectedTable) {
         sqlMap.setMergeable(false);

@@ -7,7 +7,7 @@ package com.lt.factorytest.modifi;
  */
 public class IdbQuery {
 
-    public Object request(){
+    public Object request() {
         return new IdbQuery();
 
     }

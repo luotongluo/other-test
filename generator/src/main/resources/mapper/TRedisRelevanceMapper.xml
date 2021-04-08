@@ -18,7 +18,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
+        ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
         from smallbusi.t_redis_relevance
         where ID = #{id}
     </select>
@@ -26,7 +26,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
+        ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
         from smallbusi.t_redis_relevance
         limit #{offset}, #{limit}
     </select>
@@ -34,7 +34,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="BaseResultMap">
         select
-          ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
+        ID, NSRSBH, FJH, JQBH, FPQQLSH, XXLX, STATUS, CREATE_TIME, UPDATE_TIME
         from smallbusi.t_redis_relevance
         <where>
             <if test="id != null">

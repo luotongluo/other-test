@@ -12,7 +12,8 @@ public class PacketHttpHeaderCreator extends PacketDecorator {
 
     /**
      * 用于处理内容逻辑
-     *  给指定数据添加头部信息
+     * 给指定数据添加头部信息
+     *
      * @return
      */
     @Override

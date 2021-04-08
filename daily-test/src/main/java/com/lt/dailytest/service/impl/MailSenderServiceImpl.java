@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
@@ -119,5 +120,12 @@ public class MailSenderServiceImpl implements MailSenderService {
         }
 
 
+    }
+
+    @Override
+    public void configMail() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        String host = javaMailSender.getHost();
+        String username = javaMailSender.getUsername();
     }
 }

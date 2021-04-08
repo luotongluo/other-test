@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Component
 @ConfigurationProperties(prefix = "file")
-public class PropertoesConfig{
+public class PropertoesConfig {
     private String properties;
 
     public String getProperties() {

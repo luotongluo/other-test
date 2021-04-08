@@ -15,16 +15,16 @@
     <!--查询单个-->
     <select id="queryById" resultMap="BaseResultMap">
         select
-          id, url, create_time, update_time, status, create_id
-        from  test_binary_code
+        id, url, create_time, update_time, status, create_id
+        from test_binary_code
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="BaseResultMap">
         select
-          id, url, create_time, update_time, status, create_id
-        from  test_binary_code
+        id, url, create_time, update_time, status, create_id
+        from test_binary_code
         limit #{offset}, #{limit}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAll" resultMap="BaseResultMap">
         select
         id, url, create_time, update_time, status, create_id
-        from  test_binary_code
+        from test_binary_code
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -57,13 +57,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into  test_binary_code(url, create_time, update_time, status, create_id)
+        insert into test_binary_code(url, create_time, update_time, status, create_id)
         values (#{url}, #{createTime}, #{updateTime}, #{status}, #{createId})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update  test_binary_code
+        update test_binary_code
         <set>
             <if test="url != null and url != ''">
                 url = #{url},
@@ -86,7 +86,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from  test_binary_code where id = #{id}
+        delete from test_binary_code where id = #{id}
     </delete>
 
 </mapper>

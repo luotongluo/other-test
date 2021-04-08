@@ -14,7 +14,7 @@ public class FactoryProducer {
     public static AbstractFactory getFactory(String choice) {
         if (AbstractFactory.SHAPE.equals(choice)) {
             return new ShapeFactory();
-        }else if(AbstractFactory.COLOR.equals(choice)){
+        } else if (AbstractFactory.COLOR.equals(choice)) {
             return new ColorFactory();
         }
         return null;

@@ -16,7 +16,6 @@ public class TestServiceImpl implements TestService {
 //    private IInvoiceBusinessQrcodeService iInvoiceBusinessQrcodeService;
 
 
-
     /**
      * 测试方法
      *

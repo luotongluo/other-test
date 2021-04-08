@@ -8,6 +8,7 @@ package com.lt.factorytest.decorator;
 public interface IPackageCreator {
     /**
      * 用于处理内容逻辑
+     *
      * @return
      */
     public String handlerContent();

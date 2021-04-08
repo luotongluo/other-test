@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FactoryTestApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FactoryTestApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FactoryTestApplication.class, args);
+    }
 
 }

@@ -24,29 +24,31 @@ public class TestController {
     @Autowired
     private ZkApi zkApi;
 
-    @RequestMapping(value = "testMethos1",method= RequestMethod.GET)
-    public String testMethos1(TestDTO testDTO, HttpServletRequest httpRequest){
+    @RequestMapping(value = "testMethos1", method = RequestMethod.GET)
+    public String testMethos1(TestDTO testDTO, HttpServletRequest httpRequest) {
         return JSON.toJSONString(testDTO);
     }
 
-    @RequestMapping(value = "testMethos2",method= RequestMethod.GET)
-    public String testMethos2(@RequestParam("id")String id,@RequestParam("name")String name,
-                              @RequestParam("time")String time, HttpServletRequest httpRequest) throws Exception{
+    @RequestMapping(value = "testMethos2", method = RequestMethod.GET)
+    public String testMethos2(@RequestParam("id") String id, @RequestParam("name") String name,
+                              @RequestParam("time") String time, HttpServletRequest httpRequest) throws Exception {
         TestDTO testDTO = new TestDTO();
         testDTO.setId(Integer.valueOf(id));
         testDTO.setName(name);
         String s[] = {"yyyy-MM-dd"};
-        testDTO.setTime(DateUtils.parseDate(time,s));
-        System.out.println(JSON.toJSONString(testDTO));;
+        testDTO.setTime(DateUtils.parseDate(time, s));
+        System.out.println(JSON.toJSONString(testDTO));
+        ;
         return JSON.toJSONString(testDTO);
     }
 
     /**
      * 获取ip
+     *
      * @return
      */
     @RequestMapping("getIp")
-    public String getIp(HttpServletRequest request){
+    public String getIp(HttpServletRequest request) {
 //        System.out.println(JSON.toJSONString(request));
         String ipAddr = IpUtils.getIpAddr(request);
         return JSON.toJSONString(ipAddr);

@@ -12,7 +12,7 @@ public class PlusAndLess {
         int a, b, c, d, e;
         a = b = c = d = 1;
         //2 + 1 +0 + 0 + 0
-        e = ++ a + b++ + --c + c++ + --d;
+        e = ++a + b++ + --c + c++ + --d;
         System.out.println(e);
     }
 }

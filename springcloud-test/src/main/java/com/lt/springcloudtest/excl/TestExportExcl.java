@@ -49,7 +49,7 @@ public class TestExportExcl {
 
     }
 
-    private static byte[] getdownByte(String name) throws Exception{
+    private static byte[] getdownByte(String name) throws Exception {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet(name);
 
@@ -79,7 +79,7 @@ public class TestExportExcl {
             row1.createCell(1).setCellValue(i + "--123--" + UUID.randomUUID());
             row1.createCell(2).setCellValue(i + "--123--" + UUID.randomUUID());
             row1.createCell(3).setCellValue(i + "--123--" + UUID.randomUUID());
-            row1.createCell(4).setCellValue(i + "--123--" + TimeUtils.getDate(System.currentTimeMillis(),TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
+            row1.createCell(4).setCellValue(i + "--123--" + TimeUtils.getDate(System.currentTimeMillis(), TimeUtils.FORMAT_DEFAULT_TIMESTAMP));
         }
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         workbook.write(os);

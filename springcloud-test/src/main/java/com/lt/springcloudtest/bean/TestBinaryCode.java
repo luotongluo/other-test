@@ -12,28 +12,28 @@ import java.io.Serializable;
 public class TestBinaryCode implements Serializable {
     private static final long serialVersionUID = 369335836476915545L;
     /**
-    * id
-    */
+     * id
+     */
     private Integer id;
     /**
-    * url
-    */
+     * url
+     */
     private String url;
     /**
-    * create_time
-    */
+     * create_time
+     */
     private Date createTime;
     /**
-    * update_time
-    */
+     * update_time
+     */
     private Date updateTime;
     /**
-    * 0已创建，1已生成
-    */
+     * 0已创建，1已生成
+     */
     private Integer status;
     /**
-    * create_id
-    */
+     * create_id
+     */
     private String createId;
 
 

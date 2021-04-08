@@ -19,13 +19,13 @@ import java.util.concurrent.TimeUnit;
 public class MapTest {
     private Map<Socket, User> map = new WeakHashMap<>(64);
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         SocketManager socketManager = new SocketManager();
         Socket socket = new Socket();
         User user = new User();
 
-        socketManager.setUser(socket,user);
+        socketManager.setUser(socket, user);
 
         socket = null;
 

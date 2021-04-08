@@ -11,7 +11,7 @@ public class RetVO<T> implements Serializable {
     private static final long serialVersionUID = 4087908700685218023L;
 
     private Integer code = 0;
-    private String msg ;
+    private String msg;
     private T data;
 
     public RetVO() {

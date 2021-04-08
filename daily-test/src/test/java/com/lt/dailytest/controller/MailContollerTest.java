@@ -19,10 +19,15 @@ public class MailContollerTest {
     @Test
     void sendHtmlMail() {
         ReqVO reqVO = new ReqVO();
-        reqVO.setTo("1299391162@qq.com;1282875540@qq.com");
+        reqVO.setTo("1299391162@qq.com");
         reqVO.setContent("setContent");
         reqVO.setSubject("test");
-        RetVO<Object> retVO = this.mailContoller.sendHtmlMail(reqVO);
-        System.out.println(reqVO);
+        for (int i = 0; i < 500; i++) {
+            reqVO.setContent("setContent" + i);
+            reqVO.setSubject("test" + i);
+            RetVO<Object> retVO = this.mailContoller.sendHtmlMail(reqVO);
+            System.out.println(reqVO);
+        }
+
     }
 }
