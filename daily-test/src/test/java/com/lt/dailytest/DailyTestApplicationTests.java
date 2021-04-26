@@ -1,5 +1,6 @@
 package com.lt.dailytest;
 
+import com.lt.dailytest.validate.TestBean;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,6 +9,8 @@ class DailyTestApplicationTests {
 
     @Test
     void contextLoads() {
+        TestBean testBean = new TestBean();
+
     }
 
     public static void main(String[] args) {
