@@ -79,7 +79,7 @@ public class BinaryCodeUtils {
          *   是否会引起字符串长度大于120导致生成代码不执行，二维码空白
          *   根据自己的字符串大小来设置此配置
          */
-        if (d.length > 0 && d.length < 120) {
+        if (d.length > 0 && d.length < 135) {
             boolean[][] s = x.calQrcode(d);
 
             for (int i = 0; i < s.length; i++) {
@@ -148,15 +148,16 @@ public class BinaryCodeUtils {
         }
     }
 
-    public static void main(String[] args) {
-        String data = "我爱我想爱的人:张笨蛋";
-
+    public static void main(String[] args) throws Exception{
+        String data = "ConcurrentMarkSweepConcurrentMarkSweepConcurrentMarkSweepConcurrentMarkSweepConcurrentMarkSweepConcurrentMarkConcurrentMark1234567";
+        System.out.println("data-->length:" + data.length());
+        String fileName = "long-part.png";
         /**
          * 生成二维码
          */
-//        BinaryCodeUtils.encode(data, "erwei.jpg");
+        BinaryCodeUtils.encode(data, fileName);
 
-        String decode = BinaryCodeUtils.decode("erwei.jpg");
+        String decode = BinaryCodeUtils.decode(fileName);
         System.out.println(decode);
     }
 }
