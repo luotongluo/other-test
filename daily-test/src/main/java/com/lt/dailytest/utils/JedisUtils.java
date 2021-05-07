@@ -1,5 +1,6 @@
 package com.lt.dailytest.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -18,15 +19,15 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class JedisUtils {
-    @Resource
-    private RedisTemplate redisTemplate;
+    @Autowired
+    private static RedisTemplate redisTemplate;
 
     /**
      * @param key
      * @param time 秒
      * @return
      */
-    public Boolean expire(String key, long time) {
+    public  Boolean expire(String key, long time) {
         try {
             if (time > 0) {
                 redisTemplate.expire(key, time, TimeUnit.SECONDS);
@@ -44,7 +45,7 @@ public class JedisUtils {
      * @param key 键 不能为null
      * @return 时间(秒) 返回0代表为永久有效
      */
-    public Long getExpire(String key) {
+    public  Long getExpire(String key) {
         Long expire = redisTemplate.getExpire(key);
         return expire;
     }
@@ -55,7 +56,7 @@ public class JedisUtils {
      * @param key 键
      * @return true 存在 false不存在
      */
-    public boolean hasKey(String key) {
+    public  boolean hasKey(String key) {
         try {
             return redisTemplate.hasKey(key);
         } catch (Exception e) {
@@ -70,7 +71,7 @@ public class JedisUtils {
      * @param key 可以传一个值 或多个
      */
     @SuppressWarnings("unchecked")
-    public void del(String... key) {
+    public  void del(String... key) {
         if (key != null && key.length > 0) {
             if (key.length == 1) {
                 redisTemplate.delete(key[0]);
@@ -86,7 +87,7 @@ public class JedisUtils {
      * @param key 键
      * @return true=删除成功；false=删除失败
      */
-    public boolean del(final String key) {
+    public  boolean del(final String key) {
 
         Boolean ret = redisTemplate.delete(key);
         return ret != null && ret;
@@ -98,7 +99,7 @@ public class JedisUtils {
      * @param key   Redis键
      * @param value 值
      */
-    public void set(final String key, final Object value) {
+    public  void set(final String key, final Object value) {
         redisTemplate.opsForValue().set(key, value, 1, TimeUnit.MINUTES);
     }
 
@@ -111,7 +112,7 @@ public class JedisUtils {
      * @param value   值
      * @param timeout 有效期，单位秒
      */
-    public void set(final String key, final Object value, final long timeout) {
+    public  void set(final String key, final Object value, final long timeout) {
         redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.SECONDS);
     }
 
@@ -121,7 +122,7 @@ public class JedisUtils {
      * @param key 键
      * @return 对象
      */
-    public Object get(final String key) {
+    public  Object get(final String key) {
         return redisTemplate.opsForValue().get(key);
     }
 // 存储Hash操作
@@ -133,7 +134,7 @@ public class JedisUtils {
      * @param hKey  Hash键
      * @param value 值
      */
-    public void hPut(final String key, final String hKey, final Object value) {
+    public  void hPut(final String key, final String hKey, final Object value) {
         redisTemplate.opsForHash().put(key, hKey, value);
     }
 
@@ -142,8 +143,8 @@ public class JedisUtils {
      *
      * @param map
      */
-    public void mset(Map map) {
-        this.redisTemplate.opsForValue().multiSet(map);
+    public  void mset(Map map) {
+        redisTemplate.opsForValue().multiSet(map);
     }
 
     /**
@@ -152,8 +153,8 @@ public class JedisUtils {
      * @param collection
      * @return
      */
-    public List mget(Collection collection) {
-        List list = this.redisTemplate.opsForValue().multiGet(collection);
+    public  List mget(Collection collection) {
+        List list = redisTemplate.opsForValue().multiGet(collection);
         return list;
     }
 
@@ -163,7 +164,7 @@ public class JedisUtils {
      * @param key    Redis键
      * @param values Hash键值对
      */
-    public void hPutAll(final String key, final Map<String, Object> values) {
+    public  void hPutAll(final String key, final Map<String, Object> values) {
 
         redisTemplate.opsForHash().putAll(key, values);
     }
@@ -175,7 +176,7 @@ public class JedisUtils {
      * @param hKey Hash键
      * @return Hash中的对象
      */
-    public Object hGet(final String key, final String hKey) {
+    public  Object hGet(final String key, final String hKey) {
 
         return redisTemplate.opsForHash().get(key, hKey);
     }

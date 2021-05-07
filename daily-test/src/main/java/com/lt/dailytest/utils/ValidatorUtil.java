@@ -23,6 +23,9 @@ public class ValidatorUtil {
     public static <T> Map<String, StringBuffer> validate(T obj) {
         Map<String, StringBuffer> errorMap = null;
         Set<ConstraintViolation<T>> set = validator.validate(obj, Default.class);
+        // 输出错误消息
+        set.stream().map(v -> v.getPropertyPath() + " " + v.getMessage() + ": " + v.getInvalidValue())
+                .forEach(System.out::println);
         if (set != null && set.size() > 0) {
             errorMap = new HashMap();
             String property = null;
