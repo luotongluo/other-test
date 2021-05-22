@@ -27,8 +27,11 @@ public class RegTest {
 //        boolean b1 = validatMail(mail);
 //        System.out.println("b1:" + b1);
 
-        String namereg = "^([0-9-—]{1,})$";
-        boolean isMatch =  Pattern.compile(namereg).matcher("010-56189057").matches();
+//        String namereg = "^([0-9-—]{1,})$";
+//        boolean isMatch =  Pattern.compile(namereg).matcher("010-56189057").matches();
+//        System.out.println(isMatch);
+        String namereg = "^[一-龥\\w\\s~!@%#$^*+='?\\-\\\\/(){}\\[\\],.\\|《》、，。！{}·#￥……*（）——:：“”？【】；‘’`_;\"]{1,40}$";
+        boolean isMatch =  Pattern.compile(namereg).matcher("  Φ123*22MM123*22MM").matches();
         System.out.println(isMatch);
     }
 

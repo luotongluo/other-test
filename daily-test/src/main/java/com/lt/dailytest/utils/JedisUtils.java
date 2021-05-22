@@ -1,7 +1,9 @@
 package com.lt.dailytest.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -274,7 +276,8 @@ public class JedisUtils {
      * @return
      */
     private RedisTemplate changeRedisDB(int dbNum) {
-        JedisConnectionFactory jedisConnectionFactory = (JedisConnectionFactory) redisTemplate.getConnectionFactory();
+        //RedisConnectionFactory connectionFactory = redisTemplate.getConnectionFactory();
+        LettuceConnectionFactory jedisConnectionFactory = (LettuceConnectionFactory) redisTemplate.getConnectionFactory();
         jedisConnectionFactory.setDatabase(dbNum);
         redisTemplate.setConnectionFactory(jedisConnectionFactory);
         return redisTemplate;
