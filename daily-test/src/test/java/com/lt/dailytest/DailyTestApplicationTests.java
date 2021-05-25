@@ -46,7 +46,9 @@ class DailyTestApplicationTests {
 
     @Test
     public void readFile() throws Exception {
-        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream("开票单张限额.xlsx");
+        String fileName = "templates/开票单张限额.xls";
+        //InputStream resourceAsStream = this.getClass().getResourceAsStream(fileName);
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
         XSSFWorkbook wb = new XSSFWorkbook(resourceAsStream);
         XSSFSheet sheet = wb.getSheetAt(0);
         XSSFRow row = sheet.getRow(0);

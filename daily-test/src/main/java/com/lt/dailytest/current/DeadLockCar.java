@@ -32,9 +32,9 @@ public class DeadLockCar extends Thread {
 
     @Override
     public void run() {
+        //占据想向东的路
         if (myDirect == north) {
             try {
-                //占据想向东的路
                 east.lockInterruptibly();
                 try {
                     Thread.sleep(500);
