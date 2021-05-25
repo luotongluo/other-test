@@ -2,6 +2,9 @@ package com.exam.examtest.sort;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 /**
  * @author tong.luo
@@ -13,6 +16,8 @@ public class SelectSort {
         int a[] = {5, 4, 3, 2, 1, 7, 8, 9, 0};
         selectSort(a);
         System.out.println(JSON.toJSONString(a));
+        System.out.println(Integer.valueOf(1).equals(1));
+
     }
 
     /**

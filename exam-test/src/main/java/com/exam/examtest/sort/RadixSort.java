@@ -21,13 +21,14 @@ public class RadixSort {
         //求出待排序中的数据最长是多少位的
         int maxLength = 0;
         for (int i = 0; i < arr.length; i++) {
-            maxLength = String.valueOf(arr[i]).length();
+            int length = String.valueOf(arr[i]).length();
+            maxLength = length > maxLength ? length : maxLength;
         }
         //初识的余数 为10；
         int remainder = 10;
         int[][] doubleArr = new int[10][];
         int length = String.valueOf(remainder).length();
-        while (length <= maxLength){
+        while (length <= maxLength) {
             for (int i : arr) {
                 int radixVal = i % remainder;
                 for (int j = 0; j < arr.length; j++) {

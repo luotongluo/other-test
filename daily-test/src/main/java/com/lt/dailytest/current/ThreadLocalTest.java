@@ -29,6 +29,7 @@ public class ThreadLocalTest implements Runnable {
                 System.out.println("id =" + time + "localVal = " + THREAD_LOCAL.get().getTime());
             }
         }
+        THREAD_LOCAL.remove();
     }
 
     public static void main(String[] args) throws Exception {
@@ -37,6 +38,7 @@ public class ThreadLocalTest implements Runnable {
             threadLocalTest.run();
 
         }
+
         Thread.sleep(1000);
     }
 }

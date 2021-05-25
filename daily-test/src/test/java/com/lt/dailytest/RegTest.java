@@ -10,22 +10,29 @@ import java.util.regex.Pattern;
  */
 public class RegTest {
     public static void main(String[] args) {
-        String ss = "非必填，自动带出可编辑；1-40字节，字母数字中文及：~`!@#$%^*()_+[]\\;',./?:\"{}|~·！@#￥%……*（）——+{}|：“《》？【】、；‘，。/  组合";
-        String regEx = "[中]*";
-        Matcher matcher = Pattern.compile(regEx).matcher(ss);
-        System.out.println(matcher.replaceAll(""));
+//        String ss = "非必填，自动带出可编辑；1-40字节，字母数字中文及：~`!@#$%^*()_+[]\\;',./?:\"{}|~·！@#￥%……*（）——+{}|：“《》？【】、；‘，。/  组合";
+//        String regEx = "[中]*";
+//        Matcher matcher = Pattern.compile(regEx).matcher(ss);
+//        System.out.println(matcher.replaceAll(""));
+//
+//        String namereg = "^[a-zA-Z0-9]{2,14}$";
+//        Matcher a = Pattern.compile(namereg).matcher("hbadmin");
+//        System.out.println(a.replaceAll(""));
+//        boolean hbadmin = Pattern.matches(namereg, "hbadminhbadminhbadmin");
+//        System.out.println(hbadmin);
+//        String phoneNum = "13344444444";
+//        boolean b = regexPhoneNum(phoneNum);
+//        System.out.println(b);
+//        String mail = "123@asd.sd";
+//        boolean b1 = validatMail(mail);
+//        System.out.println("b1:" + b1);
 
-        String namereg = "^[a-zA-Z0-9]{2,14}$";
-        Matcher a = Pattern.compile(namereg).matcher("hbadmin");
-        System.out.println(a.replaceAll(""));
-        boolean hbadmin = Pattern.matches(namereg, "hbadminhbadminhbadmin");
-        System.out.println(hbadmin);
-        String phoneNum = "13344444444";
-        boolean b = regexPhoneNum(phoneNum);
-        System.out.println(b);
-        String mail = "123@asd.sd";
-        boolean b1 = validatMail(mail);
-        System.out.println("b1:" + b1);
+//        String namereg = "^([0-9-—]{1,})$";
+//        boolean isMatch =  Pattern.compile(namereg).matcher("010-56189057").matches();
+//        System.out.println(isMatch);
+        String namereg = "^[一-龥\\w\\s~!@%#$^*+='?\\-\\\\/(){}\\[\\],.\\|《》、，。！{}·#￥……*（）——:：“”？【】；‘’`_;\"]{1,40}$";
+        boolean isMatch =  Pattern.compile(namereg).matcher("  Φ123*22MM123*22MM").matches();
+        System.out.println(isMatch);
     }
 
     /**

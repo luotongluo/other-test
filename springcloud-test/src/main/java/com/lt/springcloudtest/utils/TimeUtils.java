@@ -301,7 +301,7 @@ public class TimeUtils {
     }
 
     public static synchronized String getNo(int k) {
-        return getUserDate(FORMAT_yyyyMMddHHmmss) + getRandom(k);
+        return getUserDate(FORMAT_yyyyMMddHHmmss) + "-" + getRandom(k);
     }
 
     public static String getUserDate(String sformat) {
@@ -326,7 +326,7 @@ public class TimeUtils {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 //        Date d1 = parseDate("2014-01-02 11:30:23");
 //        Date d2 = parseDate("2004-01-02 11:30:24");
 //        System.out.println(formatDateTime(addYear(d2, 1), "yyyy-MM-dd HH:mm:ss"));
@@ -339,6 +339,13 @@ public class TimeUtils {
 
         String nowTime = getDate(System.currentTimeMillis(), TimeUtils.FORMAT_DEFAULT_TIMESTAMP);
         System.out.println(nowTime);
+
+        for (int i = 0; i < 10000; i++) {
+            String no = getNo(10);
+            System.out.println(no);
+            Thread.sleep(100);
+        }
+
     }
 
 }
