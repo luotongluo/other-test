@@ -2,6 +2,7 @@ package com.lt.dailytest.vo;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lt.dailytest.bean.CommonBean;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.Date;
  * @description MailVo
  * @date 2021/3/9 10:20
  */
-public class MailVo implements Serializable, Cloneable {
+public class MailVotest extends CommonBean implements Serializable, Cloneable {
     private static final long serialVersionUID = -4766803005111951736L;
     //发送人如果是多个的话 分隔符
     public static final String TO_SPLITE = ";";
@@ -28,25 +29,6 @@ public class MailVo implements Serializable, Cloneable {
     private String error;//报错信息
     @JsonIgnore
     private MultipartFile[] multipartFiles;//邮件附件
-
-    private Integer pageIndex;
-    private Integer pageSize;
-
-    public Integer getPageIndex() {
-        return pageIndex;
-    }
-
-    public void setPageIndex(Integer pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
 
     public String getId() {
         return id;
@@ -201,9 +183,9 @@ public class MailVo implements Serializable, Cloneable {
         return super.clone();
     }
 
-    public MailVo newInstance() {
+    public MailVotest newInstance() {
         try {
-            return (MailVo) this.clone();
+            return (MailVotest) this.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -211,7 +193,7 @@ public class MailVo implements Serializable, Cloneable {
     }
 
     public static void main(String[] args) throws Exception {
-        MailVo mailVo = new MailVo();
+        MailVotest mailVo = new MailVotest();
         mailVo.setId("1");
         mailVo.setFrom("2");
         mailVo.setTo("3");
@@ -224,7 +206,7 @@ public class MailVo implements Serializable, Cloneable {
         mailVo.setError("11");
 //        mailVo.setMultipartFiles(null);
 
-        MailVo mailVo1 = mailVo.newInstance();
+        MailVotest mailVo1 = mailVo.newInstance();
         System.out.println(JSON.toJSONString(mailVo));
         System.out.println(JSON.toJSONString(mailVo1));
     }
