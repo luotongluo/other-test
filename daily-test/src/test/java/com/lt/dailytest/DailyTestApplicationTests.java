@@ -35,6 +35,7 @@ class DailyTestApplicationTests {
 
     @Test
     public void mapStructTest(){
+        System.out.println();
 //        ConverMapper mapper = Mappers.getMapper(ConverMapper.class);
 //        CopyBean1 copyBean1 = new CopyBean1();
 //        copyBean1.setName("123");

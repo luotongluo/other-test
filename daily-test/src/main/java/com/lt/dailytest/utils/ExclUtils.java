@@ -3,6 +3,9 @@ package com.lt.dailytest.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +28,15 @@ import java.util.Map;
  */
 public class ExclUtils {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    Workbook workbook;
+    public void createExcl(String filename,byte[] bytes) throws Exception{
+        if (filename.endsWith(".xls")) {
+             workbook = new HSSFWorkbook(new ByteArrayInputStream(bytes));
+        }
+        if (filename.endsWith(".xlsx")) {
+            workbook = new XSSFWorkbook(new ByteArrayInputStream(bytes));
+        }
+    }
 
     public static void export(String[][] columnNames,
                               List<?> items, String fileName, HttpServletResponse response) {

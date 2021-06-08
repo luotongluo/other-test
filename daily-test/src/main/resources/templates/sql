@@ -1,0 +1,33 @@
+INSERT INTO `invoice_group`.`busi_invoice_head`
+(`invoice_head_id`, `invoice_req_serial_no`, `platform_code`, `platform_alias`, `taxpayer_num`, `taxpayer_name`,
+`taxpayer_archive_no`, `agent_invoice_flag`, `item_name`, `coding_table_version`, `seller_taxpayer_num`,
+`seller_name`, `seller_address`, `seller_tel`, `seller_bank_name`, `seller_bank_account`, `buyer_taxpayer_num`,
+ `buyer_name`, `buyer_address`, `buyer_tel`, `buyer_bank_name`, `buyer_bank_account`, `buyer_enterprise_type`,
+  `drawer_id`, `drawer_name`, `casher_name`, `reviewer_name`, `invoice_date`, `invoice_type`, `invoice_kind_code`,
+  `special_red_invoice_sign`, `operation_code`, `goods_list_sign`, `goods_list_name`, `total_mount`, `no_tax_amount`,
+  `tax_amount`, `surplus_no_tax_amount`, `surplus_tax_amount`, `qr_code`, `machine_code`, `disk_type`, `extension_num`,
+  `terminal_type`, `check_code`, `invoice_ciphertext`, `old_invoice_code`, `old_invoice_no`, `red_invoice_reason`, `remarks`,
+   `invoice_code`, `invoice_num`, `pdf_id`, `pdf_image_id`, `enter_account_sign`, `order_no`, `red_flag`, `destroy_flag`,
+   `operation_failed_reason`, `destroy_no`, `taker_email`, `invoice_failed_reason`, `request_time`, `first_request_time`,
+   `receive_time`, `taker_name`, `taker_phone`, `invoice_status`, `delete_flag`, `time_stamp`, `special_invoice_kind`, `tax_rate`,
+    `org_id`, `shop_name`, `email_status`, `sms_status`, `red_invoice_bill_no`, `invoice_issue_source`, `invoice_issue_platform_name`,
+     `group_id`, `hierarchy_id`, `print_count`, `batch_id`, `update_time`, `backup1`, `backup2`, `backup3`, `backup4`, `backup5`,
+      `backup6`, `backup7`, `backup8`, `backup9`, `backup10`) VALUES (1103861718593339392, 'SHWM2019030801270001', 'e6h8455e',
+       'JTBC', '14030160071861777', 'ceshi', '14030160071861777', '0', '*生活服务*农夫山泉', '29.0', '14030160071861777', 'ceshi',
+        '海淀', '18601101452', '中国建设银行', NULL, '102021001030100', '张三', '上海市宝山区微盟B0', '18930585257', '上海福州路支行',
+        '62231313131314', '1', NULL, '曹操', '刘凯', '复核人', '2019-03-08 19:29:43', 1, '10', '0', '10', '0', '0', 200.00, 188.68,
+        11.32, 188.68, 11.32, 'Qk3CAwAAAAAAAD4AAAAoAAAASwAAAEsAAAABAAEAAAAAAIQDAAAAAAAAAAAAAAAAAAACAAAAAAAA///////////////////gAAAAAzPzwMPDMMwgAAAAAzPzwMPDMMwgAAA/8/Dw88APDA/gAAA/8/Dw88APDA/gAAAwM8D/Mz8DzAwgAAAwM8D/Mz8DzAwgAAAwMzD8zAPAzwzgAAAwMzD8zAPAzwzgAAAwM8DwzPPPADwgAAAwM8DwzPPPADwgAAA/8w/8P8z8PwDgAAA/8w/8P8z8PwDgAAAAA//zzzPMMzMgAAAAA//zzzPMMzMgAAD//zMPwwDPPwwgAAD//zMPwwDPPwwgAAD88MAwAMzzAAAgAAD88MAwAMzzAAAgAAA8zMwzDMzPzM/gAAA8zMwzDMzPzM/gAADAM8MMAzwzADwgAADAM8MMAzwzADwgAAAMD/A8w/PDM8MgAAAMD/A8w/PDM8MgAAA/MP/zMPwD8M/gAAA/MP/zMPwD8M/gAAAAPPww8D/AzA/gAAAAPPww8D/AzA/gAAAA8P/D8AMz/A8gAAAA8P/D8AMz/A8gAAA/zP8Pw//P8MwgAAA/zP8Pw//P8MwgAAAMwzw/8MPPwAwgAAAMwzw/8MPPwAwgAADM/8A8DAAzD8DgAADM/8A8DAAzD8DgAAAw8AP/wDMz888gAAAw8AP/wDMz888gAAAzDwMw/M8/wDwgAAAzDwMw/M8/wDwgAAAAMwwzPz8zM8DgAAAAMwwzPz8zM8DgAADDDz///wwDD8zgAADDDz///wwDD8zgAADw8ADz//DzMPAgAADw8ADz//DzMPAgAAADzz/PMM/zM/8gAAADzz/PMM/zM/8gAADPwM8Mw8PD8M8gAADPwM8Mw8PD8M8gAADD/wDDPA8AMAzgAADD/wDDPA8AMAzgAAAzwAPM/PPDMPMgAAAzwAPM/PPDMPMgAAAwzDP8MMAD8PwgAAAwzDP8MMAD8PwgAAA8wzwMAwAPzP/gAAA8wzwMAwAPzP/gAAD//8P/AAzw///gAAD//8P/AAzw///gAAAAAzMzMzMzMAAgAAAAAzMzMzMzMAAgAAA/8zP//D/8M/8gAAA/8zP//D/8M/8gAAAwM8M8MzAM8wMgAAAwM8M8MzAM8wMgAAAwM/wM/zw8MwMgAAAwM/wM/zw8MwMgAAAwM/wPADD88wMgAAAwM/wPADD88wMgAAA/8/zPDMAwM/8gAAA/8/zPDMAwM/8gAAAAA8zzA/w8MAAgAAAAA8zzA/w8MAAgAAA=',
+         '661565719969', 'JSP', '0', 'PTYH', '67213224942356752668', '', '', '', NULL, '票通测试', '052000065409', '19850040',
+         1103861716580073472, 1103861718471704576, '0', 'SHWM2019030801270001', 0, 0, NULL, NULL, '463324677@qq.com', NULL,
+         '2019-03-08 11:35:13', '2019-03-08 11:35:13', '2019-03-08 11:35:17', '张飞', '18930585257', 2, '0', '2019-03-08 11:35:17',
+          '00', 0, 1052821448288137217, NULL, 0, 0, NULL, 'SHWM', '上海微盟', NULL, '100100', 2, NULL, '2019-04-01 14:50:59', NULL,
+          NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+
+INSERT INTO `invoice_group`.`busi_invoice_detail`(`invoice_detail_id`, `invoice_req_serial_no`, `goods_name`, `metering_unit`,
+`specification_model`, `tax_flag`, `quantity`, `invoice_row_attr`, `unit_price`, `tax_classification_code`, `goods_code`,
+`preferential_policy_flag`, `zero_tax_flag`, `vat_special_manage`, `deduction_amount`, `invoice_amount`, `tax_rate_amount`,
+`tax_rate_value`, `item_no`, `discount_amount`, `discount_tax_rate_amount`, `backup1`, `backup2`, `backup3`, `backup4`, `backup5`)
+VALUES (1103861718593339393, 'SHWM2019030801270001', '*生活服务*农夫山泉', NULL, NULL, '0', 100.00000000, '0', 1.88680000,
+'3070302000000000000', NULL, '0', NULL, NULL, NULL, 188.68, 11.32, 0.06, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
