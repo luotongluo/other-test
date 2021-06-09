@@ -1,4 +1,4 @@
-INSERT INTO `invoice_group`.`busi_invoice_head`
+INSERT INTO `busi_invoice_head`
 (`invoice_head_id`, `invoice_req_serial_no`, `platform_code`, `platform_alias`, `taxpayer_num`, `taxpayer_name`,
 `taxpayer_archive_no`, `agent_invoice_flag`, `item_name`, `coding_table_version`, `seller_taxpayer_num`,
 `seller_name`, `seller_address`, `seller_tel`, `seller_bank_name`, `seller_bank_account`, `buyer_taxpayer_num`,
@@ -24,7 +24,7 @@ INSERT INTO `invoice_group`.`busi_invoice_head`
           NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 
-INSERT INTO `invoice_group`.`busi_invoice_detail`(`invoice_detail_id`, `invoice_req_serial_no`, `goods_name`, `metering_unit`,
+INSERT INTO `busi_invoice_detail`(`invoice_detail_id`, `invoice_req_serial_no`, `goods_name`, `metering_unit`,
 `specification_model`, `tax_flag`, `quantity`, `invoice_row_attr`, `unit_price`, `tax_classification_code`, `goods_code`,
 `preferential_policy_flag`, `zero_tax_flag`, `vat_special_manage`, `deduction_amount`, `invoice_amount`, `tax_rate_amount`,
 `tax_rate_value`, `item_no`, `discount_amount`, `discount_tax_rate_amount`, `backup1`, `backup2`, `backup3`, `backup4`, `backup5`)
