@@ -1,4 +1,4 @@
-package com.lt.dailytest;
+package com.lt.dailytest.other;
 
 import com.lt.dailytest.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;
