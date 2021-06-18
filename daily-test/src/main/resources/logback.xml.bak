@@ -10,12 +10,13 @@
     <configuration scan="true" scanPeriod="60 seconds" debug="false"> -->
 
     <!-- 定义变量 , 在配置文件其他地方可通过${变量名}访问 -->
-    <!--<property name="LOG_INFO_HOME" value="/Users/riemann/Documents/log" />-->
+    <property name="LOG_INFO_HOME" value="/Users/riemann/Documents/log" />
 
     <!-- ConsoleAppender , 将日志输出到控制台 . 有encoder和target两个子节点(新版本有filter子节点 , 在下文中详细说明) -->
     <appender name="CONSOLE-LOG" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{25} -lineNum:%L- %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -39,7 +40,7 @@
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} %-5level [%thread] %logger{50}-%L %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} %-5level [%thread] %logger{50}-lineNum:%L- %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -60,7 +61,7 @@
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} %-5level [%thread] %logger{50}-%L %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss:SSS} %-5level [%thread] %logger{50}-lineNum:%L- %msg%n</pattern>
         </encoder>
     </appender>
 

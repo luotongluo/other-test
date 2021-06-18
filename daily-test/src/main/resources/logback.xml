@@ -54,6 +54,8 @@
         <logger name="java.sql.Connection" level="DEBUG"/>
         <logger name="java.sql.Statement" level="DEBUG"/>
         <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+        <!--在指定具体的类中才会使用level类型-->
+        <logger name="com.lt.dailytest.other.ExclTest" level="DEBUG"/>
    <!-- </springprofile>-->
 
 

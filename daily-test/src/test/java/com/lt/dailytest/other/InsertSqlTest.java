@@ -3,6 +3,7 @@ package com.lt.dailytest.other;
 import com.lt.dailytest.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -133,9 +134,11 @@ public class InsertSqlTest {
             this.initMap(hashMap);
             for (int i = 0; i < lastCellNum; i++) {
                 XSSFCell cell = row.getCell(i, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                int cellType = cell.getCellType();
+                //int cellType = cell.getCellType();
+                CellType cellCellType = cell.getCellType();
+
                 String stringCellValue = null;
-                if (Cell.CELL_TYPE_NUMERIC == cellType) {
+                if (cellCellType.compareTo(CellType.NUMERIC) == 0) {
                     double numericCellValue = cell.getNumericCellValue();
                     stringCellValue = String.valueOf(numericCellValue);
                 } else {
@@ -420,9 +423,9 @@ public class InsertSqlTest {
             this.initTest2Map(hashMap);
             for (int i = 0; i < lastCellNum; i++) {
                 XSSFCell cell = row.getCell(i, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                int cellType = cell.getCellType();
+                CellType cellType = cell.getCellType();
                 String stringCellValue = null;
-                if (Cell.CELL_TYPE_NUMERIC == cellType) {
+                if (cellType.compareTo(CellType.NUMERIC) == 0) {
                     double numericCellValue = cell.getNumericCellValue();
                     stringCellValue = String.valueOf(numericCellValue);
                 } else {
@@ -727,9 +730,9 @@ public class InsertSqlTest {
             HashMap<String, String> hashMap = new HashMap<>();
             for (int i = 0; i < lastCellNum; i++) {
                 XSSFCell cell = row.getCell(i, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                int cellType = cell.getCellType();
+                CellType cellType = cell.getCellType();
                 String stringCellValue = null;
-                if (Cell.CELL_TYPE_NUMERIC == cellType) {
+                if (cellType.compareTo(CellType.NUMERIC) == 0) {
                     double numericCellValue = cell.getNumericCellValue();
                     stringCellValue = String.valueOf(numericCellValue);
                 } else {
