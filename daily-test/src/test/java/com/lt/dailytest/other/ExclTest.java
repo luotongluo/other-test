@@ -117,5 +117,17 @@ public class ExclTest {
 
     public static void test1111() {
         logger.error("123");
+        new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }.run();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }).start();
     }
 }
