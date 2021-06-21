@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.io.InputStream;
 
 /**
  * @author tong.luo
@@ -108,7 +109,8 @@ public class MailSenderServiceImpl implements MailSenderService {
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(content, true);
-
+            //获取resource目录下面的文件
+            //InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(filePath);
             FileSystemResource file = new FileSystemResource(new File(filePath));
             String fileName = filePath.substring(filePath.lastIndexOf(File.separator));
             helper.addAttachment(fileName, file);
@@ -118,8 +120,6 @@ public class MailSenderServiceImpl implements MailSenderService {
         } catch (MessagingException e) {
             logger.error("发送邮件时发生异常！", e);
         }
-
-
     }
 
     @Override
