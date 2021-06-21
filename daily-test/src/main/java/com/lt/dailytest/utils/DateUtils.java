@@ -15,7 +15,9 @@ public class DateUtils {
     private static final Logger logger = LoggerFactory.getLogger(DateUtils.class);
 
     public static final String yyyyMMdd = "yyyyMMdd";
+    public static final String yyyyMMddHHmmss = "yyyyMMddHHmmss";
     public static final String yyyy_MM_dd = "yyyy-MM-dd";
+    public static final String yyyy_MM_dd_hh_mm_ss = "yyyy-MM-dd HH:mm:ss.SSS";
 
     public static String formatDate(Date date, String pattern) {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
