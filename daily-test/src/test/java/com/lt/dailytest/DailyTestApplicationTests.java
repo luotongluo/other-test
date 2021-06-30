@@ -79,6 +79,14 @@ class DailyTestApplicationTests {
         Integer d = 1234;
         System.out.println(a == b);
         System.out.println(a.equals(b));
+
+        String ss = "水果苹果";
+        String sp = "*";
+        String substring = ss.substring(1, ss.length());
+        int indexOf = substring.indexOf(sp);
+        String substring1 = substring.substring(indexOf+1, substring.length());
+        System.out.println(substring1);
+//        System.out.println(split.length);
     }
 
     @Test
@@ -94,4 +102,5 @@ class DailyTestApplicationTests {
          row = sheet.getRow(2);
          row = sheet.getRow(3);
     }
+
 }

@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author tong.luo
@@ -35,6 +38,8 @@ import java.util.Date;
 public class ExclTest {
     private final static Logger logger = LoggerFactory.getLogger(ExclTest.class);
     private String writefileName = "d:\\excl-test %s ";
+    private ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 10, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>());
 
     @Test
     public void test1() throws Exception {

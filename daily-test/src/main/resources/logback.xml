@@ -41,7 +41,6 @@
         </encoder>
     </appender>
     <!--<springprofile name="test,dev">-->
-        <logger level="info" name="com.lt.dailytest.controller.MailContollerTest"></logger>
 
         <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
         <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
