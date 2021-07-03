@@ -14,7 +14,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度,%msg：日志消息，%n是换行符 %L 输出行号-->
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} -lineNum:%L- %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} -line:%L- %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -37,7 +37,7 @@
         <!--日志输出编码格式化-->
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>%d [%thread] %-5level %logger{36} -lineNum:%L- %msg%n</pattern>
+            <pattern>%d [%thread] %-5level %logger{36} -line:%L- %msg%n</pattern>
         </encoder>
     </appender>
     <!--<springprofile name="test,dev">-->
