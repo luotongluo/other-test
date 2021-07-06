@@ -3,6 +3,7 @@ package com.lt.dailytest.utils;
 import com.alibaba.fastjson.JSON;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.config.RequestConfig;
@@ -43,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.springframework.util.Assert;
@@ -284,9 +286,10 @@ public class HttpUtils {
 
         Assert.notNull(url, "请求url不允许为空");
         Assert.notNull(data, "请求内容不允许为空");
-        HttpEntity entity = Request.Post(url).connectTimeout(connectTimeout).socketTimeout(socketTimeout)
-                .bodyString(data, ContentType.create("application/json", Consts.UTF_8)).execute().returnResponse()
-                .getEntity();
+        TimeUnit.SECONDS.sleep(5);
+        Request request = Request.Post(url).connectTimeout(connectTimeout).socketTimeout(socketTimeout)
+                .bodyString(data, ContentType.create("application/json", Consts.UTF_8));
+        HttpEntity entity = request.execute().returnResponse().getEntity();
         return entity != null ? EntityUtils.toString(entity) : null;
     }
 
@@ -359,9 +362,9 @@ public class HttpUtils {
      * @throws IOException
      */
     public static String postJsonHttps(String url, String content, String charset) {
-        Assert.notNull(url,"请求url不允许为空");
-        Assert.notNull(content,"请求url不允许为空");
-        Assert.notNull(charset,"请求url不允许为空");
+        Assert.notNull(url, "请求url不允许为空");
+        Assert.notNull(content, "请求url不允许为空");
+        Assert.notNull(charset, "请求url不允许为空");
         SSLContext sc = null;
         try {
             // content = URLEncoder.encode(content, charset);
@@ -416,8 +419,8 @@ public class HttpUtils {
      * @throws IOException 请求异常
      */
     public static String post(String url, List<NameValuePair> params) throws IOException {
-        Assert.notNull(url,"请求url不允许为空");
-        Assert.notNull(params,"请求url不允许为空");
+        Assert.notNull(url, "请求url不允许为空");
+        Assert.notNull(params, "请求url不允许为空");
         String result = null;
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost post = new HttpPost(url);
@@ -467,10 +470,14 @@ public class HttpUtils {
         }
     }
 
-    public static void main(String[] args) {
-        String url = "http://localhost:8888/vpt_invoice_groupadmin_war_exploded/openInvoiceSetting/selectOrgTaxRateByOrgId.pt";
+    public static void main(String[] args) throws Exception {
+        String url = "www.baidu.com";
         String data = "{\"sellerId\":\"1308305247930126336\"}";
-        String post = post(url, data);
+        long start = System.currentTimeMillis();
+        String s = get(url);
+        System.out.println(s);
+        String post = postJson(url, data, 1, 1);
         System.out.println(post);
+        System.out.println("cost" + (System.currentTimeMillis() - start));
     }
 }

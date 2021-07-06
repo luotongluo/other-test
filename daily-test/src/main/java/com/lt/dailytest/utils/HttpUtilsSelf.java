@@ -356,4 +356,12 @@ public class HttpUtilsSelf {
         }
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        String url = "www.baidu.com";
+        long start = System.currentTimeMillis();
+        String s = doGet(url);
+        System.out.println("cost:" + (System.currentTimeMillis() - start));
+        System.out.println(s);
+    }
 }

@@ -2,6 +2,7 @@ package com.lt.dailytest;
 
 import com.alibaba.fastjson.JSON;
 import com.lt.dailytest.dao.TestMapper;
+import com.lt.dailytest.service.impl.TableServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +18,7 @@ import java.util.List;
 @SpringBootTest
 public class OtherTest {
     @Autowired
-    TestMapper testMapper;
+    TableServiceImpl tableService;
     public static void main(String[] args) {
 //        String val = null;
 //        BigDecimal bigDecimal = new BigDecimal(val);
@@ -26,7 +27,6 @@ public class OtherTest {
     }
     @Test
     public void test(){
-        List<Object> objects = this.testMapper.selectAll();
-        System.out.println(JSON.toJSONString(objects));
+        this.tableService.testSql();
     }
 }

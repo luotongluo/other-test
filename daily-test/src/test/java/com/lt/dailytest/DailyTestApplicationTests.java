@@ -10,6 +10,7 @@ import java.util.Date;
 import com.alibaba.fastjson.JSON;
 import com.lt.dailytest.bean.CopyBean1;
 import com.lt.dailytest.bean.CopyBean2;
+import com.lt.dailytest.dao.TestMapper;
 import com.lt.dailytest.utils.JedisUtils;
 import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.ValidatorUtil;
@@ -33,6 +34,7 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Executors;
@@ -51,7 +53,13 @@ class DailyTestApplicationTests {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private JedisUtils jedisUtils;
-
+    @Autowired
+    TestMapper testMapper;
+    @Test
+    public void testSql(){
+        List<Object> objects = this.testMapper.selectAll();
+        System.out.println(JSON.toJSONString(objects));
+    }
     @Test
     public void testTransaction() {
         PlatformTransactionManager platformTransactionManager = new PlatformTransactionManager() {

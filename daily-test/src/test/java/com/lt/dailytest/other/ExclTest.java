@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -43,7 +44,8 @@ public class ExclTest {
 
     @Test
     public void test1() throws Exception {
-        String fileName = "templates/电票.xlsx";
+        //String fileName = "templates/电票.xlsx";
+        String fileName = "templates/批量开票e.xlsx";
         //InputStream resourceAsStream = this.getClass().getResourceAsStream(fileName);
         Workbook wb = this.dogetExclContent(fileName);
         Sheet sheet = wb.getSheetAt(0);
@@ -142,12 +144,14 @@ public class ExclTest {
         }
 
         Workbook wb = null; //new XSSFWorkbook(resourceAsStream);
-        if (fileName.endsWith(".xls")) {
-            wb = new HSSFWorkbook(resourceAsStream);
-        }
-        if (fileName.endsWith(".xlsx")) {
-            wb = new XSSFWorkbook(resourceAsStream);
-        }
+        //使用工厂创建wb的模板 根据流中的内容来判断创建合适的流文件
+        wb = WorkbookFactory.create(resourceAsStream);
+//        if (fileName.endsWith(".xls")) {
+//            wb = new HSSFWorkbook(resourceAsStream);
+//        }
+//        if (fileName.endsWith(".xlsx")) {
+//            wb = new XSSFWorkbook(resourceAsStream);
+//        }
         return wb;
     }
 
