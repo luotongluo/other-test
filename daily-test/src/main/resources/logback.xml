@@ -28,6 +28,10 @@
             <maxHistory>5</maxHistory>
             <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
             <totalSizeCap>20MB</totalSizeCap>
+            <!--<Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DirectWriteRolloverStrategy maxFiles="72"/>-->
         </rollingPolicy>
 <!--        <Policies>-->
 <!--            <SizeBasedTriggeringPolicy size="5MB"/>-->
@@ -39,6 +43,8 @@
             <charset>UTF-8</charset>
             <pattern>%d [%thread] %-5level %logger{36} -line:%L- %msg%n</pattern>
         </encoder>
+
+
     </appender>
     <!--<springprofile name="test,dev">-->
 

@@ -53,13 +53,15 @@ class DailyTestApplicationTests {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private JedisUtils jedisUtils;
-    @Autowired
+    @Autowired(required = false)
     TestMapper testMapper;
+
     @Test
-    public void testSql(){
+    public void testSql() {
         List<Object> objects = this.testMapper.selectAll();
         System.out.println(JSON.toJSONString(objects));
     }
+
     @Test
     public void testTransaction() {
         PlatformTransactionManager platformTransactionManager = new PlatformTransactionManager() {
@@ -192,6 +194,11 @@ class DailyTestApplicationTests {
         Matcher matcher = Pattern.compile(ONE2HUNDRED_STR_REG).matcher(goodsName);
         boolean matches = matcher.matches();
         System.out.println(matches);
+        System.out.println("==========================");
+        double powa = 22;
+        double powerb = -2;
+        double pow = Math.pow(powa, powerb);
+        System.out.println(powa + "^" + powerb + "=" + pow);
 
     }
 }
