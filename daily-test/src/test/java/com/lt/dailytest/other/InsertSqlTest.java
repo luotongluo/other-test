@@ -2,7 +2,6 @@ package com.lt.dailytest.other;
 
 import com.lt.dailytest.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -12,7 +11,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.InputStream;
@@ -389,7 +387,7 @@ public class InsertSqlTest {
 
     @Test
     public void test2() throws Exception {
-        String fileName = "templates/template2.xlsx";
+        String fileName = "templates/template2.xls";
         InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
         if (null == resourceAsStream) {
             logger.error("文件获取为空，【{}】", fileName);

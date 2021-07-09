@@ -45,7 +45,7 @@ public class ExclTest {
     @Test
     public void test1() throws Exception {
         //String fileName = "templates/电票.xlsx";
-        String fileName = "templates/批量开票e.xlsx";
+        String fileName = "templates/template2.xls";
         //InputStream resourceAsStream = this.getClass().getResourceAsStream(fileName);
         Workbook wb = this.dogetExclContent(fileName);
         Sheet sheet = wb.getSheetAt(0);
