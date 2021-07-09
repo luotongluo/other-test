@@ -3,6 +3,6 @@
 <mapper namespace="com.lt.dailytest.dao.TestMapper">
     <select id="selectAll" resultType="java.util.HashMap">
         select *
-        from user
+        from user_test
     </select>
 </mapper>
