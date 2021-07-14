@@ -1,5 +1,8 @@
 package com.lt.dailytest.controller;
 
+import com.lt.dailytest.entity.StockTable;
+import com.lt.dailytest.service.StockTableService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,10 +15,19 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("table")
 @RestController
 public class TableController {
+    @Autowired
+    private StockTableService stockTableService;
+
     @RequestMapping("tableIndex")
-    public ModelAndView getTableIndex(){
+    public ModelAndView getTableIndex() {
         String pathname = "table/index";
 //        ModelAndView modelAndView = new ModelAndView(pathname);
         return new ModelAndView(pathname);
     }
+
+    @RequestMapping("synAllData")
+    public void synAllData() {
+        this.stockTableService.synAllData();
+    }
+
 }

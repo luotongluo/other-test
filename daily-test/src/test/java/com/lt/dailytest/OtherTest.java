@@ -1,13 +1,14 @@
 package com.lt.dailytest;
 
 import com.alibaba.fastjson.JSON;
+import com.lt.dailytest.dao.StockTableMapper;
 import com.lt.dailytest.dao.TestMapper;
+import com.lt.dailytest.entity.StockTable;
 import com.lt.dailytest.service.impl.TableServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -21,6 +22,8 @@ public class OtherTest {
     TableServiceImpl tableService;
     @Autowired
     TestMapper testMapper;
+    @Autowired
+    StockTableMapper stockTableDao;
 
     public static void main(String[] args) {
 //        String val = null;
@@ -38,5 +41,7 @@ public class OtherTest {
     public void testMapper() {
         List<Object> objectList = this.testMapper.selectAll();
         System.out.println(JSON.toJSONString(objectList));
+        List<StockTable> stockTables = this.stockTableDao.queryAll(new StockTable());
+        System.out.println(JSON.toJSONString(stockTables));
     }
 }

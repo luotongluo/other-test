@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.dailytest.dao.StockMainTableMapper">
+
+    <resultMap type="com.lt.dailytest.entity.StockMainTable" id="StockMainTableMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stockName" column="stock_name" jdbcType="VARCHAR"/>
+        <result property="stockNum" column="stock_num" jdbcType="VARCHAR"/>
+        <result property="beginPrice" column="begin_price" jdbcType="VARCHAR"/>
+        <result property="lastDayEndPrice" column="last_day_end_price" jdbcType="VARCHAR"/>
+        <result property="currPrice" column="curr_price" jdbcType="VARCHAR"/>
+        <result property="dayMaxPrice" column="day_max_price" jdbcType="VARCHAR"/>
+        <result property="dayMinPrice" column="day_min_price" jdbcType="VARCHAR"/>
+        <result property="buyOne" column="buy_one" jdbcType="VARCHAR"/>
+        <result property="sellOne" column="sell_one" jdbcType="VARCHAR"/>
+        <result property="sellDoneNum" column="sell_done_num" jdbcType="VARCHAR"/>
+        <result property="sellDoneMon" column="sell_done_mon" jdbcType="VARCHAR"/>
+        <result property="dealDate" column="deal_date" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StockMainTableMap">
+        select id,
+               stock_name,
+               stock_num,
+               begin_price,
+               last_day_end_price,
+               curr_price,
+               day_max_price,
+               day_min_price,
+               buy_one,
+               sell_one,
+               sell_done_num,
+               sell_done_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_main_table
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StockMainTableMap">
+        select id,
+               stock_name,
+               stock_num,
+               begin_price,
+               last_day_end_price,
+               curr_price,
+               day_max_price,
+               day_min_price,
+               buy_one,
+               sell_one,
+               sell_done_num,
+               sell_done_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_main_table
+                  limit #{offset}
+           , #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="StockMainTableMap">
+        select
+        id, stock_name, stock_num, begin_price, last_day_end_price, curr_price, day_max_price, day_min_price, buy_one,
+        sell_one, sell_done_num, sell_done_mon, deal_date, create_time, update_time
+        from  stock_main_table
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="stockName != null and stockName != ''">
+                and stock_name = #{stockName}
+            </if>
+            <if test="stockNum != null and stockNum != ''">
+                and stock_num = #{stockNum}
+            </if>
+            <if test="beginPrice != null and beginPrice != ''">
+                and begin_price = #{beginPrice}
+            </if>
+            <if test="lastDayEndPrice != null and lastDayEndPrice != ''">
+                and last_day_end_price = #{lastDayEndPrice}
+            </if>
+            <if test="currPrice != null and currPrice != ''">
+                and curr_price = #{currPrice}
+            </if>
+            <if test="dayMaxPrice != null and dayMaxPrice != ''">
+                and day_max_price = #{dayMaxPrice}
+            </if>
+            <if test="dayMinPrice != null and dayMinPrice != ''">
+                and day_min_price = #{dayMinPrice}
+            </if>
+            <if test="buyOne != null and buyOne != ''">
+                and buy_one = #{buyOne}
+            </if>
+            <if test="sellOne != null and sellOne != ''">
+                and sell_one = #{sellOne}
+            </if>
+            <if test="sellDoneNum != null and sellDoneNum != ''">
+                and sell_done_num = #{sellDoneNum}
+            </if>
+            <if test="sellDoneMon != null and sellDoneMon != ''">
+                and sell_done_mon = #{sellDoneMon}
+            </if>
+            <if test="dealDate != null">
+                and deal_date = #{dealDate}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_main_table(stock_name, stock_num, begin_price, last_day_end_price, curr_price,
+                                      day_max_price, day_min_price, buy_one, sell_one, sell_done_num,
+                                      sell_done_mon, deal_date, create_time, update_time)
+        values (#{stockName}, #{stockNum}, #{beginPrice}, #{lastDayEndPrice}, #{currPrice}, #{dayMaxPrice}, #{dayMinPrice}, #{buyOne}, #{sellOne}, #{sellDoneNum}, #{sellDoneMon}, #{dealDate}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_main_table(stock_name, stock_num, begin_price, last_day_end_price, curr_price,
+        day_max_price, day_min_price, buy_one, sell_one, sell_done_num, sell_done_mon, deal_date, create_time,
+        update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockName}, #{entity.stockNum}, #{entity.beginPrice}, #{entity.lastDayEndPrice},
+            #{entity.currPrice}, #{entity.dayMaxPrice}, #{entity.dayMinPrice}, #{entity.buyOne}, #{entity.sellOne},
+            #{entity.sellDoneNum}, #{entity.sellDoneMon}, #{entity.dealDate}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_main_table(stock_name, stock_num, begin_price, last_day_end_price, curr_price,
+        day_max_price, day_min_price, buy_one, sell_one, sell_done_num, sell_done_mon, deal_date, create_time,
+        update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockName}, #{entity.stockNum}, #{entity.beginPrice}, #{entity.lastDayEndPrice},
+            #{entity.currPrice}, #{entity.dayMaxPrice}, #{entity.dayMinPrice}, #{entity.buyOne}, #{entity.sellOne},
+            #{entity.sellDoneNum}, #{entity.sellDoneMon}, #{entity.dealDate}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        stock_name = values(stock_name) , stock_num = values(stock_num) , begin_price = values(begin_price) ,
+        last_day_end_price = values(last_day_end_price) , curr_price = values(curr_price) , day_max_price =
+        values(day_max_price) , day_min_price = values(day_min_price) , buy_one = values(buy_one) , sell_one =
+        values(sell_one) , sell_done_num = values(sell_done_num) , sell_done_mon = values(sell_done_mon) , deal_date =
+        values(deal_date) , create_time = values(create_time) , update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update  stock_main_table
+        <set>
+            <if test="stockName != null and stockName != ''">
+                stock_name = #{stockName},
+            </if>
+            <if test="stockNum != null and stockNum != ''">
+                stock_num = #{stockNum},
+            </if>
+            <if test="beginPrice != null and beginPrice != ''">
+                begin_price = #{beginPrice},
+            </if>
+            <if test="lastDayEndPrice != null and lastDayEndPrice != ''">
+                last_day_end_price = #{lastDayEndPrice},
+            </if>
+            <if test="currPrice != null and currPrice != ''">
+                curr_price = #{currPrice},
+            </if>
+            <if test="dayMaxPrice != null and dayMaxPrice != ''">
+                day_max_price = #{dayMaxPrice},
+            </if>
+            <if test="dayMinPrice != null and dayMinPrice != ''">
+                day_min_price = #{dayMinPrice},
+            </if>
+            <if test="buyOne != null and buyOne != ''">
+                buy_one = #{buyOne},
+            </if>
+            <if test="sellOne != null and sellOne != ''">
+                sell_one = #{sellOne},
+            </if>
+            <if test="sellDoneNum != null and sellDoneNum != ''">
+                sell_done_num = #{sellDoneNum},
+            </if>
+            <if test="sellDoneMon != null and sellDoneMon != ''">
+                sell_done_mon = #{sellDoneMon},
+            </if>
+            <if test="dealDate != null">
+                deal_date = #{dealDate},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from  stock_main_table
+        where id = #{id}
+    </delete>
+    <delete id="deleteBystockNums">
+        delete
+        from  stock_main_table
+        where deal_date = #{formatDate} and stock_num in (
+            <foreach collection="StockNums" index="index" separator="," item="item">
+                #{item}
+            </foreach>
+            )
+    </delete>
+
+</mapper>
+

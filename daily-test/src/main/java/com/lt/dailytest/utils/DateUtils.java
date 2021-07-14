@@ -18,6 +18,7 @@ public class DateUtils {
     public static final String yyyyMMddHHmmss = "yyyyMMddHHmmss";
     public static final String yyyy_MM_dd = "yyyy-MM-dd";
     public static final String yyyy_MM_dd_hh_mm_ss = "yyyy-MM-dd HH:mm:ss.SSS";
+    public static final String yyyy_MM_dd_hh_mm = "yyyy-MM-dd HH:mm:ss";
 
     public static String formatDate(Date date, String pattern) {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
