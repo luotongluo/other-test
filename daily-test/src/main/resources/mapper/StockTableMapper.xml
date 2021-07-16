@@ -131,7 +131,7 @@
         sell_one, sell_done_num, sell_done_mon, buy_one_num, buy_one_mon, buy_two_num, buy_two_mon, buy_three_num,
         buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num, buy_five_mon, sell_one_num, sell_one_mon, sell_two_num,
         sell_two_mon, sell_three_num, sell_three_mon, sell_fore_num, sell_fore_mon, sell_five_num, sell_five_mon,
-        deal_date, create_time, update_time
+        deal_date, create_time, update_time,status
         from  stock_table
         <where>
             <if test="id != null">

@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -77,13 +78,14 @@ public class StockTableServiceImpl implements StockTableService {
         nowInUseList = stockTables.stream()
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
-        /*List<String> stringList = stockTables.stream()
-                .filter(a ->a.getStatus() != null &&  a.getStatus() > 0 && a.getDealDate().compareTo(startOfDay) > 0)
+
+        List<String> stringList = stockTables.stream()
+                .filter(a -> a.getStatus() != null &&  a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
         if(org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)){
             nowInUseList = stringList;
-        }*/
+        }
 
         timer.schedule(new TimerTask() {
             @Override
@@ -96,6 +98,7 @@ public class StockTableServiceImpl implements StockTableService {
                         loopGetInfo(nowInUseList);
                     }
                 }
+                LOGGER.info("nowInUseList .size :{}",nowInUseList.size());
                 LOGGER.info("doAssable logic cost time:[{}] :current:[{}]", (System.currentTimeMillis() - startTime),
                         DateUtils.formatDate(new Date(), DateUtils.yyyy_MM_dd_hh_mm_ss));
             }
