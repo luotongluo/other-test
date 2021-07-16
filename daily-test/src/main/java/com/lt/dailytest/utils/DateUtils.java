@@ -90,7 +90,6 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.SECOND, seconds);
         return formatDate(calendar.getTime(), yyyy_MM_dd_hh_mm_ss);
-        //return DateFormatUtils.format(System.currentTimeMillis() + seconds * 60 * 1000, DateUtils.yyyy_MM_dd_hh_mm_ss);
     }
 
     /**
@@ -101,7 +100,6 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, minutes);
         return formatDate(calendar.getTime(), yyyy_MM_dd_hh_mm_ss);
-        //return DateFormatUtils.format(System.currentTimeMillis() + seconds * 60 * 1000, DateUtils.yyyy_MM_dd_hh_mm_ss);
     }
 
     /**

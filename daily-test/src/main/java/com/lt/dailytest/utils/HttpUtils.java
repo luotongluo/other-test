@@ -322,7 +322,11 @@ public class HttpUtils {
 
         Assert.notNull(url, "请求url不允许为空");
         try {
-            HttpEntity entity = Request.Get(url).connectTimeout(connectionTimeout).socketTimeout(requestTimeout).execute().returnResponse().getEntity();
+            HttpEntity entity = Request.Get(url)
+                    .connectTimeout(connectionTimeout)
+                    .socketTimeout(requestTimeout)
+                    .execute()
+                    .returnResponse().getEntity();
             return entity != null ? EntityUtils.toString(entity, "UTF-8") : null;
         } catch (Exception e) {
             e.printStackTrace();
