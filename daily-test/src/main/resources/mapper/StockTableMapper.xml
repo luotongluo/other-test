@@ -38,6 +38,7 @@
         <result property="dealDate" column="deal_date" jdbcType="TIMESTAMP"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
@@ -252,12 +253,12 @@
                                  buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num,
                                  buy_five_mon, sell_one_num, sell_one_mon, sell_two_num, sell_two_mon,
                                  sell_three_num, sell_three_mon, sell_fore_num, sell_fore_mon, sell_five_num,
-                                 sell_five_mon, deal_date, create_time, update_time)
+                                 sell_five_mon, deal_date, create_time, update_time,status)
         values (#{stockName}, #{stockNum}, #{beginPrice}, #{lastDayEndPrice}, #{currPrice}, #{dayMaxPrice}, #{dayMinPrice},
                 #{buyOne}, #{sellOne}, #{sellDoneNum}, #{sellDoneMon}, #{buyOneNum}, #{buyOneMon}, #{buyTwoNum}, #{buyTwoMon},
                 #{buyThreeNum}, #{buyThreeMon}, #{buyForeNum}, #{buyForeMon}, #{buyFiveNum}, #{buyFiveMon}, #{sellOneNum},
                 #{sellOneMon}, #{sellTwoNum}, #{sellTwoMon}, #{sellThreeNum}, #{sellThreeMon}, #{sellForeNum}, #{sellForeMon},
-                #{sellFiveNum}, #{sellFiveMon}, #{dealDate}, #{createTime}, #{updateTime})
+                #{sellFiveNum}, #{sellFiveMon}, #{dealDate}, #{createTime}, #{updateTime}, #{status})
     </insert>
 
     <insert id="insertBatch">
@@ -265,7 +266,7 @@
         day_max_price, day_min_price, buy_one, sell_one, sell_done_num, sell_done_mon, buy_one_num, buy_one_mon,
         buy_two_num, buy_two_mon, buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num, buy_five_mon,
         sell_one_num, sell_one_mon, sell_two_num, sell_two_mon, sell_three_num, sell_three_mon, sell_fore_num,
-        sell_fore_mon, sell_five_num, sell_five_mon, deal_date, create_time, update_time)
+        sell_fore_mon, sell_five_num, sell_five_mon, deal_date, create_time, update_time, status)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.stockName}, #{entity.stockNum}, #{entity.beginPrice}, #{entity.lastDayEndPrice},
@@ -275,7 +276,7 @@
             #{entity.buyForeMon}, #{entity.buyFiveNum}, #{entity.buyFiveMon}, #{entity.sellOneNum},
             #{entity.sellOneMon}, #{entity.sellTwoNum}, #{entity.sellTwoMon}, #{entity.sellThreeNum},
             #{entity.sellThreeMon}, #{entity.sellForeNum}, #{entity.sellForeMon}, #{entity.sellFiveNum},
-            #{entity.sellFiveMon}, #{entity.dealDate}, #{entity.createTime}, #{entity.updateTime})
+            #{entity.sellFiveMon}, #{entity.dealDate}, #{entity.createTime}, #{entity.updateTime}, #{entity.status})
         </foreach>
     </insert>
 
@@ -417,6 +418,9 @@
             </if>
             <if test="updateTime != null">
                 update_time = #{updateTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
             </if>
         </set>
         where stock_num = #{stockNum}

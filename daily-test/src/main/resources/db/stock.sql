@@ -39,6 +39,8 @@ CREATE TABLE `stock_table`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment 'stock_table';
 create index idx_stock_table ON stock_table(create_time,deal_date,stock_num,stock_name);
+ALTER TABLE `stock_table`
+    ADD COLUMN `status`  int2 DEFAULT null COMMENT 'status 1有效 0无效' ;
 drop table if exists stock_main_table;
 CREATE TABLE `stock_main_table`
 (
