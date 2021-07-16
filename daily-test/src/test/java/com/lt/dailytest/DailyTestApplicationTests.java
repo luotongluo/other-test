@@ -15,6 +15,7 @@ import com.lt.dailytest.utils.JedisUtils;
 import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.ValidatorUtil;
 import com.lt.dailytest.othertest.validate.TestBean;
+import com.lt.dailytest.utils.major.MajorKeyFactory;
 import com.lt.dailytest.vo.MailVo;
 import com.lt.dailytest.vo.MailVotest;
 import org.apache.commons.lang3.RandomUtils;
@@ -37,6 +38,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
@@ -55,6 +57,40 @@ class DailyTestApplicationTests {
     private JedisUtils jedisUtils;
     @Autowired(required = false)
     TestMapper testMapper;
+    /*@Autowired
+    MajorKeyFactory majorKeyFactory;*/
+
+    @Test
+    public void getId() {
+        int loopcal = 10;
+        CountDownLatch countDownLatch = new CountDownLatch(loopcal);
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(loopcal, loopcal, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+        try {
+            for (int i = 0; i < loopcal; i++) {
+                countDownLatch.countDown();
+                threadPoolExecutor.execute(() -> {
+                    for (int j = 0; j < 10000; j++) {
+                        String generatePrimaryKey = MajorKeyFactory.generatePrimaryKey();
+                        logger.info("generatePrimaryKey :[{}],count:{}", generatePrimaryKey, countDownLatch.getCount());
+
+                    }
+                });
+            }
+
+            countDownLatch.await(3, TimeUnit.MINUTES);
+
+            logger.info(",count:{}", countDownLatch.getCount());
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testgetId() {
+        String generatePrimaryKey = MajorKeyFactory.generatePrimaryKey();
+        logger.info("generatePrimaryKey :[{}],count:", generatePrimaryKey);
+    }
 
     @Test
     public void testSql() {
