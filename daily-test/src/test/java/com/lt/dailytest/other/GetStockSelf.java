@@ -44,6 +44,10 @@ public class GetStockSelf {
     public void testsaveAllData() {
         this.stockTableService.synAllData();
     }
+    @Test
+    public void testinitAllData() {
+        this.stockTableService.initAllData();
+    }
 
     @Test
     public void testaddOrUpdateOne() {

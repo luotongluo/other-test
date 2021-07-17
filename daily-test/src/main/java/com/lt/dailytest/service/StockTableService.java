@@ -10,6 +10,7 @@ public interface StockTableService {
      * 同步所有数据
      */
     public void synAllData();
+    public void initAllData();
 
     /**
      * 拆分数据

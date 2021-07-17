@@ -42,9 +42,9 @@ import java.util.stream.Collectors;
 public class StockTableServiceImpl implements StockTableService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StockTableServiceImpl.class);
 
-    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(6, 6,
-            0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<Runnable>());
+    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(),
+            Runtime.getRuntime().availableProcessors() + 2,
+            0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
     @Autowired
     StockTableMapper stockTableDao;
     @Autowired
@@ -80,10 +80,10 @@ public class StockTableServiceImpl implements StockTableService {
                 .collect(Collectors.toList());
 
         List<String> stringList = stockTables.stream()
-                .filter(a -> a.getStatus() != null &&  a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
+                .filter(a -> a.getStatus() != null && a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
-        if(org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)){
+        if (org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)) {
             nowInUseList = stringList;
         }
 
@@ -98,7 +98,7 @@ public class StockTableServiceImpl implements StockTableService {
                         loopGetInfo(nowInUseList);
                     }
                 }
-                LOGGER.info("nowInUseList .size :{}",nowInUseList.size());
+                LOGGER.info("nowInUseList .size :{}", nowInUseList.size());
                 LOGGER.info("doAssable logic cost time:[{}] :current:[{}]", (System.currentTimeMillis() - startTime),
                         DateUtils.formatDate(new Date(), DateUtils.yyyy_MM_dd_hh_mm_ss));
             }
@@ -111,6 +111,14 @@ public class StockTableServiceImpl implements StockTableService {
                 LOGGER.error("thread sleep error", e);
             }
         }
+    }
+
+    @Override
+    public void initAllData() {
+        long start = System.currentTimeMillis();
+        LOGGER.info("initAllData  --> begin" + start);
+        loopGetInfo();
+        LOGGER.info("initAllData  --> end" + (System.currentTimeMillis() - start));
     }
 
     /**
