@@ -183,42 +183,42 @@ public class DistributedIdCreator implements IMajorKey {
         }
     }
 
-    public static void main(String[] args) throws SocketException, UnknownHostException, InterruptedException {
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 10, 30, TimeUnit.SECONDS,
-                new LinkedBlockingQueue<Runnable>());
-        final ConcurrentHashMap<String, Boolean> map = new ConcurrentHashMap<>();
-        int loopval = 100;
-        final CountDownLatch countDownLatch = new CountDownLatch(loopval);
-        for (int i = 0; i < loopval; i++) {
-            DistributedIdCreator distributedIdCreator = new DistributedIdCreator();
-            final MajorKeyFactory majorKeyFactory = distributedIdCreator.getInstance();
-            threadPoolExecutor.execute(new Runnable() {
-
-                @Override
-                public void run() {
-                    int i = 0;
-                    while (i < 100000) {
-                        i++;
-                        String key = majorKeyFactory.getMajorKey();
-                        //System.out.println(key);
-                        if (key.length() != 19) {
-                            //System.out.println("主键不合法");
-                            LOGGER.error("主键不合法");
-                            break;
-                        }
-                        if (map.putIfAbsent(key, true) != null) {
-                            //System.out.println("主键冲突");
-                            LOGGER.error("主键冲突");
-                            break;
-                        }
-                    }
-                    countDownLatch.countDown();
-                }
-            });
-            //            threadPoolExecutor.shutdown();
-        }
-        countDownLatch.await();
-        threadPoolExecutor.shutdown();
-    }
+//    public static void main(String[] args) throws SocketException, UnknownHostException, InterruptedException {
+//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().availableProcessors(), 30, TimeUnit.SECONDS,
+//                new LinkedBlockingQueue<Runnable>());
+//        final ConcurrentHashMap<String, Boolean> map = new ConcurrentHashMap<>();
+//        int loopval = 100;
+//        final CountDownLatch countDownLatch = new CountDownLatch(loopval);
+//        for (int i = 0; i < loopval; i++) {
+//            DistributedIdCreator distributedIdCreator = new DistributedIdCreator();
+//            MajorKeyFactory majorKeyFactory = distributedIdCreator.getInstance();
+//            threadPoolExecutor.execute(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    int i = 0;
+//                    while (i < 100000) {
+//                        i++;
+//                        String key = majorKeyFactory.getMajorKey();
+//                        //System.out.println(key);
+//                        if (key.length() != 19) {
+//                            //System.out.println("主键不合法");
+//                            LOGGER.error("主键不合法");
+//                            break;
+//                        }
+//                        if (map.putIfAbsent(key, true) != null) {
+//                            //System.out.println("主键冲突");
+//                            LOGGER.error("主键冲突");
+//                            break;
+//                        }
+//                    }
+//                    countDownLatch.countDown();
+//                }
+//            });
+//            //            threadPoolExecutor.shutdown();
+//        }
+//        countDownLatch.await();
+//        threadPoolExecutor.shutdown();
+//    }
 
 }

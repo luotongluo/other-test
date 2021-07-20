@@ -54,7 +54,11 @@ public class ScheduleTime {
     @Async
     @Scheduled(cron = "0 0 23 * * ?")
     public void spliteData() {
+        LOGGER.info("spliteData --start :time:[{}]", DateUtils.formatDate(new Date(), DateUtils.yyyy_MM_dd_hh_mm_ss));
+
         this.stockTableService.splateCurrDayAllData();
+        LOGGER.info("spliteData --end :time:[{}]", DateUtils.formatDate(new Date(), DateUtils.yyyy_MM_dd_hh_mm_ss));
+
     }
 
     /**
@@ -63,13 +67,18 @@ public class ScheduleTime {
     @Async
     @Scheduled(fixedRate = 10 * 1000)
     public void test() {
-        //LOGGER.info("test loading^");
+        long currentTimeMillis = System.currentTimeMillis();
+        if (currentTimeMillis % 997 == 0) {
+            LOGGER.info("test loading^");
+        }
+
     }
 }
 
 @Configuration
 @EnableScheduling
 class DynamicScheduleTask implements SchedulingConfigurer {
+    private static Logger logger = LoggerFactory.getLogger(DynamicScheduleTask.class);
 
     @Mapper
     public interface CronMapper {
@@ -89,7 +98,11 @@ class DynamicScheduleTask implements SchedulingConfigurer {
 
         taskRegistrar.addTriggerTask(
                 //1.添加任务内容(Runnable)
-                () -> System.out.println("执行动态定时任务:spliteData " + LocalDateTime.now().toLocalTime()),
+                () -> {
+                    //System.out.println("执行动态定时任务:spliteData " + LocalDateTime.now().toLocalTime());
+                    logger.info("执行动态定时任务:spliteData " + LocalDateTime.now().toLocalTime());
+                }
+                ,
                 //2.设置执行周期(Trigger)
                 triggerContext -> {
                     //2.1 从数据库获取执行周期
