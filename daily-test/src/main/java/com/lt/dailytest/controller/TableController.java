@@ -31,11 +31,20 @@ public class TableController {
     }
 
     /**
-     * 将表中的现有数据进行更新
+     * 将表中的现有数据进行更新 定时
      */
     @RequestMapping("synAllData")
     public void synAllData() {
         this.stockTableService.synAllData();
+    }
+
+    /**
+     * 将表中的现有数据进行更新
+     * 并且交易日期在当天的0点之后的数据
+     */
+    @RequestMapping("synAllDataOnce")
+    public void synAllDataOnce() {
+        this.stockTableService.synAllDataOnce();
     }
 
     /**

@@ -190,6 +190,20 @@ public class StockTableServiceImpl implements StockTableService {
         this.doAssableInsertTable(stockNum);
     }
 
+    @Override
+    public void synAllDataOnce() {
+        List<StockTable> stockTables = this.stockTableDao.queryAll(new StockTable());
+        Date startOfDay = DateUtils.getStartOfDay(new Date());
+        List<String> stringList = stockTables.stream()
+                .filter(a -> a.getStatus() != null && a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
+                .map(StockTable::getStockNum)
+                .collect(Collectors.toList());
+        if (org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)) {
+            nowInUseList = stringList;
+        }
+        loopGetInfo(nowInUseList);
+    }
+
     private void loopGetInfo(List<String> nowInUseList) {
         for (String stockNum : nowInUseList) {
            /* try {

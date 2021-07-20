@@ -20,4 +20,7 @@ public interface StockTableService {
      * 同步one数据
      */
     public void synOneData(String stockNum);
+
+    void synAllDataOnce();
+
 }
