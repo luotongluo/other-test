@@ -199,9 +199,13 @@ public class StockTableServiceImpl implements StockTableService {
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
         if (org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)) {
-            nowInUseList = stringList;
+            stringList = stringList;
+        }else {
+            stringList = stockTables.stream().map(StockTable::getStockNum)
+                    .collect(Collectors.toList());
         }
-        loopGetInfo(nowInUseList);
+        LOGGER.info("synAllDataOnce-->nowInUseList:" + stringList.size());
+        loopGetInfo(stringList);
     }
 
     private void loopGetInfo(List<String> nowInUseList) {
@@ -215,6 +219,9 @@ public class StockTableServiceImpl implements StockTableService {
         }
     }
 
+    /**
+     * 将 000001 - 1000000之前的所有数据进行同步
+     */
     private void loopGetInfo() {
         //上证范围
 //        for (int i = 600000; i < 609000; i++) {
