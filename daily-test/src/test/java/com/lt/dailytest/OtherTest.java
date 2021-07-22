@@ -30,6 +30,10 @@ public class OtherTest {
 //        BigDecimal bigDecimal = new BigDecimal(val);
         String val = "FXC5310XXY-4Y-D339-8501010/60（2103-039）";
         System.out.println(val.length());
+
+        String replaceAll = val.replaceAll("/", "\\\\");
+        System.out.println(replaceAll);
+
     }
 
     @Test
@@ -44,4 +48,6 @@ public class OtherTest {
         List<StockTable> stockTables = this.stockTableDao.queryAll(new StockTable());
         System.out.println(JSON.toJSONString(stockTables));
     }
+
+
 }
