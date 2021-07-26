@@ -1,11 +1,15 @@
 package com.lt.dailytest.controller;
 
-import com.lt.dailytest.entity.StockTable;
+import com.alibaba.fastjson.JSON;
+import com.lt.dailytest.bean.RetVO;
+import com.lt.dailytest.bean.SysEnum;
+import com.lt.dailytest.bean.TestRequestbean;
 import com.lt.dailytest.service.StockTableService;
-import org.apache.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,4 +63,14 @@ public class TableController {
         LOGGER.info("done -->initConcurrDayData：" + LocalDate.now().toString());
     }
 
+    @RequestMapping("testInterfaceReturn")
+    public String testInterfaceReturn(@RequestBody TestRequestbean testRequestbean) {
+        LOGGER.info("testInterfaceReturn :req :{}", JSON.toJSONString(testRequestbean));
+        TestRequestbean testRequestbeanres = new TestRequestbean();
+        BeanUtils.copyProperties(testRequestbean,testRequestbeanres);
+        RetVO<TestRequestbean> testRequestbeanRetVO = new RetVO<>();
+        testRequestbeanRetVO.setData(testRequestbeanres);
+        testRequestbeanRetVO.setMsg(SysEnum.SUCCESS_MSG);
+        return JSON.toJSONString(testRequestbeanRetVO);
+    }
 }
