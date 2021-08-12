@@ -2,6 +2,7 @@ package com.lt.dailytest.utils;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.http.Consts;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -116,15 +117,6 @@ public class HttpUtils {
         return null;
     }
 
-    /**
-     * get请求
-     *
-     * @param url
-     * @return
-     */
-    public static String get(String url) {
-        return httpGet(url);
-    }
 
     /**
      * get请求
@@ -143,6 +135,59 @@ public class HttpUtils {
         // LoggerUtil.log(Level.DEBUG, "生成的GET请求地址信息为 :{}", url);
         LOGGER.debug("生成的GET请求地址信息为 :{}", url);
         return httpGet(url);
+    }
+
+    /**
+     * 下载文件
+     *
+     * @param url URL
+     * @return 文件的二进制流，客户端使用outputStream输出为文件
+     */
+    public static byte[] getFile(String url) {
+        Assert.notNull(url, "请求url不允许为空");
+        try {
+            Request request = Request.Get(url);
+            request.connectTimeout(connectionTimeout).socketTimeout(requestTimeout);
+            HttpEntity resEntity = request.execute().returnResponse().getEntity();
+            return EntityUtils.toByteArray(resEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 发送get请求
+     *
+     * @param url
+     * @return
+     */
+    public static String httpGet(String url) {
+        Assert.notNull(url, "请求url不允许为空");
+        return httpGet(url, null);
+    }
+
+    /**
+     * 发送get请求
+     *
+     * @param url
+     * @return
+     */
+    public static String httpGet(String url, Header header) {
+
+        Assert.notNull(url, "请求url不允许为空");
+        try {
+            HttpEntity entity = Request.Get(url)
+                    .connectTimeout(connectionTimeout)
+                    .socketTimeout(requestTimeout)
+                    .setHeader(header)
+                    .execute()
+                    .returnResponse().getEntity();
+            return entity != null ? EntityUtils.toString(entity, "UTF-8") : null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static String getParameters(Map<String, String> parameters) {
@@ -177,7 +222,9 @@ public class HttpUtils {
         Assert.notNull(url, "请求url不允许为空");
         Assert.notNull(data, "请求内容不允许为空");
         try {
-            HttpEntity entity = Request.Post(url).connectTimeout(connectionTimeout).socketTimeout(requestTimeout)
+            HttpEntity entity = Request.Post(url)
+                    .connectTimeout(connectionTimeout)
+                    .socketTimeout(requestTimeout)
                     .bodyString(data, ContentType.create("text/html", Consts.UTF_8))
                     .execute().returnResponse().getEntity();
             return entity != null ? EntityUtils.toString(entity) : null;
@@ -199,8 +246,9 @@ public class HttpUtils {
         Assert.notNull(data, "请求内容不允许为空");
         Assert.notEmpty(headers, "请求头不允许为空");
         try {
-            Request request = Request.Post(url).connectTimeout(connectionTimeout).socketTimeout(requestTimeout)
-
+            Request request = Request.Post(url)
+                    .connectTimeout(connectionTimeout)
+                    .socketTimeout(requestTimeout)
                     .bodyString(data, ContentType.create("text/html", Consts.UTF_8));
             for (Map.Entry<String, Object> entry : headers.entrySet()) {
                 String key = entry.getKey();
@@ -293,46 +341,6 @@ public class HttpUtils {
         return entity != null ? EntityUtils.toString(entity) : null;
     }
 
-    /**
-     * 下载文件
-     *
-     * @param url URL
-     * @return 文件的二进制流，客户端使用outputStream输出为文件
-     */
-    public static byte[] getFile(String url) {
-        Assert.notNull(url, "请求url不允许为空");
-        try {
-            Request request = Request.Get(url);
-            request.connectTimeout(connectionTimeout).socketTimeout(requestTimeout);
-            HttpEntity resEntity = request.execute().returnResponse().getEntity();
-            return EntityUtils.toByteArray(resEntity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 发送get请求
-     *
-     * @param url
-     * @return
-     */
-    private static String httpGet(String url) {
-
-        Assert.notNull(url, "请求url不允许为空");
-        try {
-            HttpEntity entity = Request.Get(url)
-                    .connectTimeout(connectionTimeout)
-                    .socketTimeout(requestTimeout)
-                    .execute()
-                    .returnResponse().getEntity();
-            return entity != null ? EntityUtils.toString(entity, "UTF-8") : null;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     private static class TrustAnyTrustManager implements X509TrustManager {
 
@@ -478,7 +486,7 @@ public class HttpUtils {
         String url = "www.baidu.com";
         String data = "{\"sellerId\":\"1308305247930126336\"}";
         long start = System.currentTimeMillis();
-        String s = get(url);
+        String s = httpGet(url);
         System.out.println(s);
         String post = postJson(url, data, 1, 1);
         System.out.println(post);

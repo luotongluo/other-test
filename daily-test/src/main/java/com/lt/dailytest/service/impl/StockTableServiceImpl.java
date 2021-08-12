@@ -287,7 +287,7 @@ public class StockTableServiceImpl implements StockTableService {
     private void doAssableInsertTable(String stockNum) {
         String url = "http://hq.sinajs.cn/list=sh" + stockNum;
         long urlStart = System.currentTimeMillis();
-        String s = HttpUtils.get(url);
+        String s = HttpUtils.httpGet(url);
         //var hq_str_sh601006="大秦铁路,6.070,6.040,6.010,6.100,6.000,6.010,6.020,38456996,232152112.000,
         // 1038213,6.010,2976128,6.000,871500,5.990,977700,5.980,220400,5.970,27200,6.020,630800,6.030,
         // 716475,6.040,272600,6.050,207600,6.060,2021-07-12,15:00:00,00,";
