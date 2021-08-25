@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="false">
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
     <property resource="application.properties"/>
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <!--参考地址：
     https://www.cnblogs.com/gavincoder/p/10091757.html
     https://blog.csdn.net/qq_40408317/article/details/79475535?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162331809616780261968403%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=162331809616780261968403&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v2~rank_v29-1-79475535.pc_v2_rank_blog_default&utm_term=log4j&spm=1018.2226.3001.4450    -->
 
-        <property name="LOG_NAME" value="daily-test"/>
-        <property name="LOG_HOME" value="./log/${LOG_NAME}"/>
-
+    <property name="LOG_NAME" value="daily-test"/>
+    <property name="LOG_HOME" value="./log/${LOG_NAME}"/>
+    <!--加载配置文件中的属性-->
+    <!--<property resource="application.properties">
+    </property>
+    <property resource="application-dev.properties">
+    </property>-->
+    <contextName>daily-test-contextName</contextName>
 
     <!--控制台日志， 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -33,11 +38,11 @@
             </Policies>
             <DirectWriteRolloverStrategy maxFiles="72"/>-->
         </rollingPolicy>
-<!--        <Policies>-->
-<!--            <SizeBasedTriggeringPolicy size="5MB"/>-->
-<!--            <TimeBasedTriggeringPolicy interval="1" modulate="false"/>-->
-<!--        </Policies>-->
-<!--        <DefaultRolloverStrategy max="2"/>-->
+        <!--        <Policies>-->
+        <!--            <SizeBasedTriggeringPolicy size="5MB"/>-->
+        <!--            <TimeBasedTriggeringPolicy interval="1" modulate="false"/>-->
+        <!--        </Policies>-->
+        <!--        <DefaultRolloverStrategy max="2"/>-->
         <!--日志输出编码格式化-->
         <encoder>
             <charset>UTF-8</charset>
@@ -48,20 +53,20 @@
     </appender>
     <!--<springprofile name="test,dev">-->
 
-        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
-        <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
-        <logger name="org.hibernate.SQL" level="DEBUG"/>
-        <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
-        <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG"/>
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
 
-        <!--myibatis log configure-->
-        <logger name="com.apache.ibatis" level="TRACE"/>
-        <logger name="java.sql.Connection" level="DEBUG"/>
-        <logger name="java.sql.Statement" level="DEBUG"/>
-        <logger name="java.sql.PreparedStatement" level="DEBUG"/>
-        <!--在指定具体的类中才会使用level类型-->
-        <logger name="com.lt.dailytest.other.ExclTest" level="DEBUG"/>
-   <!-- </springprofile>-->
+    <!--myibatis log configure-->
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <!--在指定具体的类中才会使用level类型-->
+    <logger name="com.lt.dailytest.other.ExclTest" level="DEBUG"/>
+    <!-- </springprofile>-->
 
 
     <!-- 日志输出级别 -->

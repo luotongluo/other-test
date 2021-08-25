@@ -57,8 +57,13 @@ class DailyTestApplicationTests {
     private JedisUtils jedisUtils;
     @Autowired(required = false)
     TestMapper testMapper;
+
     /*@Autowired
     MajorKeyFactory majorKeyFactory;*/
+    @Test
+    public void BigdicimalTest() {
+
+    }
 
     @Test
     public void getId() {

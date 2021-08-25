@@ -25,10 +25,16 @@ public class RedisUtilsTestServiceTest {
 
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private TestService testService;
 
     private RedisProperties redisProperties;
 
-
+@Test
+public void testnum(){
+    Object num = this.testService.getNum();
+    System.out.println(JSON.toJSONString(num));
+}
     @Test
     public void test1() throws Exception {
         String key = "test1";

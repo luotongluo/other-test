@@ -40,8 +40,9 @@ public class TableController {
      * 将表中的现有数据进行更新 定时
      */
     @RequestMapping("synAllData")
-    public void synAllData() {
+    public String synAllData() {
         this.stockTableService.synAllData();
+        return "synAllData";
     }
 
     /**
@@ -49,25 +50,27 @@ public class TableController {
      * 并且交易日期在当天的0点之后的数据
      */
     @RequestMapping("synAllDataOnce")
-    public void synAllDataOnce(HttpServletResponse httpResponse) {
+    public String synAllDataOnce(HttpServletResponse httpResponse) {
         this.stockTableService.synAllDataOnce();
+        return "synAllDataOnce";
     }
 
     /**
      * 将表中的数据进行初始化
      */
     @RequestMapping("initConcurrDayData")
-    public void initConcurrDayData() {
+    public String initConcurrDayData() {
         LOGGER.info("init -->initConcurrDayData:" + LocalDate.now().toString());
         this.stockTableService.initAllData();
         LOGGER.info("done -->initConcurrDayData：" + LocalDate.now().toString());
+        return "initConcurrDayData";
     }
 
     @RequestMapping("testInterfaceReturn")
     public String testInterfaceReturn(@RequestBody TestRequestbean testRequestbean) {
         LOGGER.info("testInterfaceReturn :req :{}", JSON.toJSONString(testRequestbean));
         TestRequestbean testRequestbeanres = new TestRequestbean();
-        BeanUtils.copyProperties(testRequestbean,testRequestbeanres);
+        BeanUtils.copyProperties(testRequestbean, testRequestbeanres);
         RetVO<TestRequestbean> testRequestbeanRetVO = new RetVO<>();
         testRequestbeanRetVO.setData(testRequestbeanres);
         testRequestbeanRetVO.setMsg(SysEnum.SUCCESS_MSG);
