@@ -1,6 +1,5 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.http;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.config.RequestConfig;

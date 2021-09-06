@@ -242,4 +242,11 @@ class DailyTestApplicationTests {
         System.out.println(powa + "^" + powerb + "=" + pow);
 
     }
+
+    @Test
+    public void testsub() {
+        Integer aa = 4;
+        Integer bb = -0;
+        System.out.println(aa + bb);
+    }
 }

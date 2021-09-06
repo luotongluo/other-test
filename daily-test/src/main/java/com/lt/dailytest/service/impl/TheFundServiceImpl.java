@@ -3,19 +3,13 @@ package com.lt.dailytest.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.lt.dailytest.service.TheFundService;
 import com.lt.dailytest.to.TheFundTo;
-import com.lt.dailytest.utils.HttpUtils;
-import org.apache.commons.collections4.CollectionUtils;
+import com.lt.dailytest.utils.http.HttpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
-import org.apache.http.HeaderElement;
-import org.apache.http.ParseException;
 import org.apache.http.message.BasicHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author tong.luo
