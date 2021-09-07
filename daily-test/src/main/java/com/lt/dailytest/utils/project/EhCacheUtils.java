@@ -1,4 +1,4 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.project;
 
 import com.alibaba.fastjson.JSON;
 import org.ehcache.Cache;

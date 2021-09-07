@@ -1,6 +1,6 @@
 package com.lt.dailytest.other;
 
-import com.lt.dailytest.utils.DateUtils;
+import com.lt.dailytest.utils.common.DateUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;

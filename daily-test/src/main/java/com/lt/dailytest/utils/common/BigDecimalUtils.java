@@ -1,8 +1,7 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.helpers.SubstituteLogger;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;

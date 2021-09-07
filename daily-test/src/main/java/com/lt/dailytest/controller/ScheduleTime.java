@@ -2,7 +2,7 @@ package com.lt.dailytest.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lt.dailytest.service.StockTableService;
-import com.lt.dailytest.utils.DateUtils;
+import com.lt.dailytest.utils.common.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

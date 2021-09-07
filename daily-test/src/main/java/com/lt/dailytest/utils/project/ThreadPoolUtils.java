@@ -1,4 +1,4 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.project;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

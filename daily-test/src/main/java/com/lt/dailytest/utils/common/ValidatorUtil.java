@@ -1,4 +1,4 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.common;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Joiner;

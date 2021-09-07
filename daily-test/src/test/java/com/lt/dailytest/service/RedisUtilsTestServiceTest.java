@@ -1,7 +1,7 @@
 package com.lt.dailytest.service;
 
 import com.alibaba.fastjson.JSON;
-import com.lt.dailytest.utils.JedisUtils;
+import com.lt.dailytest.utils.project.JedisUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.lang.reflect.Constructor;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author tong.luo
