@@ -1,12 +1,12 @@
 package com.lt.dailytest.other;
 
 import com.lt.dailytest.utils.common.DateUtils;
+import com.microsoft.schemas.office.visio.x2012.main.CellType;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -59,11 +59,11 @@ public class ExclTest {
                 //对于空的单元格的处理方式
                 continue;
             }
-            CellType cellType = cell.getCellType();
-            if (cellType.compareTo(CellType.NUMERIC) == 0) {
+            int cellType = cell.getCellType();
+            if (cellType == Cell.CELL_TYPE_NUMERIC) {
                 double numericCellValue = cell.getNumericCellValue();
                 logger.debug("row :[{}],number value:[{}]", i, numericCellValue);
-            } else if (cellType.compareTo(CellType.STRING) == 0) {
+            } else if (cellType == Cell.CELL_TYPE_STRING) {
                 String stringCellValue = cell.getStringCellValue();
                 logger.debug("row :[{}],string value:[{}]", i, stringCellValue);
             } else {
@@ -75,10 +75,10 @@ public class ExclTest {
         CellStyle cellStyle = wb.createCellStyle();
         short blackIndex = IndexedColors.BLACK.getIndex();
         BorderStyle borderStyle = BorderStyle.THIN;
-        cellStyle.setBorderBottom(borderStyle);
-        cellStyle.setBorderLeft(borderStyle);
-        cellStyle.setBorderRight(borderStyle);
-        cellStyle.setBorderTop(borderStyle);
+//        cellStyle.setBorderBottom(borderStyle);
+//        cellStyle.setBorderLeft(borderStyle);
+//        cellStyle.setBorderRight(borderStyle);
+//        cellStyle.setBorderTop(borderStyle);
 
         cellStyle.setBottomBorderColor(blackIndex);
         cellStyle.setTopBorderColor(blackIndex);
@@ -137,7 +137,7 @@ public class ExclTest {
         logger.info("write ok ");
     }
 
-    private Workbook dogetExclContent(String fileName) throws IOException {
+    private Workbook dogetExclContent(String fileName) throws Exception {
         InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
         if (null == resourceAsStream) {
             logger.error("文件获取为空，【{}】", fileName);

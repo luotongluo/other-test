@@ -81,7 +81,7 @@ public class StockTableServiceImpl implements StockTableService {
                 .filter(a -> a.getStatus() != null && a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
-        if (org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)) {
+        if (! CollectionUtils.isEmpty(stringList)) {
             nowInUseList = stringList;
         }
 
@@ -196,7 +196,7 @@ public class StockTableServiceImpl implements StockTableService {
                 .filter(a -> a.getStatus() != null && a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
-        if (org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)) {
+        if (! CollectionUtils.isEmpty(stringList)) {
             stringList = stringList;
         }else {
             stringList = stockTables.stream().map(StockTable::getStockNum)

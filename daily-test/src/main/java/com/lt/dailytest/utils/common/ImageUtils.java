@@ -52,17 +52,30 @@ public class ImageUtils {
 
         return DestImage;
     }
+
     /**
-     * 合并任数量的图片成一张图片
+     * 设置水平和竖直隔离都是0
      *
      * @param isHorizontal
-     *            true代表水平合并，fasle代表垂直合并
      * @param imgs
-     *            待合并的图片数组
      * @return
      * @throws IOException
      */
     public static BufferedImage mergeImage(boolean isHorizontal, BufferedImage... imgs) throws IOException {
+        return mergeImage(isHorizontal, 0, 0, imgs);
+    }
+
+    /**
+     * 合并任数量的图片成一张图片
+     *
+     * @param isHorizontal true代表水平合并，fasle代表垂直合并
+     * @param imgs         待合并的图片数组
+     * @param hightAdd     每个图片的竖直隔离大小
+     * @param wideAdd      每个图片的水平隔离大小
+     * @return
+     * @throws IOException
+     */
+    public static BufferedImage mergeImage(boolean isHorizontal, int hightAdd, int wideAdd, BufferedImage... imgs) throws IOException {
         // 生成新图片
         BufferedImage destImage = null;
         // 计算新图片的长和高
@@ -70,8 +83,8 @@ public class ImageUtils {
         // 获取总长、总宽、最长、最宽
         for (int i = 0; i < imgs.length; i++) {
             BufferedImage img = imgs[i];
-            allw += img.getWidth();
-            allh += img.getHeight();
+            allw += img.getWidth() + wideAdd;
+            allh += img.getHeight() + hightAdd;
             if (img.getWidth() > allwMax) {
                 allwMax = img.getWidth();
             }
@@ -85,6 +98,12 @@ public class ImageUtils {
         } else {
             destImage = new BufferedImage(allwMax, allh, BufferedImage.TYPE_INT_RGB);
         }
+        //TODO 需要将图片中的黑色填充为其他颜色
+       /* Graphics2D graphics = destImage.createGraphics();
+        graphics.setColor(Color.WHITE);
+        graphics.setBackground(Color.WHITE);
+        graphics.fillRect(0, 0, allw, allhMax);*/
+
         // 合并所有子图片到新图片
         int wx = 0, wy = 0;
         for (int i = 0; i < imgs.length; i++) {
@@ -99,11 +118,12 @@ public class ImageUtils {
             } else { // 垂直方向合并
                 destImage.setRGB(0, wy, w1, h1, ImageArrayOne, 0, w1); // 设置上半部分或左半部分的RGB
             }
-            wx += w1;
-            wy += h1;
+            wx += w1 + wideAdd;
+            wy += h1 + hightAdd;
         }
         return destImage;
     }
+
     /**
      * @param buffImg  源文件(BufferedImage)
      * @param waterImg 水印文件(BufferedImage)
@@ -154,8 +174,7 @@ public class ImageUtils {
      * @return 读取到的缓存图像
      * @throws IOException 路径错误或者不存在该文件时抛出IO异常
      */
-    public static BufferedImage getBufferedImage(String fileUrl)
-            throws IOException {
+    public static BufferedImage getBufferedImage(String fileUrl) throws IOException {
         File f = new File(fileUrl);
         return ImageIO.read(f);
     }
@@ -183,6 +202,7 @@ public class ImageUtils {
         }
         return image;
     }
+
     /**
      * Java 测试图片叠加方法
      */
@@ -230,7 +250,9 @@ public class ImageUtils {
         // 保存图像
         generateSaveFile(destImg, margeImagePath);
         System.out.println("垂直合并完毕!");
-    }/**
+    }
+
+    /**
      * Java 测试图片合并方法
      */
     public static void imageMargeTest1() {
@@ -240,14 +262,14 @@ public class ImageUtils {
         // 调用mergeImage方法获得合并后的图像
         BufferedImage destImg = null;
         System.out.println("下面是垂直合并的情况：");
-        String saveFilePath = "H:\\files\\fp_pdf_images\\2021-07-21\\margeNew51-37.jpg";
-        String divingPath = "H:\\files\\fp_pdf_images\\2021-07-21\\150003529999_62761332.png";
-        String margeImagePath = "H:\\files\\fp_pdf_images\\2021-07-21\\margeNew222.jpg";
+        String saveFilePath = "H:\\files\\fp_pdf_images\\2021-07-21\\011002680026_03136351.png";
+        String divingPath = "H:\\files\\fp_pdf_images\\2021-07-21\\026001100101_10260017.png";
+        String margeImagePath = "H:\\files\\fp_pdf_images\\2021-07-21\\mergeImage-addwide.jpg";
         try {
             bi1 = getBufferedImage(saveFilePath);
             bi2 = getBufferedImage(divingPath);
             // 调用mergeImage方法获得合并后的图像
-            destImg = mergeImage(false,bi1 ,bi2);
+            destImg = mergeImage(false, 50, 0, bi1, bi2);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,7 @@
     <description>daily-test project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
-        <poi.version>4.1.2</poi.version>
+        <poi.version>3.14</poi.version>
         <spring-boot.version>2.4.6</spring-boot.version>
     </properties>
     <dependencies>
