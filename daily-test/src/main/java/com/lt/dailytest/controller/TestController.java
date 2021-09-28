@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/8/23 17:36
  */
 @RestController
+@RequestMapping("tset")
 public class TestController {
     @Autowired
     private TestService testService;

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
+import java.util.Map;
 
 /**
  * @author tong.luo
@@ -15,7 +16,7 @@ import java.util.Arrays;
 public class IndexController {
 
     @RequestMapping(value = {"","/","\\"})
-    public ModelAndView getIndexPage(){
+    public ModelAndView getIndexPage(String req){
         ModelAndView modelAndView = new ModelAndView("index/index");
         modelAndView.addObject("hello","hello");
         modelAndView.addObject("hello2","hello2");

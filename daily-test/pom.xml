@@ -185,6 +185,12 @@
             <artifactId>cache-api</artifactId>
             <version>1.1.0</version>
         </dependency>
+        <!--基于字节复制的重量级bean 复制-->
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.5.4</version>
+        </dependency>
 
     </dependencies>
 

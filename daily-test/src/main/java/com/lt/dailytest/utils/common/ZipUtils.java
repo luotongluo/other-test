@@ -106,7 +106,7 @@ public class ZipUtils {
     public static void compress(InputStream is, OutputStream os) throws IOException {
         GZIPOutputStream gos = new GZIPOutputStream(os);
         int count;
-        byte data[] = new byte[BUFFER];
+        byte[] data = new byte[BUFFER];
         while ((count = is.read(data, 0, BUFFER)) != -1) {
             gos.write(data, 0, count);
         }
@@ -168,13 +168,21 @@ public class ZipUtils {
     public static void decompress(InputStream is, OutputStream os) throws IOException {
         GZIPInputStream gis = new GZIPInputStream(is);
         int count;
-        byte data[] = new byte[BUFFER];
+        byte[] data = new byte[BUFFER];
         while ((count = gis.read(data, 0, BUFFER)) != -1) {
             os.write(data, 0, count);
         }
         gis.close();
     }
 
+    /**
+     * 从文件中读取内容进行压缩，name为文件的地址 + 原文文件的名称
+     *
+     * @param inFile
+     * @param out
+     * @param dir
+     * @throws IOException
+     */
     public static void doCompress(File inFile, ZipOutputStream out, String dir) throws IOException {
         String entryName = null;
         if (!"".equals(dir)) {
@@ -199,6 +207,14 @@ public class ZipUtils {
         fis.close();
     }
 
+    /**
+     * doCompress zip文件压缩
+     *
+     * @param inBytes
+     * @param zipOut
+     * @param fileName
+     * @throws IOException
+     */
     public static void doCompress(byte[] inBytes, ZipOutputStream zipOut, String fileName) throws IOException {
         ByteArrayInputStream bais = new ByteArrayInputStream(inBytes);
         // 默认值为 ZipOutputStream.DEFLATED（表示进行压缩存储）
@@ -251,11 +267,11 @@ public class ZipUtils {
      *
      * @param srcDir           压缩文件夹路径
      * @param out              压缩文件输出流
-     * @param KeepDirStructure 是否保留原来的目录结构,true:保留目录结构;
+     * @param keepDirStructure 是否保留原来的目录结构,true:保留目录结构;
      *                         false:所有文件跑到压缩包根目录下(注意：不保留目录结构可能会出现同名文件,会压缩失败)
      * @throws RuntimeException 压缩失败会抛出运行时异常
      */
-    public static boolean toZip(String srcDir, OutputStream out, boolean KeepDirStructure)
+    public static boolean toZip(String srcDir, OutputStream out, boolean keepDirStructure)
             throws RuntimeException {
         boolean success = true;
         long start = System.currentTimeMillis();
@@ -263,7 +279,7 @@ public class ZipUtils {
         try {
             zos = new ZipOutputStream(out);
             File sourceFile = new File(srcDir);
-            compress(sourceFile, zos, sourceFile.getName(), KeepDirStructure);
+            compress(sourceFile, zos, sourceFile.getName(), keepDirStructure);
             long end = System.currentTimeMillis();
             LOGGER.debug("压缩完成，耗时：" + (end - start) + " ms");
             //删除临时文件夹
@@ -352,12 +368,12 @@ public class ZipUtils {
      * @param sourceFile       源文件
      * @param zos              zip输出流
      * @param name             压缩后的名称
-     * @param KeepDirStructure 是否保留原来的目录结构,true:保留目录结构;
+     * @param keepDirStructure 是否保留原来的目录结构,true:保留目录结构;
      *                         false:所有文件跑到压缩包根目录下(注意：不保留目录结构可能会出现同名文件,会压缩失败)
      * @throws Exception
      */
     private static void compress(File sourceFile, ZipOutputStream zos, String name,
-                                 boolean KeepDirStructure) throws Exception {
+                                 boolean keepDirStructure) throws Exception {
         byte[] buf = new byte[BUFFER_SIZE];
         if (sourceFile.isFile()) {
             // 向zip输出流中添加一个zip实体，构造器中name为zip实体的文件的名字
@@ -375,7 +391,7 @@ public class ZipUtils {
             File[] listFiles = sourceFile.listFiles();
             if (listFiles == null || listFiles.length == 0) {
                 // 需要保留原来的文件结构时,需要对空文件夹进行处理
-                if (KeepDirStructure) {
+                if (keepDirStructure) {
                     // 空文件夹的处理
                     zos.putNextEntry(new ZipEntry(name + "/"));
                     // 没有文件，不需要文件的copy
@@ -384,12 +400,12 @@ public class ZipUtils {
             } else {
                 for (File file : listFiles) {
                     // 判断是否需要保留原来的文件结构
-                    if (KeepDirStructure) {
+                    if (keepDirStructure) {
                         // 注意：file.getName()前面需要带上父文件夹的名字加一斜杠,
                         // 不然最后压缩包中就不能保留原来的文件结构,即：所有文件都跑到压缩包根目录下了
-                        compress(file, zos, name + "/" + file.getName(), KeepDirStructure);
+                        compress(file, zos, name + "/" + file.getName(), keepDirStructure);
                     } else {
-                        compress(file, zos, file.getName(), KeepDirStructure);
+                        compress(file, zos, file.getName(), keepDirStructure);
                     }
                 }
             }
@@ -413,7 +429,14 @@ public class ZipUtils {
         return result;
     }
 
-    // 批量下载文件
+    /**
+     * 批量下载文件
+     *
+     * @param urls
+     * @param fileNames
+     * @param request
+     * @param response
+     */
     public static void batchFileOut(List<String> urls, List<String> fileNames, HttpServletRequest request, HttpServletResponse response) {
         // 对文件流进行压缩操作
         ZipOutputStream zos = null;
@@ -477,7 +500,15 @@ public class ZipUtils {
         }
     }
 
-    // 批量下载文件
+
+    /**
+     * 批量下载文件
+     *
+     * @param urls
+     * @param fileNames
+     * @param request
+     * @param response
+     */
     public static void batchFileOutOne(List<String> urls, List<String> fileNames, HttpServletRequest request, HttpServletResponse response) {
         // 对文件流进行压缩操作
         ServletOutputStream zos = null;
