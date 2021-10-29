@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2021/8/23 17:24
  */
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class JsckonWebConfig implements WebMvcConfigurer {
     @Autowired
     private HttpMessageConverters httpMessageConverters;
 

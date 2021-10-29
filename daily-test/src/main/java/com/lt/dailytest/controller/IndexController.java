@@ -15,13 +15,13 @@ import java.util.Map;
 @RestController
 public class IndexController {
 
-    @RequestMapping(value = {"","/","\\"})
-    public ModelAndView getIndexPage(String req){
+    @RequestMapping(value = {"", "/", "\\"})
+    public ModelAndView getIndexPage(String req) {
         ModelAndView modelAndView = new ModelAndView("index/index");
-        modelAndView.addObject("hello","hello");
-        modelAndView.addObject("hello2","hello2");
-        modelAndView.addObject("users", Arrays.asList("张三","李四","王五"));
-        modelAndView.addObject("students", Arrays.asList("王琴","陈军","郭大伟","陈明"));
+        modelAndView.addObject("hello", "hello");
+        modelAndView.addObject("hello2", "hello2");
+        modelAndView.addObject("users", Arrays.asList("张三", "李四", "王五"));
+        modelAndView.addObject("students", Arrays.asList("王琴", "陈军", "郭大伟", "陈明"));
         return modelAndView;
     }
 }
