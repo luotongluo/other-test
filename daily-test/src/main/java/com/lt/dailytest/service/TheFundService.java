@@ -1,6 +1,8 @@
 package com.lt.dailytest.service;
 
 
+import com.lt.dailytest.entity.fund.FundResTo;
+
 /**
  * @author tong.luo
  * @description TheFundService
@@ -11,7 +13,7 @@ public interface TheFundService {
      * @param code
      * @return
      */
-    public String getFundOne(String code);
+    public FundResTo getFundOne(String code);
 
     /**
      * @param code

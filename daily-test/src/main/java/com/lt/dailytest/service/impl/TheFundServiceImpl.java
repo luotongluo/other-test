@@ -1,6 +1,7 @@
 package com.lt.dailytest.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.lt.dailytest.entity.fund.FundResTo;
 import com.lt.dailytest.service.TheFundService;
 import com.lt.dailytest.to.TheFundTo;
 import com.lt.dailytest.utils.http.HttpUtils;
@@ -20,51 +21,25 @@ import org.springframework.stereotype.Service;
 public class TheFundServiceImpl implements TheFundService {
     private static final Logger LOGGER = LoggerFactory.getLogger(TheFundServiceImpl.class);
 
+    private final static String FUND_STR_START = "http://fundgz.1234567.com.cn/js/";
+    private final static String FUND_STR_END = ".js?rt=1589463125600";
+
     /**
      * @param code
      * @return
      */
     @Override
-    public String getFundOne(String code) {
-        //数据链接
-//        String referer = "http://so.eastmoney.com/web/s?keyword="+code+"";
+    public FundResTo getFundOne(String code) {
         long time = System.currentTimeMillis();
-//
-//        String url = "http://push2.eastmoney.com/api/qt/stock/get?ut=fa5fd1943c7b386f172d6893dbfba10b&fltt" +
-//                "=2&fields=f59,f169,f170,f161,f163,f171,f126,f168,f164,f78,f162,f43,f46,f44,f45,f60,f47," +
-//                "f48,f49,f84,f116,f55,f92,f71,f50,f167,f117,f85,f84,f58,f57,f86,f172,f108,f118,f107,f164," +
-//                "f177&invt=2&secid=0."+code+"&cb=jQuery1124006112441213993569_1587006450385&_=1587006450403";
-//        url = String.format(url,code);
-//        Header header = new BasicHeader("Referer", referer);
-//        String ret = HttpUtils.httpGet(url, header);
-        String url = "http://fundgz.1234567.com.cn/js/" + code + ".js?rt=1589463125600";
+        String url = FUND_STR_START + code + FUND_STR_END;
         String httpGet = HttpUtils.httpGet(url);
-        LOGGER.info("cost : [{}],url:[{}]", (System.currentTimeMillis() - time), url);
-        //"代号：" +
-        //                    jsonObject.getString("fundcode") +
-        //                    "\n" +
-        //                    "名称：" +
-        //                    jsonObject.getString("name") +
-        //                    "\n" +
-        //                    "净值日期：" +
-        //                    jsonObject.getString("jzrq") +
-        //                    "\n" +
-        //                    "单位净值：" +
-        //                    jsonObject.getString("dwjz") +
-        //                    "\n" +
-        //                    "估算净值：" +
-        //                    jsonObject.getString("gsz") +
-        //                    "\n" +
-        //                    "估算增长率：" +
-        //                    jsonObject.getString("gszzl") +
-        //                    "\n" +
-        //                    "估值时间：" +
-        //                    jsonObject.getString("gztime") +
-        //                    "\n";
-        //————————————————
-        //版权声明：本文为CSDN博主「qq_24256961」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+        LOGGER.info("cost : [{}],url:[{}],res:[{}]", (System.currentTimeMillis() - time), url, httpGet);
+        //jsonpgz({"fundcode":"001186","name":"富国文体健康股票A","jzrq":"2021-11-01","dwjz":"2.2930","gsz":"2.2995","gszzl":"0.28","gztime":"2021-11-02 11:22"});
+        String replace = httpGet.replace("jsonpgz(", "").replace(");", "");
+        //System.out.println(replace);
+        FundResTo fundResTo = JSON.parseObject(replace, FundResTo.class);
         //原文链接：https://blog.csdn.net/qq_24256961/article/details/106130384
-        return httpGet;
+        return fundResTo;
     }
 
     /**
@@ -87,10 +62,10 @@ public class TheFundServiceImpl implements TheFundService {
         Header header = new BasicHeader("Referer", referer);
         String ret = HttpUtils.httpGet(url, header);
         LOGGER.info("cost : [{}],url:[{}]", (System.currentTimeMillis() - time), url);
-        if(StringUtils.isNotEmpty(ret)){
+        if (StringUtils.isNotEmpty(ret)) {
             int indexOfBeg = ret.indexOf("(");
             int indexOfEnd = ret.indexOf(")");
-            if(indexOfEnd > indexOfBeg){
+            if (indexOfEnd > indexOfBeg) {
                 String substring = ret.substring(indexOfBeg + 1, indexOfEnd);
                 TheFundTo theFundTo = JSON.parseObject(substring, TheFundTo.class);
             }
@@ -100,7 +75,13 @@ public class TheFundServiceImpl implements TheFundService {
 
     @Override
     public String getAllDataOfTianTianFund() {
-        String url = "http://fund.eastmoney.com/js/fundcode_search.js";
+        //所有基金名称列表代码
+//        String url = "http://fund.eastmoney.com/js/fundcode_search.js";
+        String url = "http://fund.eastmoney.com/js/jjjz_gs.js?dt=1463791574015";
+        //所有基金公司名称列表代码  http://fund.eastmoney.com/js/jjjz_gs.js?dt=1463791574015
+//        String url = "http://fund.eastmoney.com/pingzhongdata/001186.js?v=20160518155842";
+        //基金详细信息：http://fund.eastmoney.com/pingzhongdata/001186.js?v=20160518155842
+
         return HttpUtils.httpGet(url);
     }
 }
