@@ -1,7 +1,7 @@
 package com.lt.dailytest.service;
 
 import com.alibaba.fastjson.JSON;
-import com.lt.dailytest.utils.project.JedisUtils;
+import com.lt.dailytest.utils.project.SelfJedisUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -19,7 +19,7 @@ import java.lang.reflect.Constructor;
 public class RedisUtilsTestServiceTest {
 
     @Autowired
-    private JedisUtils jedisUtils;
+    private SelfJedisUtils jedisUtils;
 
     @Autowired
     private RedisTemplate redisTemplate;

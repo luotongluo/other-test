@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import com.alibaba.fastjson.JSON;
 import com.lt.dailytest.dao.TestMapper;
-import com.lt.dailytest.utils.project.JedisUtils;
+import com.lt.dailytest.utils.project.SelfJedisUtils;
 import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.common.ValidatorUtil;
 import com.lt.dailytest.othertest.validate.TestBean;
@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
@@ -45,12 +46,14 @@ import java.util.stream.Collectors;
 class DailyTestApplicationTests {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private JedisUtils jedisUtils;
+    private SelfJedisUtils jedisUtils;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Autowired(required = false)
     TestMapper testMapper;
 
-    /*@Autowired
-    MajorKeyFactory majorKeyFactory;*/
     @Test
     public void BigdicimalTest() {
 
@@ -239,5 +242,7 @@ class DailyTestApplicationTests {
         Integer aa = 4;
         Integer bb = -0;
         System.out.println(aa + bb);
+        System.out.println(1 >> 6);
+        System.out.println(1 << 6);
     }
 }
