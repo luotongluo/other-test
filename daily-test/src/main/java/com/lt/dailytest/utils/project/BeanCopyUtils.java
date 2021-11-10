@@ -1,6 +1,6 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.project;
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.Lists;
+
 import java.util.Date;
 
 import com.lt.dailytest.bean.CopyBean1;

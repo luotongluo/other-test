@@ -1,17 +1,14 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.project;
 
 import com.alibaba.fastjson.JSON;
 import com.lt.dailytest.othertest.validate.TestBean;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;

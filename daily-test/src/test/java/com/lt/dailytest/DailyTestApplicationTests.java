@@ -1,19 +1,13 @@
 package com.lt.dailytest;
 
-import com.google.common.collect.Lists;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 import com.alibaba.fastjson.JSON;
-import com.lt.dailytest.bean.CopyBean1;
-import com.lt.dailytest.bean.CopyBean2;
 import com.lt.dailytest.dao.TestMapper;
-import com.lt.dailytest.utils.JedisUtils;
+import com.lt.dailytest.utils.project.SelfJedisUtils;
 import com.lt.dailytest.utils.MultiThreadTransactionComponent;
-import com.lt.dailytest.utils.ValidatorUtil;
+import com.lt.dailytest.utils.common.ValidatorUtil;
 import com.lt.dailytest.othertest.validate.TestBean;
 import com.lt.dailytest.utils.major.MajorKeyFactory;
 import com.lt.dailytest.vo.MailVo;
@@ -29,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
@@ -39,10 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -54,11 +46,18 @@ import java.util.stream.Collectors;
 class DailyTestApplicationTests {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private JedisUtils jedisUtils;
+    private SelfJedisUtils jedisUtils;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     @Autowired(required = false)
     TestMapper testMapper;
-    /*@Autowired
-    MajorKeyFactory majorKeyFactory;*/
+
+    @Test
+    public void BigdicimalTest() {
+
+    }
 
     @Test
     public void getId() {
@@ -236,5 +235,14 @@ class DailyTestApplicationTests {
         double pow = Math.pow(powa, powerb);
         System.out.println(powa + "^" + powerb + "=" + pow);
 
+    }
+
+    @Test
+    public void testsub() {
+        Integer aa = 4;
+        Integer bb = -0;
+        System.out.println(aa + bb);
+        System.out.println(1 >> 6);
+        System.out.println(1 << 6);
     }
 }

@@ -1,4 +1,4 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.common;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;

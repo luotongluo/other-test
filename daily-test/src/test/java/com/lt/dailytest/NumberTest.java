@@ -1,5 +1,7 @@
 package com.lt.dailytest;
 
+import org.junit.jupiter.api.Test;
+
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -22,5 +24,11 @@ public class NumberTest {
             e.printStackTrace();
         }
         byte[] b = new byte[8 * 1024 * 925];
+    }
+
+    @Test
+    public void  numTest(){
+        double pow = Math.pow(2, 2);
+        System.out.println(pow);
     }
 }

@@ -1,10 +1,13 @@
 package com.lt.dailytest.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.lt.dailytest.entity.fund.FundResTo;
 import com.lt.dailytest.service.TheFundService;
 import com.lt.dailytest.to.DataFundInfoTo;
 import com.lt.dailytest.to.TheFundTo;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.scheduling.concurrent.CustomizableThreadFactory;
@@ -26,11 +29,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TheFundServiceImplTest {
     @Autowired
     private TheFundService theFundService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(TheFundServiceImplTest.class);
 
     @Test
     public void getFundOne() {
-        String code = "501005";
-        String fundOne = this.theFundService.getFundOne(code);
+        String code = "008983";
+        FundResTo fundOne = this.theFundService.getFundOne(code);
         System.out.println(fundOne);
     }
 
@@ -43,9 +47,8 @@ public class TheFundServiceImplTest {
     }
     @Test
     public void getAllDataOfTianTianFund(){
-        String code = "501005";
         String pageListFund = this.theFundService.getAllDataOfTianTianFund();
-        System.out.println(pageListFund);
+        LOGGER.info("pageListFund :[{}]",pageListFund);
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.lt.dailytest.utils;
+package com.lt.dailytest.utils.common;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Joiner;
@@ -44,7 +44,7 @@ public class ValidatorUtil {
         set.stream().map(v -> v.getPropertyPath() + " " + v.getMessage() + ": " + v.getInvalidValue())
                 .forEach(System.out::println);
         if (set != null && set.size() > 0) {
-            errorMap = new HashMap();
+            errorMap = new HashMap(16);
             String property = null;
             for (ConstraintViolation<T> cv : set) {
                 //这里循环获取错误信息，可以自定义格式

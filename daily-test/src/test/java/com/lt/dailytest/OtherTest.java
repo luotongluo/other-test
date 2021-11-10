@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,12 +33,30 @@ public class OtherTest {
 //        String val = null;
 //        BigDecimal bigDecimal = new BigDecimal(val);
         String val = "FXC5310XXY-4Y-D339-8501010/60（2103-039）";
-        System.out.println(val.length());
+
+        extractedRevoseStr(val);
+
+        Thread thread = new Thread();
+
 
         String replaceAll = val.replaceAll("/", "\\\\");
         System.out.println(replaceAll);
 
     }
+
+    private static void extractedRevoseStr(String val) {
+        ArrayList<Object> objects = new ArrayList<>(val.length());
+        for (int i = 0; i < val.length(); i++) {
+            objects.add(i, val.charAt(val.length() - i - 1));
+        }
+        System.out.println(JSON.toJSONString(objects));
+        StringBuffer stringBuffer = new StringBuffer();
+        objects.forEach(a -> {
+            stringBuffer.append(a);
+        });
+        System.out.println(JSON.toJSONString(stringBuffer));
+    }
+
 
     @Test
     public void test() {
@@ -49,5 +71,13 @@ public class OtherTest {
         System.out.println(JSON.toJSONString(stockTables));
     }
 
-
+    @Test
+    public void timeTest() {
+        LocalDate localDate = LocalDate.now();
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalTime localTime = LocalTime.now();
+        System.out.println("localDate :" + localDate);
+        System.out.println("localDateTime :" + localDateTime);
+        System.out.println("localTime :" + localTime);
+    }
 }

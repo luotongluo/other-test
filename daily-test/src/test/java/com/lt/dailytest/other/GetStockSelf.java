@@ -1,29 +1,12 @@
 package com.lt.dailytest.other;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
 import com.lt.dailytest.dao.StockTableMapper;
-import com.lt.dailytest.entity.StockTable;
 import com.lt.dailytest.service.impl.StockTableServiceImpl;
-import com.lt.dailytest.utils.DateUtils;
-import com.lt.dailytest.utils.HttpUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.CollectionUtils;
 
 /**
  * @author tong.luo

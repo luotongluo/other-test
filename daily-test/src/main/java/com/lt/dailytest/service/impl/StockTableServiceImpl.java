@@ -9,8 +9,8 @@ import com.lt.dailytest.entity.StockMainTable;
 import com.lt.dailytest.entity.StockSellTable;
 import com.lt.dailytest.entity.StockTable;
 import com.lt.dailytest.service.StockTableService;
-import com.lt.dailytest.utils.DateUtils;
-import com.lt.dailytest.utils.HttpUtils;
+import com.lt.dailytest.utils.common.DateUtils;
+import com.lt.dailytest.utils.http.HttpUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +21,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -83,7 +81,7 @@ public class StockTableServiceImpl implements StockTableService {
                 .filter(a -> a.getStatus() != null && a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
-        if (org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)) {
+        if (! CollectionUtils.isEmpty(stringList)) {
             nowInUseList = stringList;
         }
 
@@ -198,7 +196,7 @@ public class StockTableServiceImpl implements StockTableService {
                 .filter(a -> a.getStatus() != null && a.getStatus() == 1 && a.getDealDate().compareTo(startOfDay) > 0)
                 .map(StockTable::getStockNum)
                 .collect(Collectors.toList());
-        if (org.apache.commons.collections4.CollectionUtils.isNotEmpty(stringList)) {
+        if (! CollectionUtils.isEmpty(stringList)) {
             stringList = stringList;
         }else {
             stringList = stockTables.stream().map(StockTable::getStockNum)
