@@ -1,5 +1,6 @@
 package com.lt.dailytest.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lt.dailytest.entity.StockBuyTable;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,7 +14,7 @@ import java.util.List;
  * @since 2021-07-14 15:17:47
  */
 @Mapper
-public interface StockBuyTableMapper {
+public interface StockBuyTableMapper extends BaseMapper<StockBuyTable> {
 
     /**
      * 通过ID查询单条数据
@@ -81,6 +82,6 @@ public interface StockBuyTableMapper {
      */
     int deleteById(Integer id);
 
-    void deleteBystockNums(@Param("StockNums") List<String> collect,@Param("formatDate") String formatDate);
+    void deleteBystockNums(@Param("StockNums") List<String> collect, @Param("formatDate") String formatDate);
 }
 

@@ -187,4 +187,24 @@ public class StockMainTable implements Serializable {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "StockMainTable{" +
+                "id=" + id +
+                ", stockName='" + stockName + '\'' +
+                ", stockNum='" + stockNum + '\'' +
+                ", beginPrice='" + beginPrice + '\'' +
+                ", lastDayEndPrice='" + lastDayEndPrice + '\'' +
+                ", currPrice='" + currPrice + '\'' +
+                ", dayMaxPrice='" + dayMaxPrice + '\'' +
+                ", dayMinPrice='" + dayMinPrice + '\'' +
+                ", buyOne='" + buyOne + '\'' +
+                ", sellOne='" + sellOne + '\'' +
+                ", sellDoneNum='" + sellDoneNum + '\'' +
+                ", sellDoneMon='" + sellDoneMon + '\'' +
+                ", dealDate=" + dealDate +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

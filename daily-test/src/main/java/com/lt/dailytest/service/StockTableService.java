@@ -1,5 +1,9 @@
 package com.lt.dailytest.service;
 
+import com.lt.dailytest.entity.StockMainTable;
+
+import java.util.List;
+
 /**
  * @author tong.luo
  * @description StockTableService
@@ -22,5 +26,7 @@ public interface StockTableService {
     public void synOneData(String stockNum);
 
     void synAllDataOnce();
+
+    List<StockMainTable> getData();
 
 }

@@ -206,6 +206,13 @@ public class StockTableServiceImpl implements StockTableService {
         loopGetInfo(stringList);
     }
 
+    @Override
+    public List<StockMainTable> getData() {
+        StockMainTable stockMainTable = new StockMainTable();
+        List<StockMainTable> stockMainTableList = this.stockMainTableMapper.queryAllByLimit(1, 100);
+        return stockMainTableList;
+    }
+
     private void loopGetInfo(List<String> nowInUseList) {
         for (String stockNum : nowInUseList) {
            /* try {

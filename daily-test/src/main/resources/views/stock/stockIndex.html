@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stockIndex</title>
+</head>
+<body>
+<hr width="300" align="left">
+
+<h4 th:text="${stockdata}" th:each="stockdata:${stockName}"></h4><!--th:eachg对传入的数组进行遍历-->
+<h4 th:text="${stockdata}" th:each="stockdata:${stockNum}"></h4><!--th:eachg对传入的数组进行遍历-->
+<h4 th:text="${stockdata}" th:each="stockdata:${currPrice}"></h4><!--th:eachg对传入的数组进行遍历-->
+
+<hr width="300" align="left">
+</body>
+</html>

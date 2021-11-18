@@ -13,6 +13,7 @@ import java.util.Map;
  * @date 2021/3/16 16:39
  */
 @RestController
+@RequestMapping("index")
 public class IndexController {
 
     @RequestMapping(value = {"", "/", "\\"})

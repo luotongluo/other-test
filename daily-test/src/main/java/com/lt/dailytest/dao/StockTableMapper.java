@@ -1,5 +1,6 @@
 package com.lt.dailytest.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.lt.dailytest.entity.StockTable;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,7 +14,7 @@ import java.util.List;
  * @since 2021-07-12 19:25:09
  */
 @Mapper
-public interface StockTableMapper {
+public interface StockTableMapper extends BaseMapper<StockTable> {
 
     /**
      * 通过ID查询单条数据

@@ -57,7 +57,10 @@
                 <a class="form-control btn btn-default" onclick="clearForm()">清空</a>
             </div>
         </div>
+        <a onclick="sendMail()"> send Mail </a>
+        <a onclick="clearForm()"> clean all table msg! </a>
     </form>
+
 
     <script th:inline="javascript">
         var appCtx = [[${#request.getContextPath()}]];
@@ -84,7 +87,7 @@
             $('#mailForm')[0].reset();
         }
 
-        setInterval(function () {
+        /*setInterval(function () {
             var total = $('#mq').width();
             var width = $('#doge').width();
             var left = $('#doge').offset().left;
@@ -94,7 +97,7 @@
             if (left >= total - width / 2 - 40) {
                 $('#doge').css('transform', 'rotateY(-360deg)')
             }
-        });
+        });*/
     </script>
 </div>
 </body>
