@@ -25,4 +25,8 @@ public class IndexController {
         modelAndView.addObject("students", Arrays.asList("王琴", "陈军", "郭大伟", "陈明"));
         return modelAndView;
     }
+    @RequestMapping(value = {"login"})
+    public String login(String req) {
+        return "login sucess!!!";
+    }
 }

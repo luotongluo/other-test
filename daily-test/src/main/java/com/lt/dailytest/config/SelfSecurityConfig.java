@@ -37,11 +37,11 @@ public class SelfSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
-                /* .loginPage("/login.html")//登录页面
-                 .loginProcessingUrl("")//登录访问路径*/
-                 .defaultSuccessUrl("/index.html").permitAll()
+                 .loginPage("/login.html")//登录页面
+                .loginProcessingUrl("/index/")//登录访问路径
+                .defaultSuccessUrl("/index.html")//.permitAll()
                 //设置哪些路径不需要访问
-                .and().authorizeRequests().mvcMatchers("/", "/layui/**", "/test/testController")
+                .and().authorizeRequests().mvcMatchers("/")
                 .permitAll()
                 //判断用户存在的权限控制
                 /*.antMatchers("").hasAuthority("")
