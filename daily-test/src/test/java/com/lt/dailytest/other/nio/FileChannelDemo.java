@@ -1,5 +1,6 @@
 package com.lt.dailytest.other.nio;
 
+import com.lt.dailytest.utils.common.DateUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 /**
  * @author tong.luo
@@ -47,7 +49,7 @@ public class FileChannelDemo {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         //int read = channel.read(buffer);
 
-        String writconteng = "buffer.put(writconteng.getBytes(StandardCharsets.UTF_8));";
+        String writconteng = "buffer.put(writconteng.getBytes(StandardCharsets.UTF_8));" + new Date().toString();
         buffer.clear();
 
         buffer.put(writconteng.getBytes(StandardCharsets.UTF_8));
@@ -65,7 +67,7 @@ public class FileChannelDemo {
      */
     @Test
     public void fileDemoPosition() throws Exception {
-
+        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\test.txt", "rw");
     }
 
     @Test
@@ -77,8 +79,8 @@ public class FileChannelDemo {
         RandomAccessFile randomAccessFileB = new RandomAccessFile("D:\\test1.txt", "rw");
         FileChannel tochannel = randomAccessFileB.getChannel();
 
-        //tochannel.transferFrom(fromchannel,0,fromchannel.size());
-        fromchannel.transferTo(0,tochannel.size(),tochannel);
+//        tochannel.transferFrom(fromchannel,0,fromchannel.size());
+        fromchannel.transferTo(0, tochannel.size(), tochannel);
         fromchannel.close();
         tochannel.close();
         System.out.println("over ");
