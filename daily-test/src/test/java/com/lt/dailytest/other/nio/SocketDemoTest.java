@@ -65,9 +65,9 @@ public class SocketDemoTest {
     @Test
     public void datagramChannelReciveConn() throws Exception {
         DatagramChannel datagramChannel = DatagramChannel.open();
-        datagramChannel.bind(new InetSocketAddress("localhost",3001));
+        datagramChannel.bind(new InetSocketAddress("localhost", 3001));
 
-        datagramChannel.connect(new InetSocketAddress("localhost",3001));
+        datagramChannel.connect(new InetSocketAddress("localhost", 3001));
 
         ByteBuffer byteBuffer = ByteBuffer.wrap("datagramChannelReciveConn".getBytes(StandardCharsets.UTF_8));
         datagramChannel.write(byteBuffer);

@@ -8,6 +8,7 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 /**
  * @author tong.luo
@@ -40,16 +41,18 @@ public class FileChannelDemo {
 
     @Test
     public void fileDemoWrite() throws Exception {
-// 创建filechannel  创建buffer 读取数据到buffer中
-        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\test.txt", "rw");
+        // 创建filechannel  创建buffer 读取数据到buffer中
+        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\testfile\\test222.txt", "rw");
         FileChannel channel = randomAccessFile.getChannel();
 
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         //int read = channel.read(buffer);
 
-        String writconteng = "buffer.put(writconteng.getBytes(StandardCharsets.UTF_8));";
+        String writconteng = "buffer.put(writconteng.getBytes(StandardCharsets.UTF_8));" + new Date().toString();
         buffer.clear();
-
+        LOGGER.info("channel size:{}", channel.size());
+        //将指定文件后面的长度删除
+        channel.truncate(channel.size() - 10);
         buffer.put(writconteng.getBytes(StandardCharsets.UTF_8));
         buffer.flip();
         while (buffer.hasRemaining()) {
@@ -65,7 +68,7 @@ public class FileChannelDemo {
      */
     @Test
     public void fileDemoPosition() throws Exception {
-
+        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\test.txt", "rw");
     }
 
     @Test
@@ -76,9 +79,9 @@ public class FileChannelDemo {
 
         RandomAccessFile randomAccessFileB = new RandomAccessFile("D:\\test1.txt", "rw");
         FileChannel tochannel = randomAccessFileB.getChannel();
-
-        //tochannel.transferFrom(fromchannel,0,fromchannel.size());
-        fromchannel.transferTo(0,tochannel.size(),tochannel);
+        LOGGER.info("channel size:{}", tochannel.size());
+//        tochannel.transferFrom(fromchannel,0,fromchannel.size());
+        fromchannel.transferTo(0, tochannel.size(), tochannel);
         fromchannel.close();
         tochannel.close();
         System.out.println("over ");
