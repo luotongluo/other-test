@@ -20,9 +20,10 @@ public class FileTest {
         String path5 = "E:\\Using\\2021-06-20";
         String path6 = "E:\\Using\\2021-08-29";
         String path7 = "E:\\Using\\2021-10-29";
+        String path8 = "E:\\Using\\2021-11-10";
 
 
-        List<String> pathList = Arrays.asList(path1, path2, path3, path4, path5, path6, path7);
+        List<String> pathList = Arrays.asList(path1, path2, path3, path4, path5, path6, path7,path8);
         String pathJoin = pathList.stream().collect(Collectors.joining(","));
         System.out.println("pathJoin：" + pathJoin);
 
@@ -58,12 +59,12 @@ public class FileTest {
                         builder.append("path:" + filename + "\t  " + name + FILE_AFTER_NAME + " \n");
                     }
                     boolean contains = hashMap.keySet().contains(name);
-                    boolean exists = false;
+//                    boolean exists = false;
+//                    for (String fileExistsName : hashMap.keySet()) {
+//                        exists = fileExistsName.contains(name);
+//                    }
                     for (String fileExistsName : hashMap.keySet()) {
-                        exists = fileExistsName.contains(name);
-                    }
-                    for (String fileExistsName : hashMap.keySet()) {
-                        if (contains || exists) {
+                        if (contains || fileExistsName.contains(name)) {
                             System.out.println(name + "=============" + filename);
                             System.out.println(hashMap.get(name) + "======before=======");
                             //tempLists[i].delete();
