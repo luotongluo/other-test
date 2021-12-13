@@ -2,7 +2,9 @@ package com.lt.dailytest.utils.project;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -31,6 +33,27 @@ public class ThreadPoolUtils extends ThreadPoolExecutor {
         this.poolName = poolName;
     }
 
+    public static Executor getDefaultThreadPool() {
+        return getThreadPool(Runtime.getRuntime().availableProcessors() + 2, "default-name");
+    }
+
+    /**
+     * 得到线程池
+     *
+     * @param poolSize
+     * @param poolName
+     * @return
+     */
+    public static Executor getThreadPool(int poolSize, String poolName) {
+        Assert.notNull(poolName, "poolName not be null ~");
+        if (poolSize < 0) {
+            poolSize = Runtime.getRuntime().availableProcessors();
+        }
+        LinkedBlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
+        NamingThreadFactory threadFactory = new NamingThreadFactory(poolName);
+        AbortPolicy abortPolicy = new AbortPolicy();
+        return new ThreadPoolExecutor(poolSize, poolSize, 0L, TimeUnit.SECONDS, blockingQueue, threadFactory, abortPolicy);
+    }
 
     private static class NamingThreadFactory implements ThreadFactory {
         private String threadName;

@@ -1,5 +1,6 @@
 package com.lt.dailytest.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lt.dailytest.dao.StockBuyTableMapper;
 import com.lt.dailytest.dao.StockMainTableMapper;
 import com.lt.dailytest.dao.StockSellTableMapper;
@@ -64,6 +65,7 @@ public class StockTableServiceImpl implements StockTableService {
      */
     @Override
     public void synAllData() {
+
         Timer timer = new Timer();
         //1个小时更新一次
         Date date = new Date();

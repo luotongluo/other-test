@@ -1,5 +1,9 @@
 package com.lt.dailytest.utils.project;
 
+import java.util.HashMap;
+import java.util.concurrent.Executor;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author tong.luo
  * @description SnowFlake
@@ -65,17 +69,17 @@ public class SnowFlakeutils {
 
     public synchronized long nextId() {
         long currTimeStamp = getNewTimeStamp();
-        if(currTimeStamp < lastTimeStamp){
+        if (currTimeStamp < lastTimeStamp) {
             throw new RuntimeException("Clock moved backwards.  Refusing to generate id");
         }
-        if(currTimeStamp == lastTimeStamp){
+        if (currTimeStamp == lastTimeStamp) {
             //相同毫秒内，序列号自增
             sequence = (sequence + 1) & MAX_SEQUENCE;
             //同一毫秒的序列数已经达到最大
             if (sequence == 0L) {
                 currTimeStamp = getNextMill();
             }
-        }else {
+        } else {
             //不同毫秒内，序列号置为0
             sequence = 0L;
         }
@@ -90,11 +94,45 @@ public class SnowFlakeutils {
     }
 
     public static void main(String[] args) {
-        SnowFlakeutils snowFlakeutils = new SnowFlakeutils(2, 3);
+       /* SnowFlakeutils snowFlakeutils = new SnowFlakeutils(2, 3);
         for (int i = 0; i < (1 << 4); i++) {
             //10进制
             System.out.println(snowFlakeutils.nextId() + "----" + i);
+        }*/
+        HashMap<Long, Long> hashMap = new HashMap<>(4096);
+        Executor defaultThreadPool = ThreadPoolUtils.getDefaultThreadPool();
+        SnowFlakeutils snowFlakeutils1 = new SnowFlakeutils(1024, 125);
+        for (int i = 0; i < 10000; i++) {
+            int finalI = i;
+            defaultThreadPool.execute(() -> {
+//                for (int j = 0; j < (1 << 4); j++) {
+                //10进制
+                ReentrantLock lock = new ReentrantLock();
+                long nextId = 0L;
+                try {
+                    lock.lock();
+                    Thread.sleep(10);
+                    nextId = snowFlakeutils1.nextId();
+                    if (hashMap.containsKey(nextId)) {
+                        System.out.println("contons:id : " + nextId);
+                    } else {
+                        System.out.println(nextId + "----" + finalI);
+                        hashMap.put(nextId, nextId);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+
+
+//                }
+            });
         }
+        while (true) {
+
+        }
+
     }
 
 }

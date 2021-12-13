@@ -1,6 +1,8 @@
 package com.lt.dailytest.currontest;
 
-import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.Executor;
 
 /**
  * @author tong.luo
@@ -25,5 +27,24 @@ public class ThreadTest {
         new_thread_.setDaemon(true);
         new_thread_.start();
         System.out.println("main exit");
+    }
+
+    @Test
+    public void testThreadPool() throws Exception {
+        Executor test = com.lt.dailytest.utils.project.ThreadPoolUtils.getThreadPool(1, "test");
+        for (int i = 0; i < Runtime.getRuntime().availableProcessors(); i++) {
+            test.execute(() -> {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + ":" + System.currentTimeMillis());
+            });
+        }
+
+        while (true) {
+            Thread.sleep(10000);
+        }
     }
 }
