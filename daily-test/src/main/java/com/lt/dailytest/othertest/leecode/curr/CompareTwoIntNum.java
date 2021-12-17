@@ -16,8 +16,14 @@ public class CompareTwoIntNum {
         return a > b ? a : b;
     }
 
+    /**
+     * 使用异或的方式进行
+     * @param a
+     * @param b
+     * @return
+     */
     public int maximum1(int a, int b) {
-        int num = a > b ? a : b;
-        return a > b ? a : b;
+        int k = (int) (((long) a - (long) b) >>> 63 & 1);
+        return a * (1 - k) + b * k;
     }
 }

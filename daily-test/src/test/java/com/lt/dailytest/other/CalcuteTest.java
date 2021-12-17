@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class CalcuteTest {
     @Test
     public void caucuTest() {
-        BigDecimal divide = new BigDecimal("0.2").divide(new BigDecimal("416.6"), 10, BigDecimal.ROUND_DOWN);
+        BigDecimal divide = new BigDecimal("2.58").divide(new BigDecimal("511.52"), 10, BigDecimal.ROUND_DOWN);
         System.out.println(divide);
         BigDecimal add = new BigDecimal("3501749648.32").add(new BigDecimal("2387815.71"));
         System.out.println(add);
