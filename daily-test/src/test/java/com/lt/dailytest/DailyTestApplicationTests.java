@@ -10,6 +10,7 @@ import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.common.ValidatorUtil;
 import com.lt.dailytest.othertest.validate.TestBean;
 import com.lt.dailytest.utils.major.MajorKeyFactory;
+import com.lt.dailytest.utils.project.ThreadPoolUtils;
 import com.lt.dailytest.vo.MailVo;
 import com.lt.dailytest.vo.MailVotest;
 import org.apache.commons.lang3.RandomUtils;
@@ -30,10 +31,12 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -61,17 +64,29 @@ class DailyTestApplicationTests {
 
     @Test
     public void getId() {
-        int loopcal = 10;
+        int loopcal = 5000;
         CountDownLatch countDownLatch = new CountDownLatch(loopcal);
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(loopcal, loopcal, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
-                new ThreadPoolExecutor.CallerRunsPolicy());
+        Executor defaultThreadPool = ThreadPoolUtils.getDefaultThreadPool();
+        HashMap<String, String> hashMap = new HashMap<>();
         try {
             for (int i = 0; i < loopcal; i++) {
                 countDownLatch.countDown();
-                threadPoolExecutor.execute(() -> {
+                defaultThreadPool.execute(() -> {
                     for (int j = 0; j < 10000; j++) {
                         String generatePrimaryKey = MajorKeyFactory.generatePrimaryKey();
-                        logger.info("generatePrimaryKey :[{}],count:{}", generatePrimaryKey, countDownLatch.getCount());
+                        Long generatePrimaryKeyLongVal = MajorKeyFactory.generatePrimaryKeyLongVal();
+
+                        logger.info("generatePrimaryKey:[{}],generatePrimaryKeyLongVal:[{}]", generatePrimaryKey, generatePrimaryKeyLongVal);
+                        if (null != hashMap.get(generatePrimaryKey)) {
+                            this.logger.info("repecr id : [{}]", generatePrimaryKey);
+                        }
+                        if (null != hashMap.get(String.valueOf(generatePrimaryKeyLongVal))) {
+                            this.logger.info("repecr id : [{}]", generatePrimaryKeyLongVal);
+                        }
+                        hashMap.put(generatePrimaryKey, generatePrimaryKey);
+                        hashMap.put(String.valueOf(generatePrimaryKeyLongVal), String.valueOf(generatePrimaryKeyLongVal));
+                        /*logger.info("generatePrimaryKey thread id:[{}];thread name:[{}] :[{}],count:{}",
+                                Thread.currentThread().getId(), Thread.currentThread().getName(), generatePrimaryKey, countDownLatch.getCount());*/
 
                     }
                 });
@@ -81,6 +96,9 @@ class DailyTestApplicationTests {
 
             logger.info(",count:{}", countDownLatch.getCount());
         } catch (Exception e) {
+
+        }
+        while (true) {
 
         }
     }
