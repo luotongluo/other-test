@@ -1,15 +1,12 @@
 package com.lt.dailytest;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
 import com.alibaba.fastjson.JSON;
 import com.lt.dailytest.dao.TestMapper;
-import com.lt.dailytest.utils.project.SelfJedisUtils;
+import com.lt.dailytest.othertest.validate.TestBean;
 import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.common.ValidatorUtil;
-import com.lt.dailytest.othertest.validate.TestBean;
 import com.lt.dailytest.utils.major.MajorKeyFactory;
+import com.lt.dailytest.utils.project.SelfJedisUtils;
 import com.lt.dailytest.utils.project.ThreadPoolUtils;
 import com.lt.dailytest.vo.MailVo;
 import com.lt.dailytest.vo.MailVotest;
@@ -31,6 +28,8 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +45,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-class DailyTestApplicationTests {
+public class DailyTestApplicationTests {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private SelfJedisUtils jedisUtils;
@@ -58,12 +57,12 @@ class DailyTestApplicationTests {
     TestMapper testMapper;
 
     @Test
-    public void BigdicimalTest() {
+    void BigdicimalTest() {
 
     }
 
     @Test
-    public void getId() {
+    void getId() {
         int loopcal = 5000;
         CountDownLatch countDownLatch = new CountDownLatch(loopcal);
         Executor defaultThreadPool = ThreadPoolUtils.getDefaultThreadPool();
@@ -77,11 +76,8 @@ class DailyTestApplicationTests {
                         Long generatePrimaryKeyLongVal = MajorKeyFactory.generatePrimaryKeyLongVal();
 
                         logger.info("generatePrimaryKey:[{}],generatePrimaryKeyLongVal:[{}]", generatePrimaryKey, generatePrimaryKeyLongVal);
-                        if (null != hashMap.get(generatePrimaryKey)) {
+                        if (null != hashMap.get(generatePrimaryKey) || null != hashMap.get(String.valueOf(generatePrimaryKeyLongVal))) {
                             this.logger.info("repecr id : [{}]", generatePrimaryKey);
-                        }
-                        if (null != hashMap.get(String.valueOf(generatePrimaryKeyLongVal))) {
-                            this.logger.info("repecr id : [{}]", generatePrimaryKeyLongVal);
                         }
                         hashMap.put(generatePrimaryKey, generatePrimaryKey);
                         hashMap.put(String.valueOf(generatePrimaryKeyLongVal), String.valueOf(generatePrimaryKeyLongVal));
@@ -104,19 +100,19 @@ class DailyTestApplicationTests {
     }
 
     @Test
-    public void testgetId() {
+    void testgetId() {
         String generatePrimaryKey = MajorKeyFactory.generatePrimaryKey();
         logger.info("generatePrimaryKey :[{}],count:", generatePrimaryKey);
     }
 
     @Test
-    public void testSql() {
+    void testSql() {
         List<Object> objects = this.testMapper.selectAll();
         System.out.println(JSON.toJSONString(objects));
     }
 
     @Test
-    public void testTransaction() {
+    void testTransaction() {
         PlatformTransactionManager platformTransactionManager = new PlatformTransactionManager() {
             @Override
             public TransactionStatus getTransaction(TransactionDefinition definition) throws TransactionException {
@@ -153,14 +149,14 @@ class DailyTestApplicationTests {
         }
         mttc.execut();
         try {
-            Thread.sleep(2000);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void mapStructTest() {
+    void mapStructTest() {
         System.out.println();
 //        ConverMapper mapper = Mappers.getMapper(ConverMapper.class);
 //        CopyBean1 copyBean1 = new CopyBean1();
@@ -176,7 +172,7 @@ class DailyTestApplicationTests {
     }
 
     @Test
-    public void testcopy() {
+    void testcopy() {
         MailVo mailVo = new MailVo();
         mailVo.setPageIndex(123);
         mailVo.setPageSize(123);
@@ -202,7 +198,7 @@ class DailyTestApplicationTests {
     }
 
     @Test
-    public void readFile() throws Exception {
+    void readFile() throws Exception {
         String fileName = "templates/开票单张限额.xls";
         //InputStream resourceAsStream = this.getClass().getResourceAsStream(fileName);
         InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
@@ -256,7 +252,7 @@ class DailyTestApplicationTests {
     }
 
     @Test
-    public void testsub() {
+    void testsub() {
         Integer aa = 4;
         Integer bb = -0;
         System.out.println(aa + bb);
