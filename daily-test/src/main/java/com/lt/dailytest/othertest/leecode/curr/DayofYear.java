@@ -1,5 +1,7 @@
 package com.lt.dailytest.othertest.leecode.curr;
 
+import java.time.LocalDate;
+
 /**
  * @author 12828
  * @description DayofYear
@@ -29,5 +31,9 @@ public class DayofYear {
         }
 
         return day;
+    }
+    public int dayOfYear1(String date) {
+        String[] dates = date.split("-");
+        return LocalDate.of(Integer.parseInt(dates[0]), Integer.parseInt(dates[1]), Integer.parseInt(dates[2])).getDayOfYear();
     }
 }

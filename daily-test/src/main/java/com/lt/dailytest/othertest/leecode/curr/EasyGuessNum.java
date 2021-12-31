@@ -16,6 +16,6 @@ package com.lt.dailytest.othertest.leecode.curr;
  */
 public class EasyGuessNum {
     public int guessNumber(int n) {
-
+        return 0;
     }
 }

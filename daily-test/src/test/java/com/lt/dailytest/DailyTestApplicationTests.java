@@ -1,15 +1,12 @@
 package com.lt.dailytest;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
 import com.alibaba.fastjson.JSON;
 import com.lt.dailytest.dao.TestMapper;
-import com.lt.dailytest.utils.project.SelfJedisUtils;
+import com.lt.dailytest.othertest.validate.TestBean;
 import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.common.ValidatorUtil;
-import com.lt.dailytest.othertest.validate.TestBean;
 import com.lt.dailytest.utils.major.MajorKeyFactory;
+import com.lt.dailytest.utils.project.SelfJedisUtils;
 import com.lt.dailytest.vo.MailVo;
 import com.lt.dailytest.vo.MailVotest;
 import org.apache.commons.lang3.RandomUtils;
@@ -30,6 +27,8 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -71,7 +70,8 @@ class DailyTestApplicationTests {
                 threadPoolExecutor.execute(() -> {
                     for (int j = 0; j < 10000; j++) {
                         String generatePrimaryKey = MajorKeyFactory.generatePrimaryKey();
-                        logger.info("generatePrimaryKey :[{}],count:{}", generatePrimaryKey, countDownLatch.getCount());
+                        Long generatePrimaryKeyLongVal = MajorKeyFactory.generatePrimaryKeyLongVal();
+                        logger.info("generatePrimaryKey :[{}],generatePrimaryKeyLongVal:{}", generatePrimaryKey, generatePrimaryKeyLongVal);
 
                     }
                 });
