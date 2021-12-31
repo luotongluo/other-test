@@ -7,6 +7,8 @@ import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.common.ValidatorUtil;
 import com.lt.dailytest.utils.major.MajorKeyFactory;
 import com.lt.dailytest.utils.project.SelfJedisUtils;
+import com.lt.dailytest.utils.project.SelfJedisUtils;
+import com.lt.dailytest.utils.project.ThreadPoolUtils;
 import com.lt.dailytest.vo.MailVo;
 import com.lt.dailytest.vo.MailVotest;
 import org.apache.commons.lang3.RandomUtils;
@@ -29,10 +31,14 @@ import org.springframework.transaction.TransactionStatus;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +48,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-class DailyTestApplicationTests {
+public class DailyTestApplicationTests {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private SelfJedisUtils jedisUtils;
@@ -54,24 +60,32 @@ class DailyTestApplicationTests {
     TestMapper testMapper;
 
     @Test
-    public void BigdicimalTest() {
+    void BigdicimalTest() {
 
     }
 
     @Test
-    public void getId() {
-        int loopcal = 10;
+    void getId() {
+        int loopcal = 5000;
         CountDownLatch countDownLatch = new CountDownLatch(loopcal);
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(loopcal, loopcal, 0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
-                new ThreadPoolExecutor.CallerRunsPolicy());
+        Executor defaultThreadPool = ThreadPoolUtils.getDefaultThreadPool();
+        HashMap<String, String> hashMap = new HashMap<>();
         try {
             for (int i = 0; i < loopcal; i++) {
                 countDownLatch.countDown();
-                threadPoolExecutor.execute(() -> {
+                defaultThreadPool.execute(() -> {
                     for (int j = 0; j < 10000; j++) {
                         String generatePrimaryKey = MajorKeyFactory.generatePrimaryKey();
                         Long generatePrimaryKeyLongVal = MajorKeyFactory.generatePrimaryKeyLongVal();
-                        logger.info("generatePrimaryKey :[{}],generatePrimaryKeyLongVal:{}", generatePrimaryKey, generatePrimaryKeyLongVal);
+
+                        logger.info("generatePrimaryKey:[{}],generatePrimaryKeyLongVal:[{}]", generatePrimaryKey, generatePrimaryKeyLongVal);
+                        if (null != hashMap.get(generatePrimaryKey) || null != hashMap.get(String.valueOf(generatePrimaryKeyLongVal))) {
+                            this.logger.info("repecr id : [{}]", generatePrimaryKey);
+                        }
+                        hashMap.put(generatePrimaryKey, generatePrimaryKey);
+                        hashMap.put(String.valueOf(generatePrimaryKeyLongVal), String.valueOf(generatePrimaryKeyLongVal));
+                        /*logger.info("generatePrimaryKey thread id:[{}];thread name:[{}] :[{}],count:{}",
+                                Thread.currentThread().getId(), Thread.currentThread().getName(), generatePrimaryKey, countDownLatch.getCount());*/
 
                     }
                 });
@@ -83,22 +97,25 @@ class DailyTestApplicationTests {
         } catch (Exception e) {
 
         }
+        while (true) {
+
+        }
     }
 
     @Test
-    public void testgetId() {
+    void testgetId() {
         String generatePrimaryKey = MajorKeyFactory.generatePrimaryKey();
         logger.info("generatePrimaryKey :[{}],count:", generatePrimaryKey);
     }
 
     @Test
-    public void testSql() {
+    void testSql() {
         List<Object> objects = this.testMapper.selectAll();
         System.out.println(JSON.toJSONString(objects));
     }
 
     @Test
-    public void testTransaction() {
+    void testTransaction() {
         PlatformTransactionManager platformTransactionManager = new PlatformTransactionManager() {
             @Override
             public TransactionStatus getTransaction(TransactionDefinition definition) throws TransactionException {
@@ -135,14 +152,14 @@ class DailyTestApplicationTests {
         }
         mttc.execut();
         try {
-            Thread.sleep(2000);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void mapStructTest() {
+    void mapStructTest() {
         System.out.println();
 //        ConverMapper mapper = Mappers.getMapper(ConverMapper.class);
 //        CopyBean1 copyBean1 = new CopyBean1();
@@ -158,7 +175,7 @@ class DailyTestApplicationTests {
     }
 
     @Test
-    public void testcopy() {
+    void testcopy() {
         MailVo mailVo = new MailVo();
         mailVo.setPageIndex(123);
         mailVo.setPageSize(123);
@@ -184,7 +201,7 @@ class DailyTestApplicationTests {
     }
 
     @Test
-    public void readFile() throws Exception {
+    void readFile() throws Exception {
         String fileName = "templates/开票单张限额.xls";
         //InputStream resourceAsStream = this.getClass().getResourceAsStream(fileName);
         InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
@@ -238,7 +255,7 @@ class DailyTestApplicationTests {
     }
 
     @Test
-    public void testsub() {
+    void testsub() {
         Integer aa = 4;
         Integer bb = -0;
         System.out.println(aa + bb);
