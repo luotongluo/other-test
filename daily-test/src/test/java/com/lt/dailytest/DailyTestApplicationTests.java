@@ -7,6 +7,7 @@ import com.lt.dailytest.utils.MultiThreadTransactionComponent;
 import com.lt.dailytest.utils.common.ValidatorUtil;
 import com.lt.dailytest.utils.major.MajorKeyFactory;
 import com.lt.dailytest.utils.project.SelfJedisUtils;
+import com.lt.dailytest.utils.project.SelfJedisUtils;
 import com.lt.dailytest.utils.project.ThreadPoolUtils;
 import com.lt.dailytest.vo.MailVo;
 import com.lt.dailytest.vo.MailVotest;
@@ -28,6 +29,8 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;

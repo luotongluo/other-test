@@ -103,8 +103,5 @@ class MqTest {
             String msg = "info " + i;
             channel.basicPublish(NORMAL_EXCHANGE, NORMAL_ROUT_KEY, build, msg.getBytes());
         }
-        for (; ; ) {
-
-        }
     }
 }
