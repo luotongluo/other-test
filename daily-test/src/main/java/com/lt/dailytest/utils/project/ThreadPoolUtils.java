@@ -39,7 +39,7 @@ public class ThreadPoolUtils extends ThreadPoolExecutor {
 
     /**
      * 得到线程池
-     *
+     * 如果任务已满 在当前线程中执行任务
      * @param poolSize
      * @param poolName
      * @return
@@ -49,10 +49,10 @@ public class ThreadPoolUtils extends ThreadPoolExecutor {
         if (poolSize < 0) {
             poolSize = Runtime.getRuntime().availableProcessors();
         }
-        LinkedBlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
+        LinkedBlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>(1024);
         NamingThreadFactory threadFactory = new NamingThreadFactory(poolName);
-        AbortPolicy abortPolicy = new AbortPolicy();
-        return new ThreadPoolExecutor(poolSize, poolSize, 0L, TimeUnit.SECONDS, blockingQueue, threadFactory, abortPolicy);
+        CallerRunsPolicy callerRunsPolicy = new CallerRunsPolicy();
+        return new ThreadPoolExecutor(poolSize, poolSize, 0L, TimeUnit.SECONDS, blockingQueue, threadFactory, callerRunsPolicy);
     }
 
     private static class NamingThreadFactory implements ThreadFactory {
