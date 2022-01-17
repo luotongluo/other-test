@@ -3,7 +3,6 @@ package com.lt.dailytest;
 import org.junit.jupiter.api.Test;
 
 import java.io.UnsupportedEncodingException;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -36,6 +35,9 @@ public class RegTest {
         String namereg = "^[一-龥\\w\\s~!@%#$^*+='?\\-\\\\/(){}\\[\\],.\\|《》、，。！{}·#￥……*（）——:：“”？【】；‘’`_;\"]{1,40}$";
         boolean isMatch = Pattern.compile(namereg).matcher("  Φ123*22MM123*22MM").matches();
         System.out.println(isMatch);
+        String str = "";
+        String[] split = str.split("-");
+        System.out.println(split);
     }
 
     /**
