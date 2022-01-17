@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.dailytest.dao.StockBuyTableMapper">
+
+    <resultMap type="com.lt.dailytest.entity.StockBuyTable" id="StockBuyTableMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stockNum" column="stock_num" jdbcType="VARCHAR"/>
+        <result property="buyOneNum" column="buy_one_num" jdbcType="VARCHAR"/>
+        <result property="buyOneMon" column="buy_one_mon" jdbcType="VARCHAR"/>
+        <result property="buyTwoNum" column="buy_two_num" jdbcType="VARCHAR"/>
+        <result property="buyTwoMon" column="buy_two_mon" jdbcType="VARCHAR"/>
+        <result property="buyThreeNum" column="buy_three_num" jdbcType="VARCHAR"/>
+        <result property="buyThreeMon" column="buy_three_mon" jdbcType="VARCHAR"/>
+        <result property="buyForeNum" column="buy_fore_num" jdbcType="VARCHAR"/>
+        <result property="buyForeMon" column="buy_fore_mon" jdbcType="VARCHAR"/>
+        <result property="buyFiveNum" column="buy_five_num" jdbcType="VARCHAR"/>
+        <result property="buyFiveMon" column="buy_five_mon" jdbcType="VARCHAR"/>
+        <result property="dealDate" column="deal_date" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StockBuyTableMap">
+        select id,
+               stock_num,
+               buy_one_num,
+               buy_one_mon,
+               buy_two_num,
+               buy_two_mon,
+               buy_three_num,
+               buy_three_mon,
+               buy_fore_num,
+               buy_fore_mon,
+               buy_five_num,
+               buy_five_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_buy_table
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StockBuyTableMap">
+        select id,
+               stock_num,
+               buy_one_num,
+               buy_one_mon,
+               buy_two_num,
+               buy_two_mon,
+               buy_three_num,
+               buy_three_mon,
+               buy_fore_num,
+               buy_fore_mon,
+               buy_five_num,
+               buy_five_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_buy_table
+                  limit #{offset}
+           , #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="StockBuyTableMap">
+        select
+        id, stock_num, buy_one_num, buy_one_mon, buy_two_num, buy_two_mon, buy_three_num, buy_three_mon, buy_fore_num,
+        buy_fore_mon, buy_five_num, buy_five_mon, deal_date, create_time, update_time
+        from  stock_buy_table
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="stockNum != null and stockNum != ''">
+                and stock_num = #{stockNum}
+            </if>
+            <if test="buyOneNum != null and buyOneNum != ''">
+                and buy_one_num = #{buyOneNum}
+            </if>
+            <if test="buyOneMon != null and buyOneMon != ''">
+                and buy_one_mon = #{buyOneMon}
+            </if>
+            <if test="buyTwoNum != null and buyTwoNum != ''">
+                and buy_two_num = #{buyTwoNum}
+            </if>
+            <if test="buyTwoMon != null and buyTwoMon != ''">
+                and buy_two_mon = #{buyTwoMon}
+            </if>
+            <if test="buyThreeNum != null and buyThreeNum != ''">
+                and buy_three_num = #{buyThreeNum}
+            </if>
+            <if test="buyThreeMon != null and buyThreeMon != ''">
+                and buy_three_mon = #{buyThreeMon}
+            </if>
+            <if test="buyForeNum != null and buyForeNum != ''">
+                and buy_fore_num = #{buyForeNum}
+            </if>
+            <if test="buyForeMon != null and buyForeMon != ''">
+                and buy_fore_mon = #{buyForeMon}
+            </if>
+            <if test="buyFiveNum != null and buyFiveNum != ''">
+                and buy_five_num = #{buyFiveNum}
+            </if>
+            <if test="buyFiveMon != null and buyFiveMon != ''">
+                and buy_five_mon = #{buyFiveMon}
+            </if>
+            <if test="dealDate != null">
+                and deal_date = #{dealDate}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_buy_table(stock_num, buy_one_num, buy_one_mon, buy_two_num, buy_two_mon,
+                                     buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num,
+                                     buy_five_mon, deal_date, create_time, update_time)
+        values (#{stockNum}, #{buyOneNum}, #{buyOneMon}, #{buyTwoNum}, #{buyTwoMon}, #{buyThreeNum}, #{buyThreeMon}, #{buyForeNum}, #{buyForeMon}, #{buyFiveNum}, #{buyFiveMon}, #{dealDate}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_buy_table(stock_num, buy_one_num, buy_one_mon, buy_two_num, buy_two_mon,
+        buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num, buy_five_mon, deal_date, create_time,
+        update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockNum}, #{entity.buyOneNum}, #{entity.buyOneMon}, #{entity.buyTwoNum}, #{entity.buyTwoMon},
+            #{entity.buyThreeNum}, #{entity.buyThreeMon}, #{entity.buyForeNum}, #{entity.buyForeMon},
+            #{entity.buyFiveNum}, #{entity.buyFiveMon}, #{entity.dealDate}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_buy_table(stock_num, buy_one_num, buy_one_mon, buy_two_num, buy_two_mon,
+        buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num, buy_five_mon, deal_date, create_time,
+        update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockNum}, #{entity.buyOneNum}, #{entity.buyOneMon}, #{entity.buyTwoNum}, #{entity.buyTwoMon},
+            #{entity.buyThreeNum}, #{entity.buyThreeMon}, #{entity.buyForeNum}, #{entity.buyForeMon},
+            #{entity.buyFiveNum}, #{entity.buyFiveMon}, #{entity.dealDate}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        stock_num = values(stock_num) , buy_one_num = values(buy_one_num) , buy_one_mon = values(buy_one_mon) ,
+        buy_two_num = values(buy_two_num) , buy_two_mon = values(buy_two_mon) , buy_three_num = values(buy_three_num) ,
+        buy_three_mon = values(buy_three_mon) , buy_fore_num = values(buy_fore_num) , buy_fore_mon =
+        values(buy_fore_mon) , buy_five_num = values(buy_five_num) , buy_five_mon = values(buy_five_mon) , deal_date =
+        values(deal_date) , create_time = values(create_time) , update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update  stock_buy_table
+        <set>
+            <if test="stockNum != null and stockNum != ''">
+                stock_num = #{stockNum},
+            </if>
+            <if test="buyOneNum != null and buyOneNum != ''">
+                buy_one_num = #{buyOneNum},
+            </if>
+            <if test="buyOneMon != null and buyOneMon != ''">
+                buy_one_mon = #{buyOneMon},
+            </if>
+            <if test="buyTwoNum != null and buyTwoNum != ''">
+                buy_two_num = #{buyTwoNum},
+            </if>
+            <if test="buyTwoMon != null and buyTwoMon != ''">
+                buy_two_mon = #{buyTwoMon},
+            </if>
+            <if test="buyThreeNum != null and buyThreeNum != ''">
+                buy_three_num = #{buyThreeNum},
+            </if>
+            <if test="buyThreeMon != null and buyThreeMon != ''">
+                buy_three_mon = #{buyThreeMon},
+            </if>
+            <if test="buyForeNum != null and buyForeNum != ''">
+                buy_fore_num = #{buyForeNum},
+            </if>
+            <if test="buyForeMon != null and buyForeMon != ''">
+                buy_fore_mon = #{buyForeMon},
+            </if>
+            <if test="buyFiveNum != null and buyFiveNum != ''">
+                buy_five_num = #{buyFiveNum},
+            </if>
+            <if test="buyFiveMon != null and buyFiveMon != ''">
+                buy_five_mon = #{buyFiveMon},
+            </if>
+            <if test="dealDate != null">
+                deal_date = #{dealDate},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from  stock_buy_table
+        where id = #{id}
+    </delete>
+    <delete id="deleteBystockNums">
+        delete
+        from  stock_buy_table
+        where deal_date = #{formatDate} and stock_num in (
+        <foreach collection="StockNums" index="index" separator="," item="item">
+            #{item}
+        </foreach>
+        )
+    </delete>
+</mapper>
+

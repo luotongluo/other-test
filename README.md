@@ -19,3 +19,4 @@ eureka.client.serviceUrl.defaultZone=http://root:root@${eureka.instance.hostname
 
     con-con 集合服务 port：8020
     con-base 基础服务 port：8010
+    con-mq  mq测试 port：8030

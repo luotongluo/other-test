@@ -1,6 +1,8 @@
 package com.lt.dailytest;
 
-import java.util.regex.Matcher;
+import org.junit.jupiter.api.Test;
+
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
 /**
@@ -31,23 +33,27 @@ public class RegTest {
 //        boolean isMatch =  Pattern.compile(namereg).matcher("010-56189057").matches();
 //        System.out.println(isMatch);
         String namereg = "^[一-龥\\w\\s~!@%#$^*+='?\\-\\\\/(){}\\[\\],.\\|《》、，。！{}·#￥……*（）——:：“”？【】；‘’`_;\"]{1,40}$";
-        boolean isMatch =  Pattern.compile(namereg).matcher("  Φ123*22MM123*22MM").matches();
+        boolean isMatch = Pattern.compile(namereg).matcher("  Φ123*22MM123*22MM").matches();
         System.out.println(isMatch);
+        String str = "";
+        String[] split = str.split("-");
+        System.out.println(split);
     }
 
     /**
      * https://blog.csdn.net/make164492212/article/details/51656638
+     *
      * @param mail
      * @return
      */
     private static boolean validatMail(String mail) {
         String mailReg = "^[0-9a-zA-Z]{0,9}@[0-9a-zA-Z]{0,9}[\\.]+$";
         //只允许英文字母、数字、下划线、英文句号、以及中划线组成
-         mailReg = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
-         //名称允许汉字、字母、数字，域名只允许英文域名
-         mailReg = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
-         //通用的邮箱校验
-         mailReg = "^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-z]{2,}$";
+        mailReg = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+        //名称允许汉字、字母、数字，域名只允许英文域名
+        mailReg = "^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+        //通用的邮箱校验
+        mailReg = "^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-z]{2,}$";
         boolean matches = Pattern.compile(mailReg).matcher(mail).matches();
         return matches;
     }
@@ -56,5 +62,32 @@ public class RegTest {
         String phonReg = "^[1][3,9][0-9]{9}$";
         boolean matches = Pattern.compile(phonReg).matcher(phoneNum).matches();
         return matches;
+    }
+
+    @Test
+    public void testRe1() {
+        String val = "0.0";
+        //第一个匹配 前8后2 第二个匹配 0 第三个 匹配 个位数的小数点
+        String reg = "(^[1-9]([0-9]{1,7})?(\\.[0-9]{1,2})?$)|(^(0)$)|(^[0-9]\\.[0-9]([0-9])?$)";
+        boolean matches = Pattern.compile(reg).matcher(val).matches();
+        System.out.println(matches);
+    }
+
+    @Test
+    public void testRe2() {
+        String charsetName = "GBK";
+        String unit = "淼";
+        System.out.println(unit.length());
+        if(org.apache.commons.lang3.StringUtils.isNotEmpty(unit)){
+            try {
+                byte[] bytes = unit.getBytes(charsetName);
+                System.out.println("bytes:"+bytes.length);
+                if(bytes.length > 20){
+                    System.out.println("true");
+                }
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.dailytest.dao.StockSellTableMapper">
+
+    <resultMap type="com.lt.dailytest.entity.StockSellTable" id="StockSellTableMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stockNum" column="stock_num" jdbcType="VARCHAR"/>
+        <result property="sellOneNum" column="sell_one_num" jdbcType="VARCHAR"/>
+        <result property="sellOneMon" column="sell_one_mon" jdbcType="VARCHAR"/>
+        <result property="sellTwoNum" column="sell_two_num" jdbcType="VARCHAR"/>
+        <result property="sellTwoMon" column="sell_two_mon" jdbcType="VARCHAR"/>
+        <result property="sellThreeNum" column="sell_three_num" jdbcType="VARCHAR"/>
+        <result property="sellThreeMon" column="sell_three_mon" jdbcType="VARCHAR"/>
+        <result property="sellForeNum" column="sell_fore_num" jdbcType="VARCHAR"/>
+        <result property="sellForeMon" column="sell_fore_mon" jdbcType="VARCHAR"/>
+        <result property="sellFiveNum" column="sell_five_num" jdbcType="VARCHAR"/>
+        <result property="sellFiveMon" column="sell_five_mon" jdbcType="VARCHAR"/>
+        <result property="dealDate" column="deal_date" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StockSellTableMap">
+        select id,
+               stock_num,
+               sell_one_num,
+               sell_one_mon,
+               sell_two_num,
+               sell_two_mon,
+               sell_three_num,
+               sell_three_mon,
+               sell_fore_num,
+               sell_fore_mon,
+               sell_five_num,
+               sell_five_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_sell_table
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StockSellTableMap">
+        select id,
+               stock_num,
+               sell_one_num,
+               sell_one_mon,
+               sell_two_num,
+               sell_two_mon,
+               sell_three_num,
+               sell_three_mon,
+               sell_fore_num,
+               sell_fore_mon,
+               sell_five_num,
+               sell_five_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_sell_table
+                  limit #{offset}
+           , #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="StockSellTableMap">
+        select
+        id, stock_num, sell_one_num, sell_one_mon, sell_two_num, sell_two_mon, sell_three_num, sell_three_mon,
+        sell_fore_num, sell_fore_mon, sell_five_num, sell_five_mon, deal_date, create_time, update_time
+        from  stock_sell_table
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="stockNum != null and stockNum != ''">
+                and stock_num = #{stockNum}
+            </if>
+            <if test="sellOneNum != null and sellOneNum != ''">
+                and sell_one_num = #{sellOneNum}
+            </if>
+            <if test="sellOneMon != null and sellOneMon != ''">
+                and sell_one_mon = #{sellOneMon}
+            </if>
+            <if test="sellTwoNum != null and sellTwoNum != ''">
+                and sell_two_num = #{sellTwoNum}
+            </if>
+            <if test="sellTwoMon != null and sellTwoMon != ''">
+                and sell_two_mon = #{sellTwoMon}
+            </if>
+            <if test="sellThreeNum != null and sellThreeNum != ''">
+                and sell_three_num = #{sellThreeNum}
+            </if>
+            <if test="sellThreeMon != null and sellThreeMon != ''">
+                and sell_three_mon = #{sellThreeMon}
+            </if>
+            <if test="sellForeNum != null and sellForeNum != ''">
+                and sell_fore_num = #{sellForeNum}
+            </if>
+            <if test="sellForeMon != null and sellForeMon != ''">
+                and sell_fore_mon = #{sellForeMon}
+            </if>
+            <if test="sellFiveNum != null and sellFiveNum != ''">
+                and sell_five_num = #{sellFiveNum}
+            </if>
+            <if test="sellFiveMon != null and sellFiveMon != ''">
+                and sell_five_mon = #{sellFiveMon}
+            </if>
+            <if test="dealDate != null">
+                and deal_date = #{dealDate}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_sell_table(stock_num, sell_one_num, sell_one_mon, sell_two_num, sell_two_mon,
+                                      sell_three_num, sell_three_mon, sell_fore_num, sell_fore_mon,
+                                      sell_five_num, sell_five_mon, deal_date, create_time, update_time)
+        values (#{stockNum}, #{sellOneNum}, #{sellOneMon}, #{sellTwoNum}, #{sellTwoMon}, #{sellThreeNum}, #{sellThreeMon}, #{sellForeNum}, #{sellForeMon}, #{sellFiveNum}, #{sellFiveMon}, #{dealDate}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_sell_table(stock_num, sell_one_num, sell_one_mon, sell_two_num, sell_two_mon,
+        sell_three_num, sell_three_mon, sell_fore_num, sell_fore_mon, sell_five_num, sell_five_mon, deal_date,
+        create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockNum}, #{entity.sellOneNum}, #{entity.sellOneMon}, #{entity.sellTwoNum}, #{entity.sellTwoMon},
+            #{entity.sellThreeNum}, #{entity.sellThreeMon}, #{entity.sellForeNum}, #{entity.sellForeMon},
+            #{entity.sellFiveNum}, #{entity.sellFiveMon}, #{entity.dealDate}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_sell_table(stock_num, sell_one_num, sell_one_mon, sell_two_num, sell_two_mon,
+        sell_three_num, sell_three_mon, sell_fore_num, sell_fore_mon, sell_five_num, sell_five_mon, deal_date,
+        create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockNum}, #{entity.sellOneNum}, #{entity.sellOneMon}, #{entity.sellTwoNum}, #{entity.sellTwoMon},
+            #{entity.sellThreeNum}, #{entity.sellThreeMon}, #{entity.sellForeNum}, #{entity.sellForeMon},
+            #{entity.sellFiveNum}, #{entity.sellFiveMon}, #{entity.dealDate}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        stock_num = values(stock_num) , sell_one_num = values(sell_one_num) , sell_one_mon = values(sell_one_mon) ,
+        sell_two_num = values(sell_two_num) , sell_two_mon = values(sell_two_mon) , sell_three_num =
+        values(sell_three_num) , sell_three_mon = values(sell_three_mon) , sell_fore_num = values(sell_fore_num) ,
+        sell_fore_mon = values(sell_fore_mon) , sell_five_num = values(sell_five_num) , sell_five_mon =
+        values(sell_five_mon) , deal_date = values(deal_date) , create_time = values(create_time) , update_time =
+        values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update  stock_sell_table
+        <set>
+            <if test="stockNum != null and stockNum != ''">
+                stock_num = #{stockNum},
+            </if>
+            <if test="sellOneNum != null and sellOneNum != ''">
+                sell_one_num = #{sellOneNum},
+            </if>
+            <if test="sellOneMon != null and sellOneMon != ''">
+                sell_one_mon = #{sellOneMon},
+            </if>
+            <if test="sellTwoNum != null and sellTwoNum != ''">
+                sell_two_num = #{sellTwoNum},
+            </if>
+            <if test="sellTwoMon != null and sellTwoMon != ''">
+                sell_two_mon = #{sellTwoMon},
+            </if>
+            <if test="sellThreeNum != null and sellThreeNum != ''">
+                sell_three_num = #{sellThreeNum},
+            </if>
+            <if test="sellThreeMon != null and sellThreeMon != ''">
+                sell_three_mon = #{sellThreeMon},
+            </if>
+            <if test="sellForeNum != null and sellForeNum != ''">
+                sell_fore_num = #{sellForeNum},
+            </if>
+            <if test="sellForeMon != null and sellForeMon != ''">
+                sell_fore_mon = #{sellForeMon},
+            </if>
+            <if test="sellFiveNum != null and sellFiveNum != ''">
+                sell_five_num = #{sellFiveNum},
+            </if>
+            <if test="sellFiveMon != null and sellFiveMon != ''">
+                sell_five_mon = #{sellFiveMon},
+            </if>
+            <if test="dealDate != null">
+                deal_date = #{dealDate},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from  stock_sell_table
+        where id = #{id}
+    </delete>
+    <delete id="deleteBystockNums">
+        delete
+        from  stock_sell_table
+        where deal_date = #{formatDate} and stock_num in (
+        <foreach collection="StockNums" index="index" separator="," item="item">
+            #{item}
+        </foreach>
+        )
+    </delete>
+</mapper>
+

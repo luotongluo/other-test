@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8"/>
@@ -14,88 +14,43 @@
     <marquee behavior="alternate" onfinish="alert(12)" id="mq"
              onMouseOut="this.start();$('#egg').text('嗯 真听话！');"
              onMouseOver="this.stop();$('#egg').text('有本事放开我呀！');">
-        <h5 id="egg">祝大家新年快乐！</h5><img id="doge" src="http://pics.sc.chinaz.com/Files/pic/faces/3709/7.gif" alt="">
+        <h5 id="egg">^_^！</h5><img id="doge" src="http://pics.sc.chinaz.com/Files/pic/faces/3709/7.gif" alt="">
     </marquee>
-
-    <form class="form-horizontal" id="mailForm">
-        <div class="form-group">
-            <label class="col-md-2 control-label">邮件发信人:</label>
-            <div class="col-md-6">
-                <input class="form-control" id="from" name="from" th:value="${from}" readonly="readonly">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">邮件收信人:</label>
-            <div class="col-md-6">
-                <input class="form-control" id="to" name="to" title="多个邮箱使用 ; 隔开">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">邮件主题:</label>
-            <div class="col-md-6">
-                <input class="form-control" id="subject" name="subject">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">邮件内容:</label>
-            <div class="col-md-6">
-                <textarea class="form-control" id="text" name="text" rows="5"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">邮件附件:</label>
-            <div class="col-md-6">
-                <input class="form-control" id="files" name="files" type="file" multiple="multiple">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">邮件操作:</label>
-            <div class="col-md-3">
-                <a class="form-control btn btn-primary" onclick="sendMail()">发送邮件</a>
-            </div>
-            <div class="col-md-3">
-                <a class="form-control btn btn-default" onclick="clearForm()">清空</a>
-            </div>
-        </div>
-    </form>
-
-    <script th:inline="javascript">
-        var appCtx = [[${#request.getContextPath()}]];
-
-        function sendMail() {
-
-            var formData = new FormData($('#mailForm')[0]);
-            $.ajax({
-                url: appCtx + '/mail/sendMail',
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    alert(result.status === 'ok' ? "发送成功！" : "你被Doge嘲讽了：" + result.error);
-                },
-                error: function () {
-                    alert("发送失败！");
-                }
-            });
-        }
-
-        function clearForm() {
-            $('#mailForm')[0].reset();
-        }
-
-        setInterval(function () {
-            var total = $('#mq').width();
-            var width = $('#doge').width();
-            var left = $('#doge').offset().left;
-            if (left <= width / 2 + 20) {
-                $('#doge').css('transform', 'rotateY(180deg)')
-            }
-            if (left >= total - width / 2 - 40) {
-                $('#doge').css('transform', 'rotateY(-360deg)')
-            }
-        });
-    </script>
 </div>
+<div>
+    <form action="/mail/sendMail" method="post">
+        邮件发信人:<input type="text" name="from" th:value="${from}" readonly="readonly"/><br/>
+        邮件收信人:<input type="text" name="to"  title="多个邮箱使用 ; 隔开"/><br/>
+        邮件主题:<input type="text" name="subject"/><br/>
+        邮件内容:<input type="text" name="text" rows="5" style="width: 800px;height: 80px"/><br/>
+        邮件附件:<input name="files" type="file" multiple="multiple"/><br/>
+        <!--密码：<input type="password" name="password"/><br/>-->
+        <input type="submit" value="提交"/>
+    </form>
+</div>
+
+</br>
+</br>
+</br>
+<div>
+    <form role="form">
+        <div class="form-group">
+            <label for="name">名称</label>
+            <input type="text" class="form-control" id="name" placeholder="请输入名称">
+        </div>
+        <div class="form-group">
+            <label for="inputfile">文件输入</label>
+            <input type="file" id="inputfile">
+            <p class="help-block">这里是块级帮助文本的实例。</p>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox">请打勾
+            </label>
+        </div>
+        <button type="submit" class="btn btn-default">提交</button>
+    </form>
+</div>
+
 </body>
 </html>

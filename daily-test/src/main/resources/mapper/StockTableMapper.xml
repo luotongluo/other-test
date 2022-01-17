@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lt.dailytest.dao.StockTableMapper">
+
+    <resultMap type="com.lt.dailytest.entity.StockTable" id="StockTableMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stockName" column="stock_name" jdbcType="VARCHAR"/>
+        <result property="stockNum" column="stock_num" jdbcType="VARCHAR"/>
+        <result property="beginPrice" column="begin_price" jdbcType="VARCHAR"/>
+        <result property="lastDayEndPrice" column="last_day_end_price" jdbcType="VARCHAR"/>
+        <result property="currPrice" column="curr_price" jdbcType="VARCHAR"/>
+        <result property="dayMaxPrice" column="day_max_price" jdbcType="VARCHAR"/>
+        <result property="dayMinPrice" column="day_min_price" jdbcType="VARCHAR"/>
+        <result property="buyOne" column="buy_one" jdbcType="VARCHAR"/>
+        <result property="sellOne" column="sell_one" jdbcType="VARCHAR"/>
+        <result property="sellDoneNum" column="sell_done_num" jdbcType="VARCHAR"/>
+        <result property="sellDoneMon" column="sell_done_mon" jdbcType="VARCHAR"/>
+        <result property="buyOneNum" column="buy_one_num" jdbcType="VARCHAR"/>
+        <result property="buyOneMon" column="buy_one_mon" jdbcType="VARCHAR"/>
+        <result property="buyTwoNum" column="buy_two_num" jdbcType="VARCHAR"/>
+        <result property="buyTwoMon" column="buy_two_mon" jdbcType="VARCHAR"/>
+        <result property="buyThreeNum" column="buy_three_num" jdbcType="VARCHAR"/>
+        <result property="buyThreeMon" column="buy_three_mon" jdbcType="VARCHAR"/>
+        <result property="buyForeNum" column="buy_fore_num" jdbcType="VARCHAR"/>
+        <result property="buyForeMon" column="buy_fore_mon" jdbcType="VARCHAR"/>
+        <result property="buyFiveNum" column="buy_five_num" jdbcType="VARCHAR"/>
+        <result property="buyFiveMon" column="buy_five_mon" jdbcType="VARCHAR"/>
+        <result property="sellOneNum" column="sell_one_num" jdbcType="VARCHAR"/>
+        <result property="sellOneMon" column="sell_one_mon" jdbcType="VARCHAR"/>
+        <result property="sellTwoNum" column="sell_two_num" jdbcType="VARCHAR"/>
+        <result property="sellTwoMon" column="sell_two_mon" jdbcType="VARCHAR"/>
+        <result property="sellThreeNum" column="sell_three_num" jdbcType="VARCHAR"/>
+        <result property="sellThreeMon" column="sell_three_mon" jdbcType="VARCHAR"/>
+        <result property="sellForeNum" column="sell_fore_num" jdbcType="VARCHAR"/>
+        <result property="sellForeMon" column="sell_fore_mon" jdbcType="VARCHAR"/>
+        <result property="sellFiveNum" column="sell_five_num" jdbcType="VARCHAR"/>
+        <result property="sellFiveMon" column="sell_five_mon" jdbcType="VARCHAR"/>
+        <result property="dealDate" column="deal_date" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StockTableMap">
+        select id,
+               stock_name,
+               stock_num,
+               begin_price,
+               last_day_end_price,
+               curr_price,
+               day_max_price,
+               day_min_price,
+               buy_one,
+               sell_one,
+               sell_done_num,
+               sell_done_mon,
+               buy_one_num,
+               buy_one_mon,
+               buy_two_num,
+               buy_two_mon,
+               buy_three_num,
+               buy_three_mon,
+               buy_fore_num,
+               buy_fore_mon,
+               buy_five_num,
+               buy_five_mon,
+               sell_one_num,
+               sell_one_mon,
+               sell_two_num,
+               sell_two_mon,
+               sell_three_num,
+               sell_three_mon,
+               sell_fore_num,
+               sell_fore_mon,
+               sell_five_num,
+               sell_five_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_table
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StockTableMap">
+        select id,
+               stock_name,
+               stock_num,
+               begin_price,
+               last_day_end_price,
+               curr_price,
+               day_max_price,
+               day_min_price,
+               buy_one,
+               sell_one,
+               sell_done_num,
+               sell_done_mon,
+               buy_one_num,
+               buy_one_mon,
+               buy_two_num,
+               buy_two_mon,
+               buy_three_num,
+               buy_three_mon,
+               buy_fore_num,
+               buy_fore_mon,
+               buy_five_num,
+               buy_five_mon,
+               sell_one_num,
+               sell_one_mon,
+               sell_two_num,
+               sell_two_mon,
+               sell_three_num,
+               sell_three_mon,
+               sell_fore_num,
+               sell_fore_mon,
+               sell_five_num,
+               sell_five_mon,
+               deal_date,
+               create_time,
+               update_time
+        from  stock_table
+                  limit #{offset}
+           , #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="StockTableMap">
+        select
+        id, stock_name, stock_num, begin_price, last_day_end_price, curr_price, day_max_price, day_min_price, buy_one,
+        sell_one, sell_done_num, sell_done_mon, buy_one_num, buy_one_mon, buy_two_num, buy_two_mon, buy_three_num,
+        buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num, buy_five_mon, sell_one_num, sell_one_mon, sell_two_num,
+        sell_two_mon, sell_three_num, sell_three_mon, sell_fore_num, sell_fore_mon, sell_five_num, sell_five_mon,
+        deal_date, create_time, update_time,status
+        from  stock_table
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="stockName != null and stockName != ''">
+                and stock_name = #{stockName}
+            </if>
+            <if test="stockNum != null and stockNum != ''">
+                and stock_num = #{stockNum}
+            </if>
+            <if test="beginPrice != null and beginPrice != ''">
+                and begin_price = #{beginPrice}
+            </if>
+            <if test="lastDayEndPrice != null and lastDayEndPrice != ''">
+                and last_day_end_price = #{lastDayEndPrice}
+            </if>
+            <if test="currPrice != null and currPrice != ''">
+                and curr_price = #{currPrice}
+            </if>
+            <if test="dayMaxPrice != null and dayMaxPrice != ''">
+                and day_max_price = #{dayMaxPrice}
+            </if>
+            <if test="dayMinPrice != null and dayMinPrice != ''">
+                and day_min_price = #{dayMinPrice}
+            </if>
+            <if test="buyOne != null and buyOne != ''">
+                and buy_one = #{buyOne}
+            </if>
+            <if test="sellOne != null and sellOne != ''">
+                and sell_one = #{sellOne}
+            </if>
+            <if test="sellDoneNum != null and sellDoneNum != ''">
+                and sell_done_num = #{sellDoneNum}
+            </if>
+            <if test="sellDoneMon != null and sellDoneMon != ''">
+                and sell_done_mon = #{sellDoneMon}
+            </if>
+            <if test="buyOneNum != null and buyOneNum != ''">
+                and buy_one_num = #{buyOneNum}
+            </if>
+            <if test="buyOneMon != null and buyOneMon != ''">
+                and buy_one_mon = #{buyOneMon}
+            </if>
+            <if test="buyTwoNum != null and buyTwoNum != ''">
+                and buy_two_num = #{buyTwoNum}
+            </if>
+            <if test="buyTwoMon != null and buyTwoMon != ''">
+                and buy_two_mon = #{buyTwoMon}
+            </if>
+            <if test="buyThreeNum != null and buyThreeNum != ''">
+                and buy_three_num = #{buyThreeNum}
+            </if>
+            <if test="buyThreeMon != null and buyThreeMon != ''">
+                and buy_three_mon = #{buyThreeMon}
+            </if>
+            <if test="buyForeNum != null and buyForeNum != ''">
+                and buy_fore_num = #{buyForeNum}
+            </if>
+            <if test="buyForeMon != null and buyForeMon != ''">
+                and buy_fore_mon = #{buyForeMon}
+            </if>
+            <if test="buyFiveNum != null and buyFiveNum != ''">
+                and buy_five_num = #{buyFiveNum}
+            </if>
+            <if test="buyFiveMon != null and buyFiveMon != ''">
+                and buy_five_mon = #{buyFiveMon}
+            </if>
+            <if test="sellOneNum != null and sellOneNum != ''">
+                and sell_one_num = #{sellOneNum}
+            </if>
+            <if test="sellOneMon != null and sellOneMon != ''">
+                and sell_one_mon = #{sellOneMon}
+            </if>
+            <if test="sellTwoNum != null and sellTwoNum != ''">
+                and sell_two_num = #{sellTwoNum}
+            </if>
+            <if test="sellTwoMon != null and sellTwoMon != ''">
+                and sell_two_mon = #{sellTwoMon}
+            </if>
+            <if test="sellThreeNum != null and sellThreeNum != ''">
+                and sell_three_num = #{sellThreeNum}
+            </if>
+            <if test="sellThreeMon != null and sellThreeMon != ''">
+                and sell_three_mon = #{sellThreeMon}
+            </if>
+            <if test="sellForeNum != null and sellForeNum != ''">
+                and sell_fore_num = #{sellForeNum}
+            </if>
+            <if test="sellForeMon != null and sellForeMon != ''">
+                and sell_fore_mon = #{sellForeMon}
+            </if>
+            <if test="sellFiveNum != null and sellFiveNum != ''">
+                and sell_five_num = #{sellFiveNum}
+            </if>
+            <if test="sellFiveMon != null and sellFiveMon != ''">
+                and sell_five_mon = #{sellFiveMon}
+            </if>
+            <if test="dealDate != null">
+                and deal_date = #{dealDate}
+            </if>
+            <if test="dealDateBegin != null and dealDateEnd != null">
+                and deal_date &lt; #{dealDateEnd} and deal_date &gt; #{dealDateBegin}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into  stock_table(stock_name, stock_num, begin_price, last_day_end_price, curr_price,
+                                 day_max_price, day_min_price, buy_one, sell_one, sell_done_num,
+                                 sell_done_mon, buy_one_num, buy_one_mon, buy_two_num, buy_two_mon,
+                                 buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num,
+                                 buy_five_mon, sell_one_num, sell_one_mon, sell_two_num, sell_two_mon,
+                                 sell_three_num, sell_three_mon, sell_fore_num, sell_fore_mon, sell_five_num,
+                                 sell_five_mon, deal_date, create_time, update_time,status)
+        values (#{stockName}, #{stockNum}, #{beginPrice}, #{lastDayEndPrice}, #{currPrice}, #{dayMaxPrice}, #{dayMinPrice},
+                #{buyOne}, #{sellOne}, #{sellDoneNum}, #{sellDoneMon}, #{buyOneNum}, #{buyOneMon}, #{buyTwoNum}, #{buyTwoMon},
+                #{buyThreeNum}, #{buyThreeMon}, #{buyForeNum}, #{buyForeMon}, #{buyFiveNum}, #{buyFiveMon}, #{sellOneNum},
+                #{sellOneMon}, #{sellTwoNum}, #{sellTwoMon}, #{sellThreeNum}, #{sellThreeMon}, #{sellForeNum}, #{sellForeMon},
+                #{sellFiveNum}, #{sellFiveMon}, #{dealDate}, #{createTime}, #{updateTime}, #{status})
+    </insert>
+
+    <insert id="insertBatch">
+        insert into  stock_table(stock_name, stock_num, begin_price, last_day_end_price, curr_price,
+        day_max_price, day_min_price, buy_one, sell_one, sell_done_num, sell_done_mon, buy_one_num, buy_one_mon,
+        buy_two_num, buy_two_mon, buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num, buy_five_mon,
+        sell_one_num, sell_one_mon, sell_two_num, sell_two_mon, sell_three_num, sell_three_mon, sell_fore_num,
+        sell_fore_mon, sell_five_num, sell_five_mon, deal_date, create_time, update_time, status)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockName}, #{entity.stockNum}, #{entity.beginPrice}, #{entity.lastDayEndPrice},
+            #{entity.currPrice}, #{entity.dayMaxPrice}, #{entity.dayMinPrice}, #{entity.buyOne}, #{entity.sellOne},
+            #{entity.sellDoneNum}, #{entity.sellDoneMon}, #{entity.buyOneNum}, #{entity.buyOneMon}, #{entity.buyTwoNum},
+            #{entity.buyTwoMon}, #{entity.buyThreeNum}, #{entity.buyThreeMon}, #{entity.buyForeNum},
+            #{entity.buyForeMon}, #{entity.buyFiveNum}, #{entity.buyFiveMon}, #{entity.sellOneNum},
+            #{entity.sellOneMon}, #{entity.sellTwoNum}, #{entity.sellTwoMon}, #{entity.sellThreeNum},
+            #{entity.sellThreeMon}, #{entity.sellForeNum}, #{entity.sellForeMon}, #{entity.sellFiveNum},
+            #{entity.sellFiveMon}, #{entity.dealDate}, #{entity.createTime}, #{entity.updateTime}, #{entity.status})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into  stock_table(stock_name, stock_num, begin_price, last_day_end_price, curr_price,
+        day_max_price, day_min_price, buy_one, sell_one, sell_done_num, sell_done_mon, buy_one_num, buy_one_mon,
+        buy_two_num, buy_two_mon, buy_three_num, buy_three_mon, buy_fore_num, buy_fore_mon, buy_five_num, buy_five_mon,
+        sell_one_num, sell_one_mon, sell_two_num, sell_two_mon, sell_three_num, sell_three_mon, sell_fore_num,
+        sell_fore_mon, sell_five_num, sell_five_mon, deal_date, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.stockName}, #{entity.stockNum}, #{entity.beginPrice}, #{entity.lastDayEndPrice},
+            #{entity.currPrice}, #{entity.dayMaxPrice}, #{entity.dayMinPrice}, #{entity.buyOne}, #{entity.sellOne},
+            #{entity.sellDoneNum}, #{entity.sellDoneMon}, #{entity.buyOneNum}, #{entity.buyOneMon}, #{entity.buyTwoNum},
+            #{entity.buyTwoMon}, #{entity.buyThreeNum}, #{entity.buyThreeMon}, #{entity.buyForeNum},
+            #{entity.buyForeMon}, #{entity.buyFiveNum}, #{entity.buyFiveMon}, #{entity.sellOneNum},
+            #{entity.sellOneMon}, #{entity.sellTwoNum}, #{entity.sellTwoMon}, #{entity.sellThreeNum},
+            #{entity.sellThreeMon}, #{entity.sellForeNum}, #{entity.sellForeMon}, #{entity.sellFiveNum},
+            #{entity.sellFiveMon}, #{entity.dealDate}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        stock_name = values(stock_name) , stock_num = values(stock_num) , begin_price = values(begin_price) ,
+        last_day_end_price = values(last_day_end_price) , curr_price = values(curr_price) , day_max_price =
+        values(day_max_price) , day_min_price = values(day_min_price) , buy_one = values(buy_one) , sell_one =
+        values(sell_one) , sell_done_num = values(sell_done_num) , sell_done_mon = values(sell_done_mon) , buy_one_num =
+        values(buy_one_num) , buy_one_mon = values(buy_one_mon) , buy_two_num = values(buy_two_num) , buy_two_mon =
+        values(buy_two_mon) , buy_three_num = values(buy_three_num) , buy_three_mon = values(buy_three_mon) ,
+        buy_fore_num = values(buy_fore_num) , buy_fore_mon = values(buy_fore_mon) , buy_five_num = values(buy_five_num)
+        , buy_five_mon = values(buy_five_mon) , sell_one_num = values(sell_one_num) , sell_one_mon =
+        values(sell_one_mon) , sell_two_num = values(sell_two_num) , sell_two_mon = values(sell_two_mon) ,
+        sell_three_num = values(sell_three_num) , sell_three_mon = values(sell_three_mon) , sell_fore_num =
+        values(sell_fore_num) , sell_fore_mon = values(sell_fore_mon) , sell_five_num = values(sell_five_num) ,
+        sell_five_mon = values(sell_five_mon) , deal_date = values(deal_date) , create_time = values(create_time) ,
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update  stock_table
+        <set>
+            <if test="stockName != null and stockName != ''">
+                stock_name = #{stockName},
+            </if>
+            <if test="stockNum != null and stockNum != ''">
+                stock_num = #{stockNum},
+            </if>
+            <if test="beginPrice != null and beginPrice != ''">
+                begin_price = #{beginPrice},
+            </if>
+            <if test="lastDayEndPrice != null and lastDayEndPrice != ''">
+                last_day_end_price = #{lastDayEndPrice},
+            </if>
+            <if test="currPrice != null and currPrice != ''">
+                curr_price = #{currPrice},
+            </if>
+            <if test="dayMaxPrice != null and dayMaxPrice != ''">
+                day_max_price = #{dayMaxPrice},
+            </if>
+            <if test="dayMinPrice != null and dayMinPrice != ''">
+                day_min_price = #{dayMinPrice},
+            </if>
+            <if test="buyOne != null and buyOne != ''">
+                buy_one = #{buyOne},
+            </if>
+            <if test="sellOne != null and sellOne != ''">
+                sell_one = #{sellOne},
+            </if>
+            <if test="sellDoneNum != null and sellDoneNum != ''">
+                sell_done_num = #{sellDoneNum},
+            </if>
+            <if test="sellDoneMon != null and sellDoneMon != ''">
+                sell_done_mon = #{sellDoneMon},
+            </if>
+            <if test="buyOneNum != null and buyOneNum != ''">
+                buy_one_num = #{buyOneNum},
+            </if>
+            <if test="buyOneMon != null and buyOneMon != ''">
+                buy_one_mon = #{buyOneMon},
+            </if>
+            <if test="buyTwoNum != null and buyTwoNum != ''">
+                buy_two_num = #{buyTwoNum},
+            </if>
+            <if test="buyTwoMon != null and buyTwoMon != ''">
+                buy_two_mon = #{buyTwoMon},
+            </if>
+            <if test="buyThreeNum != null and buyThreeNum != ''">
+                buy_three_num = #{buyThreeNum},
+            </if>
+            <if test="buyThreeMon != null and buyThreeMon != ''">
+                buy_three_mon = #{buyThreeMon},
+            </if>
+            <if test="buyForeNum != null and buyForeNum != ''">
+                buy_fore_num = #{buyForeNum},
+            </if>
+            <if test="buyForeMon != null and buyForeMon != ''">
+                buy_fore_mon = #{buyForeMon},
+            </if>
+            <if test="buyFiveNum != null and buyFiveNum != ''">
+                buy_five_num = #{buyFiveNum},
+            </if>
+            <if test="buyFiveMon != null and buyFiveMon != ''">
+                buy_five_mon = #{buyFiveMon},
+            </if>
+            <if test="sellOneNum != null and sellOneNum != ''">
+                sell_one_num = #{sellOneNum},
+            </if>
+            <if test="sellOneMon != null and sellOneMon != ''">
+                sell_one_mon = #{sellOneMon},
+            </if>
+            <if test="sellTwoNum != null and sellTwoNum != ''">
+                sell_two_num = #{sellTwoNum},
+            </if>
+            <if test="sellTwoMon != null and sellTwoMon != ''">
+                sell_two_mon = #{sellTwoMon},
+            </if>
+            <if test="sellThreeNum != null and sellThreeNum != ''">
+                sell_three_num = #{sellThreeNum},
+            </if>
+            <if test="sellThreeMon != null and sellThreeMon != ''">
+                sell_three_mon = #{sellThreeMon},
+            </if>
+            <if test="sellForeNum != null and sellForeNum != ''">
+                sell_fore_num = #{sellForeNum},
+            </if>
+            <if test="sellForeMon != null and sellForeMon != ''">
+                sell_fore_mon = #{sellForeMon},
+            </if>
+            <if test="sellFiveNum != null and sellFiveNum != ''">
+                sell_five_num = #{sellFiveNum},
+            </if>
+            <if test="sellFiveMon != null and sellFiveMon != ''">
+                sell_five_mon = #{sellFiveMon},
+            </if>
+            <if test="dealDate != null">
+                deal_date = #{dealDate},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where stock_num = #{stockNum}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from  stock_table
+        where id = #{id}
+    </delete>
+
+</mapper>
+
