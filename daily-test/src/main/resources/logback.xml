@@ -13,7 +13,7 @@
     </property>
     <property resource="application-dev.properties">
     </property>-->
-    <contextName>daily-test-contextName</contextName>
+    <contextName>${LOG_NAME}-contextName</contextName>
 
     <!--控制台日志， 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
