@@ -13,6 +13,7 @@ public class RetVo implements Serializable {
     BigDecimal bi;
     Double d1;
 
+
     public BigDecimal getBi() {
         return bi;
     }
