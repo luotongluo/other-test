@@ -11,6 +11,7 @@ springcoud 的测试项目
     eurke1 注册中心 port：8001
     eurek2 注册中心 port：8002
     eurek3 注册中心 port：8003
+spring-apollo 配置中心：port：8100
 eureka.instance.hostname=localhost
 ###### 认证的用户名,比如root
 spring.security.user.name=root
