@@ -28,9 +28,10 @@ public class FileTest {
         String path12 = "E:\\Using\\2022-02-18";
         String path13 = "E:\\Using\\2022-03-10";
         String path14 = "E:\\Using\\2022-03-21";
+        String path15 = "E:\\Using\\2022-04-25";
 
         List<String> pathList = Arrays.asList(path1, path2, path3, path4, path5,
-                path6, path7, path8, path9, path10, path11, path12,path13,path14);
+                path6, path7, path8, path9, path10, path11, path12,path13,path14,path15);
         String pathJoin = pathList.stream().collect(Collectors.joining(","));
         System.out.println("pathJoin：" + pathJoin);
 
@@ -76,7 +77,7 @@ public class FileTest {
                     if (contains) {
                         System.out.println(name + "=============" + filename);
                         System.out.println(hashMap.get(name) + "======before=======\n========");
-                        //tempLists[i].delete();
+                        tempLists[i].delete();
                     } else {
                         hashMap.put(name, filename);
                     }
